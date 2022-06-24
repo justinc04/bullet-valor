@@ -140,6 +140,7 @@ public abstract class Gun : Item
         GunRecoilFire();
         pv.RPC("RPC_Shoot", RpcTarget.All);
         ShootBullets();
+        playerAudio.Play(((GunInfo)itemInfo).gunShotSound);
     }
 
     public abstract void ShootBullets();

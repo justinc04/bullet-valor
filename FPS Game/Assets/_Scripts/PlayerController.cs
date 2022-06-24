@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviourPunCallbacks, IDamageable
     [SerializeField] TMP_Text ammoText;
 
     private const float maxHealth = 100;
-    public float currentHealth = maxHealth;
+    [HideInInspector] public float currentHealth = maxHealth;
 
     private PlayerManager playerManager;
     private PhotonView pv;

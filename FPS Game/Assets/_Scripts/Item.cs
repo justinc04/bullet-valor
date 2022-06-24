@@ -8,6 +8,7 @@ public abstract class Item : MonoBehaviour
     public ItemInfo itemInfo;
     public GameObject itemGameObject;
     public GameObject playerGameObject;
+    public PlayerAudio playerAudio;
     [HideInInspector] public bool active;
     [HideInInspector] public PhotonView pv;
 

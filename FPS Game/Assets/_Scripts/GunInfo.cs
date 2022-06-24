@@ -39,4 +39,7 @@ public class GunInfo : ItemInfo
     public float scopeInSpeed;
     public float aimingFireRate;
     public float aimingMoveSpeedAffector;
+
+    [Header("Audio")]
+    public string gunShotSound;
 }

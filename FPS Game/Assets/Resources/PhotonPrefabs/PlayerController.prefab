@@ -248,6 +248,7 @@ Transform:
   - {fileID: 6259834182214204534}
   - {fileID: 7477190410349821448}
   - {fileID: 4861789341289810629}
+  - {fileID: 8232619452808079090}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -403,6 +404,7 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 8
+  playerAudio: {fileID: 6758297476281144724}
 --- !u!114 &8943080097059350472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1064,6 +1066,7 @@ MonoBehaviour:
   itemInfo: {fileID: 11400000, guid: fb2c2aa7915424d468111e2e93e93cef, type: 2}
   itemGameObject: {fileID: 4356465095187185474}
   playerGameObject: {fileID: 569362147472692483}
+  playerAudio: {fileID: 6758297476281144724}
   active: 0
   pv: {fileID: 0}
   bulletImpactPrefab: {fileID: 3837519000684272582, guid: e3c495abcd97a004ebe6129c2970b6fe, type: 3}
@@ -1314,6 +1317,7 @@ MonoBehaviour:
   itemInfo: {fileID: 11400000, guid: 5fede40aa516aa84ebcb565dbb98a624, type: 2}
   itemGameObject: {fileID: 4672080832733005493}
   playerGameObject: {fileID: 569362147472692483}
+  playerAudio: {fileID: 6758297476281144724}
   active: 0
   pv: {fileID: 0}
   bulletImpactPrefab: {fileID: 3837519000684272582, guid: e3c495abcd97a004ebe6129c2970b6fe, type: 3}
@@ -1649,6 +1653,86 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &7619270710316192919
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8232619452808079090}
+  - component: {fileID: 6758297476281144724}
+  - component: {fileID: 4576082503718247845}
+  m_Layer: 0
+  m_Name: PlayerAudio
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8232619452808079090
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7619270710316192919}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 980638815264329100}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6758297476281144724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7619270710316192919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce22eb141f9d7fe4c927fa76c0396b07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Footsteps
+    clip: {fileID: 8300000, guid: 408d4f1707198e049bc46a00c5baafbe, type: 3}
+    volume: 1
+    maxDistance: 20
+    loop: 1
+    source: {fileID: 0}
+  - name: Sniper Rifle Shot
+    clip: {fileID: 8300000, guid: 21c1d63a3d16fc049a655a24e4abdae7, type: 3}
+    volume: 0.5
+    maxDistance: 100
+    loop: 0
+    source: {fileID: 0}
+--- !u!114 &4576082503718247845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7619270710316192919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &8352614584354770909
 GameObject:
   m_ObjectHideFlags: 0
@@ -1699,6 +1783,7 @@ MonoBehaviour:
   itemInfo: {fileID: 11400000, guid: 444f8b5966b122c49a5de952f9414436, type: 2}
   itemGameObject: {fileID: 5912622104954234760}
   playerGameObject: {fileID: 569362147472692483}
+  playerAudio: {fileID: 6758297476281144724}
   active: 0
   pv: {fileID: 0}
   bulletImpactPrefab: {fileID: 3837519000684272582, guid: e3c495abcd97a004ebe6129c2970b6fe, type: 3}
@@ -1834,7 +1919,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2597632171623372855, guid: 6d4be1e4005b73e42be22776bdf17930, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.476
+      value: 5.859
       objectReference: {fileID: 0}
     - target: {fileID: 2597632171623372855, guid: 6d4be1e4005b73e42be22776bdf17930, type: 3}
       propertyPath: m_LocalRotation.w

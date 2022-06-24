@@ -44,6 +44,8 @@ MonoBehaviour:
   - RPC_Hit
   - RPC_Kill
   - RPC_Die
+  - RPC_Play
+  - RPC_Stop
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0

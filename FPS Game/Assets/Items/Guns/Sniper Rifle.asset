@@ -37,3 +37,4 @@ MonoBehaviour:
   scopeInSpeed: 30
   aimingFireRate: 0.75
   aimingMoveSpeedAffector: 0.75
+  gunShotSound: Sniper Rifle Shot

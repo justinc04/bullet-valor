@@ -38,6 +38,7 @@ public class PlayerMovement : MonoBehaviourPun
     [SerializeField] GameObject cameraHolder;
     [SerializeField] Transform groundCheck;
     [SerializeField] LayerMask groundMask;
+    [SerializeField] PlayerAudio playerAudio;
     private PhotonView pv;
     private CharacterController controller;
 
@@ -89,6 +90,18 @@ public class PlayerMovement : MonoBehaviourPun
         speed = Mathf.SmoothDamp(speed, Input.GetKey(KeyCode.LeftShift) ? walkSpeed : runSpeed, ref smoothMoveSpeed, smoothTime);
 
         controller.Move(direction * speed * speedAffector * Time.deltaTime);
+
+        if (direction != Vector3.zero && !Input.GetKey(KeyCode.LeftShift))
+        {
+            if (!playerAudio.CheckSound("Footsteps"))
+            {
+                playerAudio.Play("Footsteps");
+            }
+        }
+        else if (playerAudio.CheckSound("Footsteps"))
+        {
+            playerAudio.Stop("Footsteps");
+        }
     }
 
     void CheckGrounded()

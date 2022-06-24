@@ -9,16 +9,8 @@ public class GameManager : MonoBehaviour
     
     public GameObject killGraphic;
 
-
     private void Awake()
     {
         Instance = this;
-    }
-
-    private void Start()
-    {
-
-
-
     }
 }
