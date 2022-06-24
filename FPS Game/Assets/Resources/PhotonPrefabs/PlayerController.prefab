@@ -1702,13 +1702,25 @@ MonoBehaviour:
   - name: Footsteps
     clip: {fileID: 8300000, guid: 408d4f1707198e049bc46a00c5baafbe, type: 3}
     volume: 1
-    maxDistance: 20
+    maxDistance: 25
     loop: 1
     source: {fileID: 0}
   - name: Sniper Rifle Shot
     clip: {fileID: 8300000, guid: 21c1d63a3d16fc049a655a24e4abdae7, type: 3}
-    volume: 0.5
+    volume: 0.3
     maxDistance: 100
+    loop: 0
+    source: {fileID: 0}
+  - name: Assault Rifle Shot
+    clip: {fileID: 8300000, guid: b88f8db7a36ab1c469c021f69ae89170, type: 3}
+    volume: 0.3
+    maxDistance: 50
+    loop: 0
+    source: {fileID: 0}
+  - name: Pistol Shot
+    clip: {fileID: 8300000, guid: 61e879d413cf60e4c9213cad8208d1b6, type: 3}
+    volume: 0.15
+    maxDistance: 35
     loop: 0
     source: {fileID: 0}
 --- !u!114 &4576082503718247845
@@ -1919,7 +1931,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2597632171623372855, guid: 6d4be1e4005b73e42be22776bdf17930, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.859
+      value: 4.84
       objectReference: {fileID: 0}
     - target: {fileID: 2597632171623372855, guid: 6d4be1e4005b73e42be22776bdf17930, type: 3}
       propertyPath: m_LocalRotation.w

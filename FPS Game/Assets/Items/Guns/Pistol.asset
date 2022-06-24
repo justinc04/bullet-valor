@@ -37,3 +37,4 @@ MonoBehaviour:
   scopeInSpeed: 20
   aimingFireRate: 0
   aimingMoveSpeedAffector: 0
+  gunShotSound: Pistol Shot

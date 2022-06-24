@@ -37,3 +37,4 @@ MonoBehaviour:
   scopeInSpeed: 20
   aimingFireRate: 10
   aimingMoveSpeedAffector: 0.75
+  gunShotSound: Assault Rifle Shot

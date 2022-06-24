@@ -24,7 +24,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 9565
+  controlID: 17263
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 9566
+  controlID: 17264
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -166,7 +166,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 9567
+  controlID: 17265
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -226,7 +226,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 560fffffa20fffff5811ffff5e11ffffa228ffffee28ffffa42affffaa2affffa034ffffec34ffffa236ffffa836ffff3640ffff8240ffff3842ffff3e42ffffce43ffff1a44ffffd045ffffd645ffff4a52ffff9652ffff3c54ffff4254fffff65fffff4260fffffc61ffff0662ffff7662ffff4868ffff8e68fffffa68ffff6069ffff146dffff3679ffff8279ffff287bffff2e7bffff48a4ffff94a4ffff4aa6ffff50a6ffff10afffff82afffff32b1ffff7eb1ffff34b3ffff3ab3ffff9cceffffe8ceffff9ed0ffffa4d0ffff26daffff72daffff28dcffff2edcffff30fbffff
+      m_ExpandedIDs: bc28fefffa28feffb02afeffb62afeffea30feff2831feffce32feffd432feffe64efeff244ffeffca50feffd050feff560fffffa20fffff5811ffff5e11ffffa228ffffee28ffffa42affffaa2affffa034ffffec34ffffa236ffffa836ffff3640ffff8240ffff3842ffff3e42ffffce43ffff1a44ffffd045ffffd645ffff4a52ffff9652ffff3c54ffff4254fffff65fffff4260fffffc61ffff0662ffff7662ffff4868ffff8e68fffffa68ffff6069ffff146dffff3679ffff8279ffff287bffff2e7bffff48a4ffff94a4ffff4aa6ffff50a6ffff10afffff82afffff32b1ffff7eb1ffff34b3ffff3ab3ffff9cceffffe8ceffff9ed0ffffa4d0ffff26daffff72daffff28dcffff2edcffff30fbfffff4ffffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -504,7 +504,7 @@ MonoBehaviour:
   m_Position:
     m_Target: {x: -14.995932, y: -3.8928337, z: -9.14849}
     speed: 2
-    m_Value: {x: 1.6992215, y: -0.13462186, z: 2.482881}
+    m_Value: {x: 4.0872073, y: -0.4878279, z: 2.4718187}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -553,11 +553,11 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: -0.27498537, y: 0.6512947, z: -0.27485377, w: -0.6517027}
     speed: 2
-    m_Value: {x: 0.1566921, y: 0.67722946, z: -0.15092582, w: 0.7028721}
+    m_Value: {x: 0.06917443, y: 0.7408446, z: -0.0771551, w: 0.6636348}
   m_Size:
     m_Target: 27.061657
     speed: 2
-    m_Value: 2.109004
+    m_Value: 4.506845
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -650,21 +650,21 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefabs
+    - Assets/Resources/PhotonPrefabs
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Prefabs
+  - Assets/Resources/PhotonPrefabs
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\justi\Documents\Unity Projects\fps-game\FPS Game
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 67}
-    m_SelectedIDs: 40610000
-    m_LastClickedID: 24896
+    m_SelectedIDs: 44610000
+    m_LastClickedID: 24900
     m_ExpandedIDs: 00000000126100001461000016610000186100001a6100001c6100001e61000020610000226100002461000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -796,8 +796,8 @@ MonoBehaviour:
     y: 0
     width: 454
     height: 947
-  m_MinSize: {x: 276, y: 71}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 13}

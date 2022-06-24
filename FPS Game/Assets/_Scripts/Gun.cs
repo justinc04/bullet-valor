@@ -112,7 +112,7 @@ public abstract class Gun : Item
         ADSObject.transform.localPosition = Vector3.zero;
         gunRecoilObject.transform.localRotation = Quaternion.identity;
 
-        if (((GunInfo)itemInfo).hasScopeOverlay)
+        if (pv.IsMine && ((GunInfo)itemInfo).hasScopeOverlay)
         {
             scopeOverlay.SetActive(false);
         }
