@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb57273d97bdf014e8a3bd092d5cbbbe, type: 3}
+  m_Name: Pistol
+  m_EditorClassIdentifier: 
+  itemName: Pistol
+  damage: 25
+  fireRate: 7
+  fullAuto: 0
+  semiAuto: 1
+  ammoCapacity: 12
+  reloadTime: 1.5
+  reloadPosition: {x: 0.233, y: -0.271, z: -0.823}
+  reloadAnimationSpeed: 7
+  hipFireRecoil: {x: -1.5, y: 2.5, z: 0.2}
+  aimingRecoil: {x: 0, y: 0, z: 0}
+  cameraKickback: {x: 0, y: 0, z: 0}
+  snappiness: 4
+  returnSpeed: 6
+  gunRotationRecoil: {x: -8, y: 0.3, z: 0.3}
+  gunPositionRecoil: {x: 0, y: -0.05, z: -0.2}
+  gunSnapSpeed: 30
+  gunReturnSpeed: 25
+  canADS: 0
+  hasScopeOverlay: 0
+  aimingPosition: {x: 0, y: 0, z: 0}
+  aimingZoom: 0
+  scopeInSpeed: 20
+  aimingFireRate: 0
+  aimingMoveSpeedAffector: 0
