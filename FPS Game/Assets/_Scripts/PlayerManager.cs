@@ -30,6 +30,7 @@ public class PlayerManager : MonoBehaviour
     void CreateController()
     {
         GameManager.Instance.killGraphic.SetActive(false);
+        AudioManager.Instance.audioListener.enabled = false;
         Transform spawnpoint = SpawnManager.Instance.GetSpawnpoint(PhotonNetwork.LocalPlayer.IsMasterClient);
         controller = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerController"), spawnpoint.position, spawnpoint.rotation, 0, new object[] { pv.ViewID });
     }
@@ -47,6 +48,7 @@ public class PlayerManager : MonoBehaviour
     public void Die()
     {
         DestroyController();
+        AudioManager.Instance.audioListener.enabled = true;
 
         if (GameManager.Instance.killGraphic.activeSelf)
         {
@@ -63,6 +65,8 @@ public class PlayerManager : MonoBehaviour
         PhotonNetwork.LocalPlayer.SetCustomProperties(playerProperties);
 
         GameManager.Instance.killGraphic.SetActive(true);
+        AudioManager.Instance.Play("Kill");
+
         Invoke("DestroyController", 3);
         Invoke("CreateController", 3);
     }
