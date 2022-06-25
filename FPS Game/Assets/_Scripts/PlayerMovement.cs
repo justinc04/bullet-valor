@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviourPun
     private float gravity;
 
     [Header("Jumping")]
-    [SerializeField] float jumpHeight = .8f;
+    [SerializeField] float jumpHeight = .9f;
     [SerializeField] float groundDistance = .5f;
     [SerializeField] float hangTime = .05f;
     [SerializeField] float jumpBuffer = .08f;
@@ -91,7 +91,7 @@ public class PlayerMovement : MonoBehaviourPun
 
         controller.Move(direction * speed * speedAffector * Time.deltaTime);
 
-        if (direction != Vector3.zero && !Input.GetKey(KeyCode.LeftShift))
+        if (direction != Vector3.zero && !Input.GetKey(KeyCode.LeftShift) && isGrounded)
         {
             if (!playerAudio.CheckSound("Footsteps"))
             {
@@ -107,6 +107,11 @@ public class PlayerMovement : MonoBehaviourPun
     void CheckGrounded()
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+
+        if (isGrounded && velocity.y < -8f && Time.timeSinceLevelLoad > .5f)
+        {
+            playerAudio.Play("Jump Land");
+        }
 
         if (isGrounded && velocity.y < 0f)
         {
@@ -142,6 +147,8 @@ public class PlayerMovement : MonoBehaviourPun
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
             jumpBufferCounter = 0f;
             StartCoroutine(JumpCooldown());
+
+            playerAudio.Play("Jump");
         }
 
         if (velocity.y < 0)
@@ -155,7 +162,7 @@ public class PlayerMovement : MonoBehaviourPun
 
         if (Input.GetButtonUp("Jump") && velocity.y > 0f)
         {
-            velocity.y *= .7f;
+            velocity.y *= .8f;
             hangTimeCounter = 0f;
         }
     }
