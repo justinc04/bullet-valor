@@ -3,15 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using System.IO;
-using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class PlayerManager : MonoBehaviour
 {
     private PhotonView pv;
     public GameObject controller;
-
-    public Hashtable playerProperties = new Hashtable();
-    public int score;
+    private bool kill;
     
     private void Awake()
     {
@@ -22,17 +19,16 @@ public class PlayerManager : MonoBehaviour
     {
         if (pv.IsMine)
         {
-            CreateController();
-            playerProperties["score"] = score;
+            GameManager.Instance.playerManager = this;
         }
     }
 
-    void CreateController()
+    public void CreateController()
     {
-        GameManager.Instance.killGraphic.SetActive(false);
-        AudioManager.Instance.audioListener.enabled = false;
+        kill = false;
         Transform spawnpoint = SpawnManager.Instance.GetSpawnpoint(PhotonNetwork.LocalPlayer.IsMasterClient);
         controller = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerController"), spawnpoint.position, spawnpoint.rotation, 0, new object[] { pv.ViewID });
+        GameManager.Instance.OnSpawn();
     }
 
     void DestroyController()
@@ -48,26 +44,20 @@ public class PlayerManager : MonoBehaviour
     public void Die()
     {
         DestroyController();
-        AudioManager.Instance.audioListener.enabled = true;
 
-        if (GameManager.Instance.killGraphic.activeSelf)
+        if (!kill)
         {
-            return;
+            Invoke("CreateController", 3);
         }
 
-        Invoke("CreateController", 3);
+        GameManager.Instance.OnDeath();
     }
 
     public void Kill()
     {
-        score++;
-        playerProperties["score"] = score;
-        PhotonNetwork.LocalPlayer.SetCustomProperties(playerProperties);
-
-        GameManager.Instance.killGraphic.SetActive(true);
-        AudioManager.Instance.Play("Kill");
-
+        kill = true;
         Invoke("DestroyController", 3);
         Invoke("CreateController", 3);
+        GameManager.Instance.OnKill();
     }
 }

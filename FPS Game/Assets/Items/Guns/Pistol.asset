@@ -15,9 +15,9 @@ MonoBehaviour:
   itemName: Pistol
   damage: 25
   fireRate: 7
-  fullAuto: 0
-  semiAuto: 1
   ammoCapacity: 12
+  fireMode: 1
+  gunClass: 1
   reloadTime: 1.5
   reloadPosition: {x: 0.233, y: -0.271, z: -0.823}
   reloadAnimationSpeed: 7

@@ -15,9 +15,9 @@ MonoBehaviour:
   itemName: Sniper Rifle
   damage: 100
   fireRate: 0.6
-  fullAuto: 0
-  semiAuto: 0
   ammoCapacity: 5
+  fireMode: 2
+  gunClass: 0
   reloadTime: 3.7
   reloadPosition: {x: 0.628, y: -0.442, z: -0.445}
   reloadAnimationSpeed: 6

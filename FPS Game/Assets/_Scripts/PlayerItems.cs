@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,28 +8,34 @@ using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class PlayerItems : MonoBehaviourPunCallbacks
 {
-    [SerializeField] Item[] items;
+    [SerializeField] Item[] itemReferences;
+    private List<Item> items = new List<Item>();
 
     private int itemIndex;
     private int previousItemIndex = -1;
 
     private PhotonView pv;
     private PlayerController playerController;
-    private PlayerManager playerManager;
 
     private void Awake()
     {
         pv = GetComponent<PhotonView>();
         playerController = GetComponent<PlayerController>();
-        playerManager = PhotonView.Find((int)pv.InstantiationData[0]).GetComponent<PlayerManager>();
     }
 
     private void Start()
     {
-        if (pv.IsMine)
+        if (!pv.IsMine)
         {
-            EquipItem(0);
+            return;
         }
+
+        foreach (ItemInfo item in GameManager.Instance.items)
+        {
+            items.Add(Array.Find(itemReferences, i => i.itemInfo == item));
+        }
+
+        EquipItem(0);
     }
 
     private void Update()
@@ -38,7 +45,7 @@ public class PlayerItems : MonoBehaviourPunCallbacks
             return;
         }
 
-        for (int i = 0; i < items.Length; i++)
+        for (int i = 0; i < items.Count; i++)
         {
             if (Input.GetKeyDown((i + 1).ToString()))
             {
@@ -49,7 +56,7 @@ public class PlayerItems : MonoBehaviourPunCallbacks
 
         if (Input.GetAxisRaw("Mouse ScrollWheel") < 0)
         {
-            if (itemIndex >= items.Length - 1)
+            if (itemIndex >= items.Count - 1)
             {
                 EquipItem(0);
             }
@@ -62,7 +69,7 @@ public class PlayerItems : MonoBehaviourPunCallbacks
         {
             if (itemIndex <= 0)
             {
-                EquipItem(items.Length - 1);
+                EquipItem(items.Count - 1);
             }
             else
             {
@@ -96,8 +103,8 @@ public class PlayerItems : MonoBehaviourPunCallbacks
 
         if (pv.IsMine)
         {
-            playerManager.playerProperties["itemIndex"] = itemIndex;
-            PhotonNetwork.LocalPlayer.SetCustomProperties(playerManager.playerProperties);
+            GameManager.Instance.playerProperties["itemIndex"] = itemIndex;
+            PhotonNetwork.LocalPlayer.SetCustomProperties(GameManager.Instance.playerProperties);
         }
     }
 

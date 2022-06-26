@@ -9,9 +9,11 @@ public class GunInfo : ItemInfo
     [Header("Properties")]
     public float damage;
     public float fireRate;
-    public bool fullAuto;
-    public bool semiAuto;
     public int ammoCapacity;
+    public enum FireMode { Auto, SemiAuto, Semi };
+    public FireMode fireMode;
+    public enum GunClass { Primary, Secondary }
+    public GunClass gunClass;
 
     [Header("Reloading")]
     public float reloadTime;

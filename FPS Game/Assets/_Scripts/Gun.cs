@@ -60,7 +60,7 @@ public abstract class Gun : Item
             return;
         }
 
-        if (((GunInfo)itemInfo).fullAuto && Input.GetMouseButton(0) || Input.GetMouseButtonDown(0))
+        if (((GunInfo)itemInfo).fireMode == GunInfo.FireMode.Auto && Input.GetMouseButton(0) || Input.GetMouseButtonDown(0))
         {
             TryShoot();
         }
@@ -126,7 +126,7 @@ public abstract class Gun : Item
             {             
                 Shoot();
             }
-            else if (((GunInfo)itemInfo).semiAuto)
+            else if (((GunInfo)itemInfo).fireMode == GunInfo.FireMode.SemiAuto)
             {
                 earlyShootInput = true;
             }
