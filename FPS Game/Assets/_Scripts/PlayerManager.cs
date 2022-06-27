@@ -20,6 +20,7 @@ public class PlayerManager : MonoBehaviour
         if (pv.IsMine)
         {
             GameManager.Instance.playerManager = this;
+            GameManager.Instance.StartNextRound();
         }
     }
 
@@ -47,17 +48,14 @@ public class PlayerManager : MonoBehaviour
 
         if (!kill)
         {
-            Invoke("CreateController", 3);
-        }
-
-        GameManager.Instance.OnDeath();
+            GameManager.Instance.OnDeath();
+        }     
     }
 
     public void Kill()
     {
         kill = true;
-        Invoke("DestroyController", 3);
-        Invoke("CreateController", 3);
+        Invoke("DestroyController", GameManager.Instance.timeBetweenRounds);
         GameManager.Instance.OnKill();
     }
 }

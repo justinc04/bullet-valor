@@ -6,7 +6,7 @@ public class ShopManager : MonoBehaviour
 {
     public static ShopManager Instance;
 
-    [SerializeField] GameObject shop;
+    public GameObject shop;
     [SerializeField] Transform shopItems;
 
     private void Awake()
@@ -16,9 +16,8 @@ public class ShopManager : MonoBehaviour
 
     public void PurchaseItem(ItemInfo item)
     {
-        GameManager.Instance.items.Clear();
-        GameManager.Instance.items.Add(item);
-        GameManager.Instance.money -= item.price;
+        GameManager.Instance.AddPlayerItem(item);
+        GameManager.Instance.ChangeMoney(-item.price);
     }
 
     public void UpdateShopItems()
@@ -27,5 +26,11 @@ public class ShopManager : MonoBehaviour
         {
             shopItem.GetComponent<ShopItem>().UpdateShopItem();
         }
+    }
+
+    public void OnClickReady()
+    {
+        shop.SetActive(false);
+        GameManager.Instance.playerManager.CreateController();
     }
 }

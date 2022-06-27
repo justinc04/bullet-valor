@@ -27,6 +27,11 @@ public class PlayerItems : MonoBehaviourPunCallbacks
     {
         if (!pv.IsMine)
         {
+            foreach (string item in (string[])pv.Owner.CustomProperties["items"])
+            {
+                items.Add(Array.Find(itemReferences, i => i.itemInfo.itemName == item));
+            }
+
             return;
         }
 
