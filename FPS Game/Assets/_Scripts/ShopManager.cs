@@ -6,7 +6,8 @@ public class ShopManager : MonoBehaviour
 {
     public static ShopManager Instance;
 
-    public GameObject shop;
+    [SerializeField] GameObject shop;
+    [SerializeField] Transform shopItems;
 
     private void Awake()
     {
@@ -17,8 +18,14 @@ public class ShopManager : MonoBehaviour
     {
         GameManager.Instance.items.Clear();
         GameManager.Instance.items.Add(item);
+        GameManager.Instance.money -= item.price;
+    }
 
-        GameManager.Instance.playerManager.CreateController();
-        shop.SetActive(false);
+    public void UpdateShopItems()
+    {
+        foreach (Transform shopItem in shopItems)
+        {
+            shopItem.GetComponent<ShopItem>().UpdateShopItem();
+        }
     }
 }

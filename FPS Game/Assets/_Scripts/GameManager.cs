@@ -9,11 +9,12 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     public Hashtable playerProperties = new Hashtable();
-    public PlayerManager playerManager;
+    [HideInInspector] public PlayerManager playerManager;
 
     [SerializeField] GameObject killGraphic;
 
     public int score;
+    public int money;
     public List<ItemInfo> items;
 
     private void Awake()

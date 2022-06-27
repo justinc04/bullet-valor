@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Assault Rifle
   m_EditorClassIdentifier: 
   itemName: Assault Rifle
+  price: 2500
+  graphic: {fileID: 21300000, guid: e5f3dce39492da2499d2bcd381ac2e7e, type: 3}
   damage: 40
   fireRate: 11
-  fullAuto: 1
-  semiAuto: 0
   ammoCapacity: 25
+  fireMode: 0
+  gunClass: 0
   reloadTime: 2.5
   reloadPosition: {x: 0.306, y: -0.336, z: -0.55}
   reloadAnimationSpeed: 6
