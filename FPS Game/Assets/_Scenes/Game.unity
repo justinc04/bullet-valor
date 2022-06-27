@@ -36604,6 +36604,7 @@ MonoBehaviour:
   playerManager: {fileID: 0}
   killMoney: 1000
   timeBetweenRounds: 3
+  shopFrequency: 3
   killGraphic: {fileID: 1610266799}
   moneyText: {fileID: 42481063}
   score: 0

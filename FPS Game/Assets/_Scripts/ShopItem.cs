@@ -37,6 +37,11 @@ public class ShopItem : MonoBehaviour
             itemImage.color = itemNameText.color = itemPriceText.color = coinImage.color = Color.black;
             itemButton.interactable = false;
         }
+        else
+        {
+            itemImage.color = itemNameText.color = itemPriceText.color = coinImage.color = Color.white;
+            itemButton.interactable = true;
+        }
     }
 
     public void OnClick()

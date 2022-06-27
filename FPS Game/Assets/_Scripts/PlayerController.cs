@@ -25,9 +25,11 @@ public class PlayerController : MonoBehaviourPunCallbacks, IDamageable
 
     private void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-
-        if (!pv.IsMine)
+        if (pv.IsMine)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        else
         {
             Destroy(cam);
             Destroy(UI);

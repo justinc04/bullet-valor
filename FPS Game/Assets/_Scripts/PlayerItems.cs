@@ -9,7 +9,7 @@ using Hashtable = ExitGames.Client.Photon.Hashtable;
 public class PlayerItems : MonoBehaviourPunCallbacks
 {
     [SerializeField] Item[] itemReferences;
-    private List<Item> items = new List<Item>();
+    public List<Item> items = new List<Item>();
 
     private int itemIndex;
     private int previousItemIndex = -1;
@@ -25,19 +25,19 @@ public class PlayerItems : MonoBehaviourPunCallbacks
 
     private void Start()
     {
-        if (!pv.IsMine)
+        if (pv.IsMine)
+        {
+            foreach (ItemInfo item in GameManager.Instance.items)
+            {
+                items.Add(Array.Find(itemReferences, i => i.itemInfo == item));
+            }
+        }
+        else
         {
             foreach (string item in (string[])pv.Owner.CustomProperties["items"])
             {
                 items.Add(Array.Find(itemReferences, i => i.itemInfo.itemName == item));
             }
-
-            return;
-        }
-
-        foreach (ItemInfo item in GameManager.Instance.items)
-        {
-            items.Add(Array.Find(itemReferences, i => i.itemInfo == item));
         }
 
         EquipItem(0);
@@ -115,7 +115,7 @@ public class PlayerItems : MonoBehaviourPunCallbacks
 
     public override void OnPlayerPropertiesUpdate(Player targetPlayer, Hashtable changedProps)
     {
-        if (!pv.IsMine && targetPlayer == pv.Owner)
+        if (!pv.IsMine && targetPlayer == pv.Owner && items.Count > 0)
         {
             EquipItem((int)changedProps["itemIndex"]);
         }

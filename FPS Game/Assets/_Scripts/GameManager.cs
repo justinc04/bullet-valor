@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     [Header("Settings")]
     [SerializeField] int killMoney;
     public float timeBetweenRounds;
+    public int shopFrequency;
 
     [Header("UI")]
     [SerializeField] GameObject killGraphic;
@@ -65,21 +66,24 @@ public class GameManager : MonoBehaviour
 
     public void StartNextRound()
     {
-        round++;
+        killGraphic.SetActive(false);
+        Cursor.lockState = CursorLockMode.None;
 
-        if (round % 5 == 0)
+        if (round > 0 && round % shopFrequency == 0)
         {
             ShopManager.Instance.shop.SetActive(true);
+            ShopManager.Instance.UpdateShopItems();
         }
         else
         {
             playerManager.CreateController();
         }
+
+        round++;
     }
 
     public void AddPlayerItem(ItemInfo item)
     {
-        items.Clear();
         items.Add(item);
         SyncItems();
     }
