@@ -36582,6 +36582,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1780089385}
   - component: {fileID: 1780089384}
+  - component: {fileID: 1780089386}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -36602,8 +36603,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerManager: {fileID: 0}
-  killMoney: 1000
-  timeBetweenRounds: 3
+  baseKillMoney: 500
+  timeBetweenRounds: 4
   shopFrequency: 3
   killGraphic: {fileID: 1610266799}
   moneyText: {fileID: 42481063}
@@ -36626,6 +36627,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1780089386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1780089383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 998
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &1815068126
 GameObject:
   m_ObjectHideFlags: 0
@@ -37339,6 +37362,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shop: {fileID: 2000057665}
   shopItems: {fileID: 1458835327}
+  readyButton: {fileID: 1815068128}
 --- !u!4 &1995952248
 Transform:
   m_ObjectHideFlags: 0

@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using Photon.Pun;
 
 public class ShopManager : MonoBehaviour
 {
@@ -8,6 +10,7 @@ public class ShopManager : MonoBehaviour
 
     public GameObject shop;
     [SerializeField] Transform shopItems;
+    [SerializeField] Button readyButton;
 
     private void Awake()
     {
@@ -30,7 +33,14 @@ public class ShopManager : MonoBehaviour
 
     public void OnClickReady()
     {
-        shop.SetActive(false);
-        GameManager.Instance.playerManager.CreateController();
+        readyButton.interactable = false;
+        GameManager.Instance.ReadyToStart();
+    }
+
+    public void OpenShop()
+    {
+        shop.SetActive(true);
+        readyButton.interactable = true;
+        UpdateShopItems();
     }
 }

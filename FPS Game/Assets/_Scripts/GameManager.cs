@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public PlayerManager playerManager;
 
     [Header("Settings")]
-    [SerializeField] int killMoney;
+    [SerializeField] int baseKillMoney;
     public float timeBetweenRounds;
     public int shopFrequency;
 
@@ -26,11 +26,16 @@ public class GameManager : MonoBehaviour
     public int money;
     public List<ItemInfo> items;
 
+    private PhotonView pv;
     private int round;
+    private float roundTimer;
+    private bool roundIsRunning;
+    private int readyPlayers;
 
     private void Awake()
     {
         Instance = this;
+        pv = GetComponent<PhotonView>();
     }
 
     private void Start()
@@ -39,29 +44,46 @@ public class GameManager : MonoBehaviour
         SyncItems();
     }
 
+    private void Update()
+    {
+        if (roundIsRunning)
+        {
+            roundTimer += Time.deltaTime;
+        }
+    }
+
     public void OnSpawn()
     {
+        roundIsRunning = true;
+        roundTimer = 0;
         killGraphic.SetActive(false);
         AudioManager.Instance.audioListener.enabled = false;
     }
 
     public void OnDeath()
     {
-        AudioManager.Instance.audioListener.enabled = true;
+        roundIsRunning = false;
+        AudioManager.Instance.audioListener.enabled = true;     
         Invoke("StartNextRound", timeBetweenRounds);
     }
 
     public void OnKill()
     {
+        roundIsRunning = false;
         score++;
         playerProperties["score"] = score;
         PhotonNetwork.LocalPlayer.SetCustomProperties(playerProperties);
 
-        ChangeMoney(killMoney);
+        ChangeMoney(CalculateKillMoney());
 
         killGraphic.SetActive(true);
         AudioManager.Instance.Play("Kill");
         Invoke("StartNextRound", timeBetweenRounds);
+    }
+
+    int CalculateKillMoney()
+    {
+        return baseKillMoney + 2 * (int)roundTimer;
     }
 
     public void StartNextRound()
@@ -71,8 +93,7 @@ public class GameManager : MonoBehaviour
 
         if (round > 0 && round % shopFrequency == 0)
         {
-            ShopManager.Instance.shop.SetActive(true);
-            ShopManager.Instance.UpdateShopItems();
+            ShopManager.Instance.OpenShop();
         }
         else
         {
@@ -84,7 +105,7 @@ public class GameManager : MonoBehaviour
 
     public void AddPlayerItem(ItemInfo item)
     {
-        items.Add(item);
+        items.Insert(0, item);
         SyncItems();
     }
 
@@ -105,5 +126,23 @@ public class GameManager : MonoBehaviour
     {
         money += amount;
         moneyText.text = money.ToString();
+    }
+
+    public void ReadyToStart()
+    {
+        pv.RPC("RPC_ReadyToStart", RpcTarget.All);
+    }
+
+    [PunRPC]
+    void RPC_ReadyToStart()
+    {
+        readyPlayers++;
+
+        if (readyPlayers == PhotonNetwork.PlayerList.Length)
+        {
+            readyPlayers = 0;
+            ShopManager.Instance.shop.SetActive(false);
+            playerManager.CreateController();
+        }
     }
 }
