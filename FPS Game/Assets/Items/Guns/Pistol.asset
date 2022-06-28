@@ -15,7 +15,8 @@ MonoBehaviour:
   itemName: Pistol
   price: 0
   graphic: {fileID: 21300000, guid: c617ecdca0adb2343b20e75b95aa5e8a, type: 3}
-  damage: 25
+  headDamage: 50
+  bodyDamage: 20
   fireRate: 7
   ammoCapacity: 12
   fireMode: 1

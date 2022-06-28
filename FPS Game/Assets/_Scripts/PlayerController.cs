@@ -8,8 +8,12 @@ public class PlayerController : MonoBehaviourPunCallbacks, IDamageable
 {
     [SerializeField] GameObject cam;
     [SerializeField] GameObject UI;
+    [SerializeField] GameObject playerModel;
     [SerializeField] TMP_Text healthText;
     [SerializeField] TMP_Text ammoText;
+    [SerializeField] Collider[] hitColliders;
+    [SerializeField] Collider movementCollider;
+    public Collider headCollider;
 
     private const float maxHealth = 100;
     [HideInInspector] public float currentHealth = maxHealth;
@@ -28,11 +32,18 @@ public class PlayerController : MonoBehaviourPunCallbacks, IDamageable
         if (pv.IsMine)
         {
             Cursor.lockState = CursorLockMode.Locked;
+            Destroy(playerModel);
+
+            foreach (Collider collider in hitColliders)
+            {
+                Destroy(collider);
+            }
         }
         else
         {
             Destroy(cam);
             Destroy(UI);
+            Destroy(movementCollider);
         }
     }
 

@@ -15,14 +15,24 @@ public class SingleShotGun : Gun
         {
             GameObject hitObject = hit.collider.gameObject;
 
-            if (hitObject.GetComponent<IDamageable>() != null)
+            if (hitObject.CompareTag("Player"))
             {
-                hitObject.GetComponent<IDamageable>().TakeDamage(((GunInfo)itemInfo).damage);
 
-                if (hitObject.CompareTag("Player") && hitObject.GetComponent<PlayerController>().currentHealth <= 0)
+                if (hit.collider == hitObject.GetComponent<PlayerController>().headCollider)
+                {
+                    hitObject.GetComponent<IDamageable>().TakeDamage(((GunInfo)itemInfo).headDamage);
+                }
+                else
+                {
+                    hitObject.GetComponent<IDamageable>().TakeDamage(((GunInfo)itemInfo).bodyDamage);
+                }
+
+                if (hitObject.GetComponent<PlayerController>().currentHealth <= 0)
                 {
                     playerGameObject.GetComponent<PlayerController>().Kill();
                 }
+
+                return;
             }
 
             pv.RPC("RPC_Hit", RpcTarget.All, hit.point, hit.normal);

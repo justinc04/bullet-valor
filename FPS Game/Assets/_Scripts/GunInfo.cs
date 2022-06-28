@@ -7,7 +7,8 @@ using UnityEngine;
 public class GunInfo : ItemInfo
 {
     [Header("Properties")]
-    public float damage;
+    public float headDamage;
+    public float bodyDamage;
     public float fireRate;
     public int ammoCapacity;
     public enum FireMode { Auto, SemiAuto, Semi };
