@@ -36604,6 +36604,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerManager: {fileID: 0}
   baseKillMoney: 500
+  baseDeathMoney: 100
   timeBetweenRounds: 4
   shopFrequency: 3
   killGraphic: {fileID: 1610266799}

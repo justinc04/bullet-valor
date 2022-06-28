@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Settings")]
     [SerializeField] int baseKillMoney;
+    [SerializeField] int baseDeathMoney;
     public float timeBetweenRounds;
     public int shopFrequency;
 
@@ -63,8 +64,15 @@ public class GameManager : MonoBehaviour
     public void OnDeath()
     {
         roundIsRunning = false;
+        ChangeMoney(CalculateDeathMoney());
+
         AudioManager.Instance.audioListener.enabled = true;     
         Invoke("StartNextRound", timeBetweenRounds);
+    }
+
+    int CalculateDeathMoney()
+    {
+        return baseDeathMoney + (int)roundTimer;
     }
 
     public void OnKill()
@@ -73,7 +81,6 @@ public class GameManager : MonoBehaviour
         score++;
         playerProperties["score"] = score;
         PhotonNetwork.LocalPlayer.SetCustomProperties(playerProperties);
-
         ChangeMoney(CalculateKillMoney());
 
         killGraphic.SetActive(true);
