@@ -12,11 +12,17 @@ public class GameManager : MonoBehaviour
     public Hashtable playerProperties = new Hashtable();
     [HideInInspector] public PlayerManager playerManager;
 
-    [Header("Settings")]
-    [SerializeField] int baseKillMoney;
-    [SerializeField] int baseDeathMoney;
+    [Header("Round Settings")]
     public float timeBetweenRounds;
     public int shopFrequency;
+
+    [Header("Money Earnings")]
+    [SerializeField] int baseKillMoney;
+    [SerializeField] int baseDeathMoney;
+    [SerializeField] float fastKillTime;
+    [SerializeField] int fastKillMoney;
+    [SerializeField] int losingStreakMoney;
+    [SerializeField] int maxLosingStreakMoney;
 
     [Header("UI")]
     [SerializeField] GameObject killGraphic;
@@ -28,10 +34,12 @@ public class GameManager : MonoBehaviour
     public List<ItemInfo> items;
 
     private PhotonView pv;
+    private int readyPlayers;
+
     private int round;
     private float roundTimer;
     private bool roundIsRunning;
-    private int readyPlayers;
+    private int losingStreak;
 
     private void Awake()
     {
@@ -64,20 +72,17 @@ public class GameManager : MonoBehaviour
     public void OnDeath()
     {
         roundIsRunning = false;
+        losingStreak++;
         ChangeMoney(CalculateDeathMoney());
 
         AudioManager.Instance.audioListener.enabled = true;     
         Invoke("StartNextRound", timeBetweenRounds);
     }
 
-    int CalculateDeathMoney()
-    {
-        return baseDeathMoney + (int)roundTimer;
-    }
-
     public void OnKill()
     {
         roundIsRunning = false;
+        losingStreak = 0;
         score++;
         playerProperties["score"] = score;
         PhotonNetwork.LocalPlayer.SetCustomProperties(playerProperties);
@@ -88,9 +93,16 @@ public class GameManager : MonoBehaviour
         Invoke("StartNextRound", timeBetweenRounds);
     }
 
+    int CalculateDeathMoney()
+    {     
+        int streakMoney = Mathf.Min(losingStreakMoney * (losingStreak - 1), maxLosingStreakMoney);
+        return baseDeathMoney + streakMoney;
+    }
+
     int CalculateKillMoney()
     {
-        return baseKillMoney + 2 * (int)roundTimer;
+        int timeMoney = roundTimer < fastKillTime ? fastKillMoney : 0;
+        return baseKillMoney + timeMoney;
     }
 
     public void StartNextRound()
