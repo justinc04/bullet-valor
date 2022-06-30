@@ -10,6 +10,7 @@ public class GunInfo : ItemInfo
     public float headDamage;
     public float bodyDamage;
     public float fireRate;
+    public float spread;
     public int ammoCapacity;
     public enum FireMode { Auto, SemiAuto, Semi };
     public FireMode fireMode;
@@ -24,6 +25,8 @@ public class GunInfo : ItemInfo
     [Header("Camera Recoil")]
     public Vector3 hipFireRecoil;
     public Vector3 aimingRecoil;
+    public enum RecoilType { Pattern, Random }
+    public RecoilType recoilType;
     public Vector3 cameraKickback;
     public float snappiness;
     public float returnSpeed;

@@ -27,7 +27,7 @@ public abstract class Gun : Item
     private Vector3 camTargetPos;
 
 
-    private bool aiming;
+    public bool aiming;
     private float cameraFOV;
 
     private Vector3 gunCurrentRot;
@@ -194,10 +194,18 @@ public abstract class Gun : Item
     {
         recoil = aiming ? ((GunInfo)itemInfo).aimingRecoil : ((GunInfo)itemInfo).hipFireRecoil;
 
-        float recoilX = recoil.x;
+        float recoilX = ((GunInfo)itemInfo).recoilType == GunInfo.RecoilType.Pattern ? recoil.x : Random.Range(0, recoil.x);
         float recoilY = Random.Range(-recoil.y, recoil.y);
         float recoilZ = Random.Range(-recoil.z, recoil.z);
-        camTargetRot += new Vector3(recoilX, recoilY, recoilZ);
+
+        if (((GunInfo)itemInfo).recoilType == GunInfo.RecoilType.Pattern)
+        {
+            camTargetRot += new Vector3(recoilX, recoilY, recoilZ);
+        }
+        else
+        {
+            camTargetRot = new Vector3(recoilX, recoilY, recoilZ);
+        }
 
         camTargetPos += new Vector3(((GunInfo)itemInfo).cameraKickback.x, ((GunInfo)itemInfo).cameraKickback.y, ((GunInfo)itemInfo).cameraKickback.z);
     }

@@ -18,6 +18,7 @@ MonoBehaviour:
   headDamage: 80
   bodyDamage: 45
   fireRate: 11
+  spread: 0.001
   ammoCapacity: 25
   fireMode: 0
   gunClass: 0
@@ -26,6 +27,7 @@ MonoBehaviour:
   reloadAnimationSpeed: 6
   hipFireRecoil: {x: -2, y: 2, z: 0.35}
   aimingRecoil: {x: -1.7, y: 1.7, z: 0.3}
+  recoilType: 0
   cameraKickback: {x: 0, y: 0, z: 0}
   snappiness: 7
   returnSpeed: 5
