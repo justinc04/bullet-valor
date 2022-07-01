@@ -6,7 +6,7 @@ using TMPro;
 
 public class PlayerController : MonoBehaviourPunCallbacks, IDamageable
 {
-    [SerializeField] GameObject cam;
+    [SerializeField] GameObject cams;
     [SerializeField] GameObject UI;
     [SerializeField] GameObject playerModel;
     [SerializeField] TMP_Text healthText;
@@ -19,12 +19,14 @@ public class PlayerController : MonoBehaviourPunCallbacks, IDamageable
     [HideInInspector] public float currentHealth = maxHealth;
 
     private PlayerManager playerManager;
+    private PlayerItems playerItems;
     private PhotonView pv;
 
     private void Awake()
     {
         pv = GetComponent<PhotonView>();
         playerManager = PhotonView.Find((int)pv.InstantiationData[0]).GetComponent<PlayerManager>();
+        playerItems = GetComponent<PlayerItems>();
     }
 
     private void Start()
@@ -38,10 +40,17 @@ public class PlayerController : MonoBehaviourPunCallbacks, IDamageable
             {
                 Destroy(collider);
             }
+
+            int itemLayer = LayerMask.NameToLayer("Item");
+
+            foreach (Item item in playerItems.itemReferences)
+            {
+                item.transform.GetChild(0).gameObject.layer = itemLayer;
+            }
         }
         else
         {
-            Destroy(cam);
+            Destroy(cams);
             Destroy(UI);
             Destroy(movementCollider);
         }

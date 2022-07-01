@@ -36623,6 +36623,9 @@ MonoBehaviour:
   money: 0
   items:
   - {fileID: 11400000, guid: 5fede40aa516aa84ebcb565dbb98a624, type: 2}
+  - {fileID: 11400000, guid: 444f8b5966b122c49a5de952f9414436, type: 2}
+  - {fileID: 11400000, guid: fb2c2aa7915424d468111e2e93e93cef, type: 2}
+  - {fileID: 11400000, guid: 8ca25186735d7e64c9ae562909e5b962, type: 2}
 --- !u!4 &1780089385
 Transform:
   m_ObjectHideFlags: 0

@@ -8,7 +8,7 @@ using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class PlayerItems : MonoBehaviourPunCallbacks
 {
-    [SerializeField] Item[] itemReferences;
+    public Item[] itemReferences;
     public List<Item> items = new List<Item>();
 
     private int itemIndex;

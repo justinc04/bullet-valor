@@ -26,7 +26,6 @@ public abstract class Gun : Item
     private Vector3 camCurrentPos;
     private Vector3 camTargetPos;
 
-
     public bool aiming;
     private float cameraFOV;
 

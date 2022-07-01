@@ -7,9 +7,8 @@ public class SingleShotGun : Gun
 {
     public override void ShootBullets()
     {
-        float aimingSpread = aiming ? .75f / ((GunInfo)itemInfo).aimingZoom : 1;
-        float inaccuracyX = Random.Range(-((GunInfo)itemInfo).spread, ((GunInfo)itemInfo).spread) * aimingSpread;
-        float inaccuracyY = Random.Range(-((GunInfo)itemInfo).spread, ((GunInfo)itemInfo).spread) * aimingSpread;
+        float inaccuracyX = Random.Range(-((GunInfo)itemInfo).spread, ((GunInfo)itemInfo).spread) * (aiming ? .75f : 1);
+        float inaccuracyY = Random.Range(-((GunInfo)itemInfo).spread, ((GunInfo)itemInfo).spread) * (aiming ? .75f : 1);
         Ray ray = cam.ViewportPointToRay(new Vector3(.5f + inaccuracyX, .5f + inaccuracyY));
         ray.origin = cam.transform.position;
         ammo--;

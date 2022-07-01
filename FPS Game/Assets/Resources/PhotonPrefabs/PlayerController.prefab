@@ -363,7 +363,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ea737c976767aa4b934d1d4b5d35fe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 3585791095431418673}
+  cams: {fileID: 5596235828193501693}
   UI: {fileID: 2370354438094290991}
   playerModel: {fileID: 5662402591849568801}
   healthText: {fileID: 7102840616750415230}
@@ -1180,7 +1180,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3783198163738031537}
+  - {fileID: 5102482633730011495}
   - {fileID: 2916388929732992014}
   m_Father: {fileID: 5292573388926655876}
   m_RootOrder: 0
@@ -1197,7 +1197,7 @@ GameObject:
   - component: {fileID: 2538690898574121446}
   - component: {fileID: 4954685473193447291}
   m_Layer: 0
-  m_Name: Camera
+  m_Name: Player Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1215,7 +1215,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6587232347060632061}
+  m_Father: {fileID: 5102482633730011495}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &2538690898574121446
@@ -1249,7 +1249,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 63
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -1356,6 +1356,81 @@ MonoBehaviour:
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!1 &3734437758615012466
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4307520338649754531}
+  - component: {fileID: 6276969757125781113}
+  m_Layer: 0
+  m_Name: Item Camera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4307520338649754531
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3734437758615012466}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5102482633730011495}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &6276969757125781113
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3734437758615012466}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 3
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.01
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 1
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 64
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
 --- !u!1 &3892167560703465162
 GameObject:
   m_ObjectHideFlags: 0
@@ -1521,6 +1596,39 @@ Transform:
   m_Children: []
   m_Father: {fileID: 980638815264329100}
   m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5596235828193501693
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5102482633730011495}
+  m_Layer: 0
+  m_Name: Cameras
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5102482633730011495
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5596235828193501693}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3783198163738031537}
+  - {fileID: 4307520338649754531}
+  m_Father: {fileID: 6587232347060632061}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5662402591849568801
 GameObject:
@@ -2225,6 +2333,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Muzzle Smoke
       objectReference: {fileID: 0}
+    - target: {fileID: 1896967481329633638, guid: 6d4be1e4005b73e42be22776bdf17930, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2597632171623372855, guid: 6d4be1e4005b73e42be22776bdf17930, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -2291,6 +2403,10 @@ PrefabInstance:
     - target: {fileID: 4290811399734429477, guid: 4a984887f6a674d47a73e22ac64708f3, type: 3}
       propertyPath: m_Name
       value: Muzzle Flash
+      objectReference: {fileID: 0}
+    - target: {fileID: 4290811399734429477, guid: 4a984887f6a674d47a73e22ac64708f3, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7865253311341726085, guid: 4a984887f6a674d47a73e22ac64708f3, type: 3}
       propertyPath: m_RootOrder
@@ -2416,6 +2532,10 @@ PrefabInstance:
       value: Sniper Rifle Object
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 5146a2e7cd300fe4cb3b4fa6f673f180, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5146a2e7cd300fe4cb3b4fa6f673f180, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -2441,6 +2561,10 @@ PrefabInstance:
     - target: {fileID: 4290811399734429477, guid: 4a984887f6a674d47a73e22ac64708f3, type: 3}
       propertyPath: m_Name
       value: Muzzle Flash
+      objectReference: {fileID: 0}
+    - target: {fileID: 4290811399734429477, guid: 4a984887f6a674d47a73e22ac64708f3, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7865253311341726085, guid: 4a984887f6a674d47a73e22ac64708f3, type: 3}
       propertyPath: m_RootOrder
@@ -2570,6 +2694,10 @@ PrefabInstance:
       value: Pistol Object
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 25e2961dc0d51ec45a0bcbe6f38bfcc3, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 25e2961dc0d51ec45a0bcbe6f38bfcc3, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -2595,6 +2723,10 @@ PrefabInstance:
     - target: {fileID: 4290811399734429477, guid: 4a984887f6a674d47a73e22ac64708f3, type: 3}
       propertyPath: m_Name
       value: Muzzle Flash
+      objectReference: {fileID: 0}
+    - target: {fileID: 4290811399734429477, guid: 4a984887f6a674d47a73e22ac64708f3, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7865253311341726085, guid: 4a984887f6a674d47a73e22ac64708f3, type: 3}
       propertyPath: m_RootOrder
@@ -2720,6 +2852,10 @@ PrefabInstance:
       value: Assault Rifle Object
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b856153d5a0135e41ab4057a7bb1569e, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b856153d5a0135e41ab4057a7bb1569e, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -2803,6 +2939,10 @@ PrefabInstance:
       value: SMG Object
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: beb6019842bd6a64f8ce64b2631793bd, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: beb6019842bd6a64f8ce64b2631793bd, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -2828,6 +2968,10 @@ PrefabInstance:
     - target: {fileID: 4290811399734429477, guid: 4a984887f6a674d47a73e22ac64708f3, type: 3}
       propertyPath: m_Name
       value: Muzzle Flash
+      objectReference: {fileID: 0}
+    - target: {fileID: 4290811399734429477, guid: 4a984887f6a674d47a73e22ac64708f3, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7865253311341726085, guid: 4a984887f6a674d47a73e22ac64708f3, type: 3}
       propertyPath: m_RootOrder

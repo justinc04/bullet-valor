@@ -37,7 +37,7 @@ MonoBehaviour:
   gunReturnSpeed: 30
   canADS: 1
   hasScopeOverlay: 0
-  aimingPosition: {x: -0.307, y: 0, z: 0}
+  aimingPosition: {x: -0.307, y: 0, z: -0.1}
   aimingZoom: 1.15
   scopeInSpeed: 20
   aimingFireRate: 14
