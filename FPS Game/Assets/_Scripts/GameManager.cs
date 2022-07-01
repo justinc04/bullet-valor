@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
     [Header("Player")]
     public int score;
     public int money;
+    public List<ItemInfo> inventory;
     public List<ItemInfo> items;
 
     private PhotonView pv;
@@ -122,9 +123,15 @@ public class GameManager : MonoBehaviour
         round++;
     }
 
-    public void AddPlayerItem(ItemInfo item)
+    public void AddToInventory(ItemInfo item)
     {
-        items.Insert(0, item);
+        inventory.Add(item);
+    }
+
+    public void SelectPlayerItem(ItemInfo item)
+    {
+        items.RemoveAll(i => i.itemType == item.itemType);
+        items.Add(item);
         SyncItems();
     }
 

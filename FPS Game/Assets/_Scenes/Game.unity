@@ -36729,6 +36729,8 @@ MonoBehaviour:
   moneyText: {fileID: 42481063}
   score: 0
   money: 0
+  inventory:
+  - {fileID: 11400000, guid: 5fede40aa516aa84ebcb565dbb98a624, type: 2}
   items:
   - {fileID: 11400000, guid: 5fede40aa516aa84ebcb565dbb98a624, type: 2}
 --- !u!4 &1780089385

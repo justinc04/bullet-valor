@@ -19,7 +19,8 @@ public class ShopManager : MonoBehaviour
 
     public void PurchaseItem(ItemInfo item)
     {
-        GameManager.Instance.AddPlayerItem(item);
+        GameManager.Instance.AddToInventory(item);
+        GameManager.Instance.SelectPlayerItem(item);
         GameManager.Instance.ChangeMoney(-item.price);
     }
 

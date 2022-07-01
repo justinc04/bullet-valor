@@ -13,6 +13,8 @@ public class ShopItem : MonoBehaviour
     [SerializeField] Image itemImage;
     [SerializeField] Image coinImage;
     [SerializeField] Button itemButton;
+    [SerializeField] Color baseColor;
+    [SerializeField] Color selectedColor;
 
     private void Start()
     {
@@ -25,12 +27,20 @@ public class ShopItem : MonoBehaviour
 
     public void UpdateShopItem()
     {
-        if (GameManager.Instance.items.Contains(itemInfo) || itemInfo.price == 0)
+        if (GameManager.Instance.inventory.Contains(itemInfo))
         {
+            if (GameManager.Instance.items.Contains(itemInfo))
+            {
+                itemButton.image.color = selectedColor;
+            }
+            else
+            {
+                itemButton.image.color = baseColor;
+            }
+
             itemOwnedText.enabled = true;
             itemPriceText.enabled = false;
             coinImage.enabled = false;
-            itemButton.interactable = false;
         }
         else if (GameManager.Instance.money < itemInfo.price)
         {
@@ -46,7 +56,15 @@ public class ShopItem : MonoBehaviour
 
     public void OnClick()
     {
-        ShopManager.Instance.PurchaseItem(itemInfo);
+        if (GameManager.Instance.inventory.Contains(itemInfo))
+        {
+            GameManager.Instance.SelectPlayerItem(itemInfo);
+        }
+        else
+        {
+            ShopManager.Instance.PurchaseItem(itemInfo);
+        }
+
         ShopManager.Instance.UpdateShopItems();
     }
 }
