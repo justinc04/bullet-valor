@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Pistol
   m_EditorClassIdentifier: 
   itemName: Pistol
+  itemType: 0
   price: 0
   graphic: {fileID: 21300000, guid: c617ecdca0adb2343b20e75b95aa5e8a, type: 3}
   headDamage: 50

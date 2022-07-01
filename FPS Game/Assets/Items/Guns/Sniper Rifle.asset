@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Sniper Rifle
   m_EditorClassIdentifier: 
   itemName: Sniper Rifle
+  itemType: 0
   price: 4500
   graphic: {fileID: 21300000, guid: eb8dc421ededc9640b17f18590450a47, type: 3}
-  headDamage: 100
-  bodyDamage: 80
+  headDamage: 150
+  bodyDamage: 125
   fireRate: 0.6
   spread: 0
   ammoCapacity: 5

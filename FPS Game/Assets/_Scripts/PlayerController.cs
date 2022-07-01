@@ -45,7 +45,10 @@ public class PlayerController : MonoBehaviourPunCallbacks, IDamageable
 
             foreach (Item item in playerItems.itemReferences)
             {
-                item.transform.GetChild(0).gameObject.layer = itemLayer;
+                if (item.itemInfo.itemType == ItemInfo.ItemType.Equipable)
+                {
+                    item.transform.GetChild(0).gameObject.layer = itemLayer;
+                }
             }
         }
         else
@@ -87,6 +90,11 @@ public class PlayerController : MonoBehaviourPunCallbacks, IDamageable
     public void Kill()
     {
         playerManager.Kill();
+    }
+
+    public void UpdateHealth()
+    {
+                    healthText.text = currentHealth.ToString();
     }
 
     public void UpdateAmmo(int ammo)

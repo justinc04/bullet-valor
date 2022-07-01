@@ -29,14 +29,32 @@ public class PlayerItems : MonoBehaviourPunCallbacks
         {
             foreach (ItemInfo item in GameManager.Instance.items)
             {
-                items.Add(Array.Find(itemReferences, i => i.itemInfo == item));
+                Item itemToAdd = Array.Find(itemReferences, i => i.itemInfo == item);
+
+                if (item.itemType == ItemInfo.ItemType.Equipable)
+                {
+                    items.Add(itemToAdd);
+                }
+                else
+                {
+                    itemToAdd.Enable();
+                }
             }
         }
         else
         {
             foreach (string item in (string[])pv.Owner.CustomProperties["items"])
             {
-                items.Add(Array.Find(itemReferences, i => i.itemInfo.itemName == item));
+                Item itemToAdd = Array.Find(itemReferences, i => i.itemInfo.itemName == item);
+
+                if (itemToAdd.itemInfo.itemType == ItemInfo.ItemType.Equipable)
+                {
+                    items.Add(itemToAdd);
+                }
+                else
+                {
+                    itemToAdd.Enable();
+                }
             }
         }
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[CreateAssetMenu(menuName = "FPS/New Gun")]
+[CreateAssetMenu(fileName = "New Gun", menuName = "Gun")]
 public class GunInfo : ItemInfo
 {
     [Header("Properties")]
