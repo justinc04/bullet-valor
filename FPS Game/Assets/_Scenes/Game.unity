@@ -34470,7 +34470,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!20 &1630930796
 Camera:
   m_ObjectHideFlags: 0
@@ -34536,7 +34536,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1630930794}
-  m_Enabled: 0
+  m_Enabled: 1
 --- !u!1 &1651327918
 GameObject:
   m_ObjectHideFlags: 0
@@ -34566,7 +34566,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3cffb1e330bdea49a2432e722fb7672, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioListener: {fileID: 1630930798}
   sounds:
   - name: Kill
     clip: {fileID: 8300000, guid: f9a2d439facd55e4f902cb5ccc55ff07, type: 3}
@@ -36733,6 +36732,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5fede40aa516aa84ebcb565dbb98a624, type: 2}
   items:
   - {fileID: 11400000, guid: 5fede40aa516aa84ebcb565dbb98a624, type: 2}
+  cam: {fileID: 1630930794}
 --- !u!4 &1780089385
 Transform:
   m_ObjectHideFlags: 0

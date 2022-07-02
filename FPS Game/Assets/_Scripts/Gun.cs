@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public abstract class Gun : Item
+public class Gun : Item
 {
-    public GameObject bulletImpactPrefab;
-    public Camera cam;
-    public int ammo;
-
+    [SerializeField] Camera cam;
     [SerializeField] ParticleSystem muzzleFlash;
     [SerializeField] ParticleSystem muzzleSmoke;
+    [SerializeField] GameObject bulletImpactPrefab;
     [SerializeField] GameObject scopeOverlay;
     [SerializeField] GameObject cameraRecoilObject;
     [SerializeField] GameObject reloadingObject;
     [SerializeField] GameObject ADSObject;
     [SerializeField] GameObject gunRecoilObject;
+
+    public int ammo;
     private float nextTimeToFire;
     private bool reloading;
     private bool earlyShootInput;
@@ -138,11 +138,63 @@ public abstract class Gun : Item
         CameraRecoilFire();
         GunRecoilFire();
         pv.RPC("RPC_Shoot", RpcTarget.All);
-        ShootBullets();
         playerAudio.Play(((GunInfo)itemInfo).gunShotSound);
+        ammo--;
+
+        for (int i = 0; i < ((GunInfo)itemInfo).bulletsPerShot; i++)
+        {
+            ShootBullets();
+        }      
     }
 
-    public abstract void ShootBullets();
+    void ShootBullets()
+    {
+        Vector3 spreadX = cam.transform.up * Random.Range(-1f, 1f);
+        Vector3 spreadY = cam.transform.right * Random.Range(-1f, 1f);
+        float aimReduction = aiming ? .75f : 1;
+        float spreadAmount = Random.Range(-((GunInfo)itemInfo).spread, ((GunInfo)itemInfo).spread) * .001f * aimReduction;
+        Vector3 spread = (spreadX + spreadY).normalized * spreadAmount;
+
+        if (Physics.Raycast(cam.transform.position, cam.transform.forward + spread, out RaycastHit hit))
+        {
+            GameObject hitObject = hit.collider.gameObject;
+
+            if (hitObject.CompareTag("Player"))
+            {
+
+                if (hit.collider == hitObject.GetComponent<PlayerController>().headCollider)
+                {
+                    hitObject.GetComponent<IDamageable>().TakeDamage(((GunInfo)itemInfo).headDamage);
+                }
+                else
+                {
+                    hitObject.GetComponent<IDamageable>().TakeDamage(((GunInfo)itemInfo).bodyDamage);
+                }
+
+                if (hitObject.GetComponent<PlayerController>().currentHealth <= 0)
+                {
+                    playerGameObject.GetComponent<PlayerController>().Kill();
+                }
+
+                return;
+            }
+
+            pv.RPC("RPC_Hit", RpcTarget.All, hit.point, hit.normal);
+        }
+    }
+
+    [PunRPC]
+    void RPC_Hit(Vector3 hitPosition, Vector3 hitNormal)
+    {
+        Collider[] colliders = Physics.OverlapSphere(hitPosition, .3f);
+
+        if (colliders.Length != 0)
+        {
+            GameObject bulletImpactObj = Instantiate(bulletImpactPrefab, hitPosition + hitNormal * .001f, Quaternion.LookRotation(hitNormal, Vector3.up) * bulletImpactPrefab.transform.rotation);
+            Destroy(bulletImpactObj, 10);
+            bulletImpactObj.transform.SetParent(colliders[0].transform);
+        }
+    }
 
     [PunRPC]
     public void RPC_Shoot()

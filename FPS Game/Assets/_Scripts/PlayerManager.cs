@@ -49,7 +49,11 @@ public class PlayerManager : MonoBehaviour
         if (!kill)
         {
             GameManager.Instance.OnDeath();
-        }     
+        }   
+        else
+        {
+            GameManager.Instance.cam.SetActive(true);
+        }
     }
 
     public void Kill()

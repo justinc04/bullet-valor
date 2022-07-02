@@ -12,6 +12,7 @@ public class GunInfo : ItemInfo
     public float fireRate;
     public float spread;
     public int ammoCapacity;
+    public int bulletsPerShot;
     public enum FireMode { Auto, SemiAuto, Semi };
     public FireMode fireMode;
     public enum GunClass { Primary, Secondary }

@@ -13,13 +13,15 @@ MonoBehaviour:
   m_Name: SMG
   m_EditorClassIdentifier: 
   itemName: SMG
+  itemType: 0
   price: 1000
   graphic: {fileID: 21300000, guid: f54662e3a0c86d942ac97c11c18e6efd, type: 3}
   headDamage: 60
   bodyDamage: 25
   fireRate: 16
-  spread: 0.008
+  spread: 12
   ammoCapacity: 20
+  bulletsPerShot: 1
   fireMode: 0
   gunClass: 0
   reloadTime: 2.2

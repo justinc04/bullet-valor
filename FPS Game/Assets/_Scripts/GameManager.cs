@@ -34,6 +34,9 @@ public class GameManager : MonoBehaviour
     public List<ItemInfo> inventory;
     public List<ItemInfo> items;
 
+    [Header("Components")]
+    public GameObject cam;
+
     private PhotonView pv;
     private int readyPlayers;
 
@@ -67,7 +70,7 @@ public class GameManager : MonoBehaviour
         roundIsRunning = true;
         roundTimer = 0;
         killGraphic.SetActive(false);
-        AudioManager.Instance.audioListener.enabled = false;
+        cam.SetActive(false);
     }
 
     public void OnDeath()
@@ -76,7 +79,7 @@ public class GameManager : MonoBehaviour
         losingStreak++;
         ChangeMoney(CalculateDeathMoney());
 
-        AudioManager.Instance.audioListener.enabled = true;     
+        cam.SetActive(true); 
         Invoke("StartNextRound", timeBetweenRounds);
     }
 

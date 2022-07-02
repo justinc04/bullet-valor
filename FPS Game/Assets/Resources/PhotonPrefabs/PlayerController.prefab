@@ -912,7 +912,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1847235224134717602}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 937713bf7f5b5ae4bad00767c9dcb299, type: 3}
+  m_Script: {fileID: 11500000, guid: 97260ad0cbe7086449ac82e7a5b98dfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   itemInfo: {fileID: 11400000, guid: 8ca25186735d7e64c9ae562909e5b962, type: 2}
@@ -921,16 +921,16 @@ MonoBehaviour:
   playerAudio: {fileID: 6758297476281144724}
   active: 0
   pv: {fileID: 0}
-  bulletImpactPrefab: {fileID: 3837519000684272582, guid: e3c495abcd97a004ebe6129c2970b6fe, type: 3}
   cam: {fileID: 2538690898574121446}
-  ammo: 0
   muzzleFlash: {fileID: 6842360698120429146}
   muzzleSmoke: {fileID: 0}
+  bulletImpactPrefab: {fileID: 3837519000684272582, guid: e3c495abcd97a004ebe6129c2970b6fe, type: 3}
   scopeOverlay: {fileID: 0}
   cameraRecoilObject: {fileID: 3466887499656082205}
   reloadingObject: {fileID: 791460891495575731}
   ADSObject: {fileID: 6310943797965627136}
   gunRecoilObject: {fileID: 2575472498148894677}
+  ammo: 0
   aiming: 0
 --- !u!114 &5693719477071232680
 MonoBehaviour:
@@ -1392,7 +1392,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3593702382561981451}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 937713bf7f5b5ae4bad00767c9dcb299, type: 3}
+  m_Script: {fileID: 11500000, guid: 97260ad0cbe7086449ac82e7a5b98dfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   itemInfo: {fileID: 11400000, guid: fb2c2aa7915424d468111e2e93e93cef, type: 2}
@@ -1401,16 +1401,16 @@ MonoBehaviour:
   playerAudio: {fileID: 6758297476281144724}
   active: 0
   pv: {fileID: 0}
-  bulletImpactPrefab: {fileID: 3837519000684272582, guid: e3c495abcd97a004ebe6129c2970b6fe, type: 3}
   cam: {fileID: 2538690898574121446}
-  ammo: 0
   muzzleFlash: {fileID: 3512604744222093717}
   muzzleSmoke: {fileID: 2162571477408622827}
+  bulletImpactPrefab: {fileID: 3837519000684272582, guid: e3c495abcd97a004ebe6129c2970b6fe, type: 3}
   scopeOverlay: {fileID: 6318239544955391066}
   cameraRecoilObject: {fileID: 3466887499656082205}
   reloadingObject: {fileID: 791460891495575731}
   ADSObject: {fileID: 6310943797965627136}
   gunRecoilObject: {fileID: 2575472498148894677}
+  ammo: 0
   aiming: 0
 --- !u!114 &5190154107587073483
 MonoBehaviour:
@@ -1490,7 +1490,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.01
-  far clip plane: 1000
+  far clip plane: 10
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -1974,7 +1974,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5875995931455804567}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 937713bf7f5b5ae4bad00767c9dcb299, type: 3}
+  m_Script: {fileID: 11500000, guid: 97260ad0cbe7086449ac82e7a5b98dfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   itemInfo: {fileID: 11400000, guid: 5fede40aa516aa84ebcb565dbb98a624, type: 2}
@@ -1983,16 +1983,16 @@ MonoBehaviour:
   playerAudio: {fileID: 6758297476281144724}
   active: 0
   pv: {fileID: 0}
-  bulletImpactPrefab: {fileID: 3837519000684272582, guid: e3c495abcd97a004ebe6129c2970b6fe, type: 3}
   cam: {fileID: 2538690898574121446}
-  ammo: 0
   muzzleFlash: {fileID: 1335398925163457728}
   muzzleSmoke: {fileID: 0}
+  bulletImpactPrefab: {fileID: 3837519000684272582, guid: e3c495abcd97a004ebe6129c2970b6fe, type: 3}
   scopeOverlay: {fileID: 0}
   cameraRecoilObject: {fileID: 3466887499656082205}
   reloadingObject: {fileID: 791460891495575731}
   ADSObject: {fileID: 6310943797965627136}
   gunRecoilObject: {fileID: 2575472498148894677}
+  ammo: 0
   aiming: 0
 --- !u!114 &311086304376002722
 MonoBehaviour:
@@ -2586,7 +2586,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8352614584354770909}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 937713bf7f5b5ae4bad00767c9dcb299, type: 3}
+  m_Script: {fileID: 11500000, guid: 97260ad0cbe7086449ac82e7a5b98dfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   itemInfo: {fileID: 11400000, guid: 444f8b5966b122c49a5de952f9414436, type: 2}
@@ -2595,16 +2595,16 @@ MonoBehaviour:
   playerAudio: {fileID: 6758297476281144724}
   active: 0
   pv: {fileID: 0}
-  bulletImpactPrefab: {fileID: 3837519000684272582, guid: e3c495abcd97a004ebe6129c2970b6fe, type: 3}
   cam: {fileID: 2538690898574121446}
-  ammo: 0
   muzzleFlash: {fileID: 8700000500924989729}
   muzzleSmoke: {fileID: 0}
+  bulletImpactPrefab: {fileID: 3837519000684272582, guid: e3c495abcd97a004ebe6129c2970b6fe, type: 3}
   scopeOverlay: {fileID: 0}
   cameraRecoilObject: {fileID: 3466887499656082205}
   reloadingObject: {fileID: 791460891495575731}
   ADSObject: {fileID: 6310943797965627136}
   gunRecoilObject: {fileID: 2575472498148894677}
+  ammo: 0
   aiming: 0
 --- !u!114 &3868097002761398238
 MonoBehaviour:

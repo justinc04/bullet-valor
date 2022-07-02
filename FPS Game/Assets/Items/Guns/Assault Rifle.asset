@@ -19,8 +19,9 @@ MonoBehaviour:
   headDamage: 110
   bodyDamage: 45
   fireRate: 11
-  spread: 0.001
+  spread: 2
   ammoCapacity: 25
+  bulletsPerShot: 1
   fireMode: 0
   gunClass: 0
   reloadTime: 2.5
