@@ -15,7 +15,7 @@ MonoBehaviour:
   itemName: SMG
   itemType: 0
   price: 1000
-  graphic: {fileID: 21300000, guid: f54662e3a0c86d942ac97c11c18e6efd, type: 3}
+  graphic: {fileID: 21300000, guid: f79c45f6dcec7a24b8240f8155a9fd7a, type: 3}
   headDamage: 60
   bodyDamage: 25
   fireRate: 16

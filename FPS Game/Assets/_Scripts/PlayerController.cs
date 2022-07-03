@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviourPunCallbacks, IDamageable
     [SerializeField] GameObject cams;
     [SerializeField] GameObject UI;
     [SerializeField] GameObject playerModel;
+    [SerializeField] GameObject equipableItems;
+    [SerializeField] Vector3 itemsThirdPersonPos;
     [SerializeField] TMP_Text healthText;
     [SerializeField] TMP_Text ammoText;
     [SerializeField] Collider[] hitColliders;
@@ -56,6 +58,7 @@ public class PlayerController : MonoBehaviourPunCallbacks, IDamageable
             Destroy(cams);
             Destroy(UI);
             Destroy(movementCollider);
+            equipableItems.transform.localPosition = itemsThirdPersonPos;
         }
     }
 

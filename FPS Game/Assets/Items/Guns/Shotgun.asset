@@ -10,31 +10,31 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fb57273d97bdf014e8a3bd092d5cbbbe, type: 3}
-  m_Name: Pistol
+  m_Name: Shotgun
   m_EditorClassIdentifier: 
-  itemName: Pistol
+  itemName: Shotgun
   itemType: 0
-  price: 0
-  graphic: {fileID: 21300000, guid: 956cc4d2cb961b44384cfe0a5afc0c46, type: 3}
-  headDamage: 50
+  price: 2200
+  graphic: {fileID: 21300000, guid: 2d73c7363b3087c4dbdb9807f1927823, type: 3}
+  headDamage: 30
   bodyDamage: 20
-  fireRate: 7
-  spread: 4
-  ammoCapacity: 12
-  bulletsPerShot: 1
-  fireMode: 1
-  gunClass: 1
-  reloadTime: 1.5
-  reloadPosition: {x: 0.233, y: -0.271, z: -0.823}
-  reloadAnimationSpeed: 7
-  hipFireRecoil: {x: -2, y: 2.5, z: 0.2}
+  fireRate: 3.5
+  spread: 50
+  ammoCapacity: 7
+  bulletsPerShot: 12
+  fireMode: 0
+  gunClass: 0
+  reloadTime: 2.2
+  reloadPosition: {x: 0.306, y: -0.336, z: -0.55}
+  reloadAnimationSpeed: 6
+  hipFireRecoil: {x: 0, y: 0, z: 0}
   aimingRecoil: {x: 0, y: 0, z: 0}
-  recoilType: 1
-  cameraKickback: {x: 0, y: 0, z: 0}
-  snappiness: 7
-  returnSpeed: 5
-  gunRotationRecoil: {x: -8, y: 0.3, z: 0.3}
-  gunPositionRecoil: {x: 0, y: -0.05, z: -0.2}
+  recoilType: 0
+  cameraKickback: {x: 0, y: 0, z: -0.2}
+  snappiness: 30
+  returnSpeed: 15
+  gunRotationRecoil: {x: -5, y: 0.5, z: 0.5}
+  gunPositionRecoil: {x: 0, y: 0, z: -0.5}
   gunSnapSpeed: 30
   gunReturnSpeed: 25
   canADS: 0
@@ -44,4 +44,4 @@ MonoBehaviour:
   scopeInSpeed: 20
   aimingFireRate: 0
   aimingMoveSpeedAffector: 0
-  gunShotSound: Pistol Shot
+  gunShotSound: Shotgun Shot

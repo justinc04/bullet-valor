@@ -15,5 +15,5 @@ MonoBehaviour:
   itemName: Heavy Armor
   itemType: 1
   price: 2000
-  graphic: {fileID: 21300000, guid: 3be2e0ad0be648a4db5b3c2a5b95d500, type: 3}
+  graphic: {fileID: 21300000, guid: b8a7090a8d6b64f459a546ff5abedb0b, type: 3}
   armorHealth: 50

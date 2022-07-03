@@ -117,6 +117,7 @@ public class GameManager : MonoBehaviour
         if (round > 0 && round % shopFrequency == 0)
         {
             ShopManager.Instance.OpenShop();
+            cam.SetActive(true);
         }
         else
         {
