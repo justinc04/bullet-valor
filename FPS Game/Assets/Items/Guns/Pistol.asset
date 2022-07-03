@@ -19,6 +19,7 @@ MonoBehaviour:
   headDamage: 50
   bodyDamage: 20
   fireRate: 7
+  range: 35
   spread: 4
   ammoCapacity: 12
   bulletsPerShot: 1

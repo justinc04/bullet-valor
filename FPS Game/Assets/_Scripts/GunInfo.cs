@@ -10,6 +10,7 @@ public class GunInfo : ItemInfo
     public float headDamage;
     public float bodyDamage;
     public float fireRate;
+    public float range;
     public float spread;
     public int ammoCapacity;
     public int bulletsPerShot;

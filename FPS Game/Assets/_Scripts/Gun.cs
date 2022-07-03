@@ -157,6 +157,11 @@ public class Gun : Item
 
         if (Physics.Raycast(cam.transform.position, cam.transform.forward + spread, out RaycastHit hit))
         {
+            if (hit.distance > ((GunInfo)itemInfo).range)
+            {
+                return;
+            }
+
             GameObject hitObject = hit.collider.gameObject;
 
             if (hitObject.CompareTag("Player"))

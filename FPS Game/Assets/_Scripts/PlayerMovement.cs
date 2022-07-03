@@ -14,12 +14,16 @@ public class PlayerMovement : MonoBehaviourPun
     [SerializeField] float walkSpeed = 2.5f;
     [SerializeField] float smoothTime = .15f;
     [HideInInspector] public float speedAffector = 1f;
-    private float speed;
+    [HideInInspector] public bool speedControlled;
+    [HideInInspector] public bool directionControlled;
+    [HideInInspector] public Vector3 direction;
+    [HideInInspector] public float speed;
     private float smoothMoveSpeed;
 
     [Header("Gravity")]
     [SerializeField] float gravityScale = 4f;
     [SerializeField] float fallGravityScale = 7f;
+    [HideInInspector] public bool gravityControlled;
     private const float gravityConstant = -9.81f;
     private float gravity;
 
@@ -28,7 +32,8 @@ public class PlayerMovement : MonoBehaviourPun
     [SerializeField] float groundDistance = .5f;
     [SerializeField] float hangTime = .05f;
     [SerializeField] float jumpBuffer = .08f;
-    private Vector3 velocity;
+    [HideInInspector] public bool jumpControlled;
+    [HideInInspector] public Vector3 velocity;
     private float hangTimeCounter;
     private float jumpBufferCounter;
     private bool isGrounded;
@@ -86,10 +91,17 @@ public class PlayerMovement : MonoBehaviourPun
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
 
-        Vector3 direction = (transform.right * horizontal + transform.forward * vertical).normalized;
-        speed = Mathf.SmoothDamp(speed, Input.GetKey(KeyCode.LeftShift) ? walkSpeed : runSpeed, ref smoothMoveSpeed, smoothTime);
+        if (!directionControlled)
+        {
+            direction = (transform.right * horizontal + transform.forward * vertical).normalized;
+        }
 
-        controller.Move(direction * speed * speedAffector * Time.deltaTime);
+        if (!speedControlled)
+        {
+            speed = Mathf.SmoothDamp(speed, (Input.GetKey(KeyCode.LeftShift) ? walkSpeed : runSpeed) * speedAffector, ref smoothMoveSpeed, smoothTime);
+        }
+
+        controller.Move(direction * speed * Time.deltaTime);
 
         if (direction != Vector3.zero && !Input.GetKey(KeyCode.LeftShift) && isGrounded)
         {
@@ -142,6 +154,11 @@ public class PlayerMovement : MonoBehaviourPun
 
     void Jump()
     {
+        if (jumpControlled)
+        {
+            return;
+        }
+
         if (!isJumping && jumpBufferCounter > 0f && hangTimeCounter > 0f)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
@@ -176,6 +193,11 @@ public class PlayerMovement : MonoBehaviourPun
 
     void ApplyGravity()
     {
+        if (gravityControlled)
+        {
+            return;
+        }
+
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
     }

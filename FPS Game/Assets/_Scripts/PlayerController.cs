@@ -97,7 +97,7 @@ public class PlayerController : MonoBehaviourPunCallbacks, IDamageable
 
     public void UpdateHealth()
     {
-                    healthText.text = currentHealth.ToString();
+        healthText.text = currentHealth.ToString();
     }
 
     public void UpdateAmmo(int ammo)
