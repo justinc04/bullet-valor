@@ -103,7 +103,7 @@ public class PlayerMovement : MonoBehaviourPun
 
         controller.Move(direction * speed * Time.deltaTime);
 
-        if (direction != Vector3.zero && !Input.GetKey(KeyCode.LeftShift) && isGrounded)
+        if (direction != Vector3.zero && controller.velocity != Vector3.zero && !Input.GetKey(KeyCode.LeftShift) && isGrounded)
         {
             if (!playerAudio.CheckSound("Footsteps"))
             {

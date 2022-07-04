@@ -3,43 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class Dash : Item
+public class Dash : Ability
 {
-    [SerializeField] float duration;
     [SerializeField] float speed;
     [SerializeField] ParticleSystem dashLines;
     private PlayerMovement playerMovement;
 
     private void Awake()
     {
-        playerMovement = playerGameObject.GetComponent<PlayerMovement>();
         pv = GetComponent<PhotonView>();
+        playerMovement = playerGameObject.GetComponent<PlayerMovement>();
     }
 
-    private void Update()
-    {
-        if (!pv.IsMine || !active)
-        {
-            return;
-        }
-
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            StartCoroutine(UseDash());
-        }
-    }
-
-    public override void Enable()
-    {
-        active = true;
-    }
-
-    public override void Disable()
-    {
-        active = false;
-    }
-
-    IEnumerator UseDash()
+    public override IEnumerator UseAbility()
     {
         ControlMovement(true);
         playerMovement.speed = speed;
@@ -53,7 +29,7 @@ public class Dash : Item
         dashLines.Play();
         playerAudio.Play("Dash");
         Disable();
-        yield return new WaitForSeconds(duration);
+        yield return new WaitForSeconds(((AbilityInfo)itemInfo).duration);
         ControlMovement(false);
         dashLines.Stop();
     }

@@ -1989,8 +1989,7 @@ MonoBehaviour:
   playerAudio: {fileID: 6758297476281144724}
   active: 0
   pv: {fileID: 0}
-  duration: 0.4
-  speed: 22
+  speed: 24
   dashLines: {fileID: 8296287917978068623}
 --- !u!114 &342756595983152290
 MonoBehaviour:
@@ -2569,7 +2568,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Pistol Shot
     clip: {fileID: 8300000, guid: 61e879d413cf60e4c9213cad8208d1b6, type: 3}
-    volume: 0.2
+    volume: 0.15
     maxDistance: 45
     loop: 0
     source: {fileID: 0}
@@ -2587,20 +2586,20 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: SMG Shot
     clip: {fileID: 8300000, guid: 6a99d8bc00e9c474b9e319dbbcdd6efa, type: 3}
-    volume: 0.45
+    volume: 0.4
     maxDistance: 50
     loop: 0
     source: {fileID: 0}
   - name: Shotgun Shot
     clip: {fileID: 8300000, guid: 134708591e794604eb3625515678d615, type: 3}
-    volume: 0.3
+    volume: 0.25
     maxDistance: 45
     loop: 0
     source: {fileID: 0}
   - name: Dash
     clip: {fileID: 8300000, guid: 9c53150e62d9c284db28430afa6866d1, type: 3}
     volume: 1
-    maxDistance: 35
+    maxDistance: 45
     loop: 0
     source: {fileID: 0}
 --- !u!114 &4576082503718247845

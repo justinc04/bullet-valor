@@ -9,12 +9,19 @@ public class ShopManager : MonoBehaviour
     public static ShopManager Instance;
 
     public GameObject shop;
+    [SerializeField] Transform headerButtons;
+    [SerializeField] Transform itemGroups;
     [SerializeField] Transform shopItems;
     [SerializeField] Button readyButton;
 
     private void Awake()
     {
         Instance = this;
+    }
+
+    private void Start()
+    {
+        headerButtons.GetChild(0).GetComponent<ShopHeaderButton>().Select();
     }
 
     public void PurchaseItem(ItemInfo item)
@@ -30,6 +37,26 @@ public class ShopManager : MonoBehaviour
         {
             shopItem.GetComponent<ShopItem>().UpdateShopItem();
         }
+    }
+
+    public void UpdateHeaderButtons()
+    {
+        foreach (Transform button in headerButtons)
+        {
+            button.GetComponent<ShopHeaderButton>().Deselect();
+        }
+    }
+
+    public void ChangeItemDisplay(Transform items)
+    {
+        foreach (Transform itemGroup in itemGroups)
+        {
+            itemGroup.gameObject.SetActive(false);
+        }
+
+        items.gameObject.SetActive(true);
+        shopItems = items;
+        UpdateShopItems();
     }
 
     public void OnClickReady()
