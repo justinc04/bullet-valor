@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 639977796984241390}
   - component: {fileID: 6019155496419043369}
   m_Layer: 0
-  m_Name: Muzzle Smoke
+  m_Name: MuzzleSmoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

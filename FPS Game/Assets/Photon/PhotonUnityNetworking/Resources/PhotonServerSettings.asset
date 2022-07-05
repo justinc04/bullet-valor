@@ -47,6 +47,9 @@ MonoBehaviour:
   - RPC_Play
   - RPC_Stop
   - RPC_ReadyToStart
+  - RPC_DashTrail
+  - RPC_SpawnMarker
+  - RPC_Teleport
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

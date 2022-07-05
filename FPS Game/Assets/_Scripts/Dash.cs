@@ -6,7 +6,9 @@ using Photon.Pun;
 public class Dash : Ability
 {
     [SerializeField] float speed;
+    [SerializeField] float duration;
     [SerializeField] ParticleSystem dashLines;
+    [SerializeField] TrailRenderer dashTrail;
     private PlayerMovement playerMovement;
 
     private void Awake()
@@ -15,7 +17,12 @@ public class Dash : Ability
         playerMovement = playerGameObject.GetComponent<PlayerMovement>();
     }
 
-    public override IEnumerator UseAbility()
+    public override void UseAbility()
+    {
+        StartCoroutine(UseDash());
+    }
+
+    IEnumerator UseDash()
     {
         ControlMovement(true);
         playerMovement.speed = speed;
@@ -27,11 +34,13 @@ public class Dash : Ability
 
         playerMovement.velocity = Vector3.zero;
         dashLines.Play();
+        pv.RPC("RPC_DashTrail", RpcTarget.Others, true);
         playerAudio.Play("Dash");
         Disable();
-        yield return new WaitForSeconds(((AbilityInfo)itemInfo).duration);
+        yield return new WaitForSeconds(duration);
         ControlMovement(false);
         dashLines.Stop();
+        pv.RPC("RPC_DashTrail", RpcTarget.Others, false);
     }
 
     void ControlMovement(bool control)
@@ -40,5 +49,11 @@ public class Dash : Ability
         playerMovement.directionControlled = control;
         playerMovement.gravityControlled = control;
         playerMovement.jumpControlled = control;
+    }
+
+    [PunRPC]
+    void RPC_DashTrail(bool state)
+    {
+        dashTrail.emitting = state;
     }
 }

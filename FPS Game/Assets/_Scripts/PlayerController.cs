@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviourPunCallbacks, IDamageable
     [SerializeField] TMP_Text healthText;
     [SerializeField] TMP_Text ammoText;
     [SerializeField] Collider[] hitColliders;
-    [SerializeField] Collider movementCollider;
+    public Collider movementCollider;
     public Collider headCollider;
 
     private const float maxHealth = 100;

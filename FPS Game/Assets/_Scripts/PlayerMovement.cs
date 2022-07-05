@@ -34,16 +34,16 @@ public class PlayerMovement : MonoBehaviourPun
     [SerializeField] float jumpBuffer = .08f;
     [HideInInspector] public bool jumpControlled;
     [HideInInspector] public Vector3 velocity;
+    [HideInInspector] public bool isGrounded;
     private float hangTimeCounter;
     private float jumpBufferCounter;
-    private bool isGrounded;
     private bool isJumping;
 
     [Header("Components")]
     [SerializeField] GameObject cameraHolder;
-    [SerializeField] Transform groundCheck;
     [SerializeField] LayerMask groundMask;
     [SerializeField] PlayerAudio playerAudio;
+    public Transform groundCheck;
     private PhotonView pv;
     private CharacterController controller;
 

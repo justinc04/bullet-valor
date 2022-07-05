@@ -13,7 +13,7 @@ public abstract class Ability : Item
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            StartCoroutine(UseAbility());
+            UseAbility();
         }
     }
 
@@ -27,5 +27,5 @@ public abstract class Ability : Item
         active = false;
     }
 
-    public abstract IEnumerator UseAbility();
+    public abstract void UseAbility();
 }
