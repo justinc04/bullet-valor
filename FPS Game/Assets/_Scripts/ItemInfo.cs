@@ -9,4 +9,5 @@ public class ItemInfo : ScriptableObject
     public ItemType itemType;
     public int price;
     public Sprite graphic;
+    [TextArea(3, 10)] public string description;
 }

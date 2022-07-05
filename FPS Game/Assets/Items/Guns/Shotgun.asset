@@ -16,6 +16,18 @@ MonoBehaviour:
   itemType: 0
   price: 2800
   graphic: {fileID: 21300000, guid: 2d73c7363b3087c4dbdb9807f1927823, type: 3}
+  description: 'Damage: 30/20 (x12)
+
+    Fire Rate: 3.5
+
+    Magazine: 7
+
+    Range:
+    15
+
+    Spread: 50
+
+    Recoil: None'
   headDamage: 30
   bodyDamage: 20
   fireRate: 3.5

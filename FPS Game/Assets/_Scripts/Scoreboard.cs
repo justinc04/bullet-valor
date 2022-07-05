@@ -45,5 +45,10 @@ public class Scoreboard : MonoBehaviourPunCallbacks
     public override void OnPlayerPropertiesUpdate(Player targetPlayer, ExitGames.Client.Photon.Hashtable changedProps)
     {
         scoreboardItems[targetPlayer].SetScore((int)changedProps["score"]);
+
+        if ((int)changedProps["score"] >= GameManager.Instance.winScore)
+        {
+            GameManager.Instance.gameOver = true;
+        }
     }
 }

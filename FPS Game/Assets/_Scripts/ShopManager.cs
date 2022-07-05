@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using Photon.Pun;
 
 public class ShopManager : MonoBehaviour
@@ -13,6 +14,12 @@ public class ShopManager : MonoBehaviour
     [SerializeField] Transform itemGroups;
     [SerializeField] Transform shopItems;
     [SerializeField] Button readyButton;
+
+    [SerializeField] GameObject itemPreview;
+    [SerializeField] TMP_Text itemPreviewNameText;
+    [SerializeField] Image itemPreviewImage;
+    [SerializeField] float imageSizeRatio;
+    [SerializeField] TMP_Text itemPreviewDescriptionText;
 
     private void Awake()
     {
@@ -59,6 +66,15 @@ public class ShopManager : MonoBehaviour
         UpdateShopItems();
     }
 
+    public void ChangeItemPreview(ItemInfo item, Vector2 imageSize)
+    {
+        itemPreview.SetActive(true);
+        itemPreviewNameText.text = item.itemName;
+        itemPreviewImage.sprite = item.graphic;
+        itemPreviewImage.rectTransform.sizeDelta = imageSize * imageSizeRatio;
+        itemPreviewDescriptionText.text = item.description;
+    }
+
     public void OnClickReady()
     {
         readyButton.interactable = false;
@@ -69,6 +85,7 @@ public class ShopManager : MonoBehaviour
     {
         shop.SetActive(true);
         readyButton.interactable = true;
+        itemPreview.SetActive(false);
         UpdateShopItems();
     }
 }

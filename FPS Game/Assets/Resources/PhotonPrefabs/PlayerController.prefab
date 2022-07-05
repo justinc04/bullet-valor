@@ -2894,6 +2894,12 @@ MonoBehaviour:
     maxDistance: 100
     loop: 0
     source: {fileID: 0}
+  - name: Teleport Marker
+    clip: {fileID: 8300000, guid: 083e08fcb3f8f4a44b9c66cb5d9257a5, type: 3}
+    volume: 0.4
+    maxDistance: 45
+    loop: 0
+    source: {fileID: 0}
 --- !u!114 &4576082503718247845
 MonoBehaviour:
   m_ObjectHideFlags: 0

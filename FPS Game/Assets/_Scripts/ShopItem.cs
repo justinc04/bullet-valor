@@ -54,6 +54,11 @@ public class ShopItem : MonoBehaviour
         }
     }
 
+    public void ShowPreview()
+    {
+        ShopManager.Instance.ChangeItemPreview(itemInfo, itemImage.rectTransform.sizeDelta);
+    }
+
     public void OnClick()
     {
         if (GameManager.Instance.inventory.Contains(itemInfo))

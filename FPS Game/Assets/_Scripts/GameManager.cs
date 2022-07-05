@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Photon.Pun;
+using Photon.Realtime;
 using TMPro;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviourPunCallbacks
 {
     public static GameManager Instance;
 
@@ -13,6 +15,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public PlayerManager playerManager;
 
     [Header("Round Settings")]
+    public float winScore;
     public float timeBetweenRounds;
     public int shopFrequency;
 
@@ -27,6 +30,9 @@ public class GameManager : MonoBehaviour
     [Header("UI")]
     [SerializeField] GameObject killGraphic;
     [SerializeField] TMP_Text moneyText;
+    [SerializeField] GameObject gameOverMenu;
+    [SerializeField] TMP_Text winLoseText;
+    [SerializeField] GameObject loadingMenu;
 
     [Header("Player")]
     public int score;
@@ -44,6 +50,8 @@ public class GameManager : MonoBehaviour
     private float roundTimer;
     private bool roundIsRunning;
     private int losingStreak;
+
+    [HideInInspector] public bool gameOver;
 
     private void Awake()
     {
@@ -114,7 +122,11 @@ public class GameManager : MonoBehaviour
         killGraphic.SetActive(false);
         Cursor.lockState = CursorLockMode.None;
 
-        if (round > 0 && round % shopFrequency == 0)
+        if (gameOver)
+        {
+            GameOver();
+        }
+        else if (round > 0 && round % shopFrequency == 0)
         {
             ShopManager.Instance.OpenShop();
             cam.SetActive(true);
@@ -174,5 +186,48 @@ public class GameManager : MonoBehaviour
             ShopManager.Instance.shop.SetActive(false);
             playerManager.CreateController();
         }
+    }
+
+    void GameOver()
+    {
+        gameOverMenu.SetActive(true);
+        cam.SetActive(true);
+
+        int highestScore = 0;
+        Player[] playerList = PhotonNetwork.PlayerList;
+
+        foreach (Player player in playerList)
+        {
+            if (player != PhotonNetwork.LocalPlayer && (int)player.CustomProperties["score"] > highestScore)
+            {
+                highestScore = (int)player.CustomProperties["score"];
+            }
+        }
+
+        if (highestScore < score)
+        {
+            winLoseText.text = "VICTORY";
+        }
+        else if (highestScore > score)
+        {
+            winLoseText.text = "DEFEAT";
+        }
+        else
+        {
+            winLoseText.text = "DRAW";
+        }
+
+    }
+
+    public void OnClickExit()
+    {
+        PhotonNetwork.Disconnect();
+        loadingMenu.SetActive(true);
+        RoomManager.Instance.photonView.ViewID = 0;
+    }
+
+    public override void OnDisconnected(DisconnectCause cause)
+    {
+        SceneManager.LoadScene(0);
     }
 }

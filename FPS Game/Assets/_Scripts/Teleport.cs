@@ -31,6 +31,7 @@ public class Teleport : Ability
 
             pv.RPC("RPC_SpawnMarker", RpcTarget.All, playerController.transform.position);
             savedLocation = true;
+            playerAudio.Play("Teleport Marker");
         }
         else
         {
