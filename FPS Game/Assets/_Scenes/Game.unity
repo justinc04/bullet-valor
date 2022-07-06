@@ -38547,13 +38547,11 @@ MonoBehaviour:
   playerManager: {fileID: 0}
   winScore: 25
   timeBetweenRounds: 4
-  shopFrequency: 3
   baseKillMoney: 500
   baseDeathMoney: 350
   fastKillTime: 10
   fastKillMoney: 50
-  losingStreakMoney: 100
-  maxLosingStreakMoney: 300
+  losingStreakMoney: 000000000000000064000000c80000002c010000f4010000
   killGraphic: {fileID: 1610266799}
   moneyText: {fileID: 42481063}
   gameOverMenu: {fileID: 699020478}

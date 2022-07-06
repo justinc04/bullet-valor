@@ -20,7 +20,7 @@ public class PlayerManager : MonoBehaviour
         if (pv.IsMine)
         {
             GameManager.Instance.playerManager = this;
-            GameManager.Instance.StartNextRound();
+            CreateController();
         }
     }
 

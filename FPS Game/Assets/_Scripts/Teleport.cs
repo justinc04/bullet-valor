@@ -36,6 +36,7 @@ public class Teleport : Ability
         else
         {
             pv.RPC("RPC_Teleport", RpcTarget.All);
+            Physics.SyncTransforms();
             Disable();
             playerAudio.Play("Teleport");
         }
@@ -52,8 +53,15 @@ public class Teleport : Ability
     {
         GameObject effect = Instantiate(teleportEffectPrefab, playerMovement.groundCheck.position, Quaternion.identity);
         playerController.transform.position = teleportMarker.transform.position;
-        Physics.SyncTransforms();
         Destroy(teleportMarker);
         Destroy(effect, 2);
+    }
+
+    private void OnDestroy()
+    {
+        if (teleportMarker != null)
+        {
+            Destroy(teleportMarker);
+        }
     }
 }

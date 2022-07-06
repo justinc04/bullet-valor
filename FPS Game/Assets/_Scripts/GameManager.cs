@@ -17,15 +17,13 @@ public class GameManager : MonoBehaviourPunCallbacks
     [Header("Round Settings")]
     public float winScore;
     public float timeBetweenRounds;
-    public int shopFrequency;
 
     [Header("Money Earnings")]
     [SerializeField] int baseKillMoney;
     [SerializeField] int baseDeathMoney;
     [SerializeField] float fastKillTime;
     [SerializeField] int fastKillMoney;
-    [SerializeField] int losingStreakMoney;
-    [SerializeField] int maxLosingStreakMoney;
+    [SerializeField] int[] losingStreakMoney;
 
     [Header("UI")]
     [SerializeField] GameObject killGraphic;
@@ -46,7 +44,6 @@ public class GameManager : MonoBehaviourPunCallbacks
     private PhotonView pv;
     private int readyPlayers;
 
-    private int round;
     private float roundTimer;
     private bool roundIsRunning;
     private int losingStreak;
@@ -84,10 +81,11 @@ public class GameManager : MonoBehaviourPunCallbacks
     public void OnDeath()
     {
         roundIsRunning = false;
-        losingStreak++;
+        losingStreak += (losingStreak < losingStreakMoney.Length - 1 ? 1 : 0);
         ChangeMoney(CalculateDeathMoney());
 
         cam.SetActive(true); 
+
         Invoke("StartNextRound", timeBetweenRounds);
     }
 
@@ -102,12 +100,13 @@ public class GameManager : MonoBehaviourPunCallbacks
 
         killGraphic.SetActive(true);
         AudioManager.Instance.Play("Kill");
+
         Invoke("StartNextRound", timeBetweenRounds);
     }
 
     int CalculateDeathMoney()
-    {     
-        int streakMoney = Mathf.Min(losingStreakMoney * (losingStreak - 1), maxLosingStreakMoney);
+    {
+        int streakMoney = losingStreakMoney[losingStreak];
         return baseDeathMoney + streakMoney;
     }
 
@@ -117,7 +116,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         return baseKillMoney + timeMoney;
     }
 
-    public void StartNextRound()
+    void StartNextRound()
     {
         killGraphic.SetActive(false);
         Cursor.lockState = CursorLockMode.None;
@@ -126,17 +125,11 @@ public class GameManager : MonoBehaviourPunCallbacks
         {
             GameOver();
         }
-        else if (round > 0 && round % shopFrequency == 0)
+        else
         {
             ShopManager.Instance.OpenShop();
             cam.SetActive(true);
         }
-        else
-        {
-            playerManager.CreateController();
-        }
-
-        round++;
     }
 
     public void AddToInventory(ItemInfo item)
