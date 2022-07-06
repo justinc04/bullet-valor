@@ -164,7 +164,7 @@ public class Gun : Item
 
             GameObject hitObject = hit.collider.gameObject;
 
-            if (hitObject.CompareTag("Player"))
+            if (hitObject.CompareTag("Player") && hitObject != playerGameObject)
             {
 
                 if (hit.collider == hitObject.GetComponent<PlayerController>().headCollider)
@@ -180,11 +180,12 @@ public class Gun : Item
                 {
                     playerGameObject.GetComponent<PlayerController>().Kill();
                 }
-
-                return;
             }
 
-            pv.RPC("RPC_Hit", RpcTarget.All, hit.point, hit.normal);
+            if (hitObject.layer == LayerMask.NameToLayer("Ground"))
+            {
+                pv.RPC("RPC_Hit", RpcTarget.All, hit.point, hit.normal);
+            }
         }
     }
 

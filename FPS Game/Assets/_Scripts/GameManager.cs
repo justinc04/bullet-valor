@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     [Header("Round Settings")]
     public float winScore;
     public float timeBetweenRounds;
+    public int shopFrequency;
 
     [Header("Money Earnings")]
     [SerializeField] int baseKillMoney;
@@ -44,6 +45,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     private PhotonView pv;
     private int readyPlayers;
 
+    private int round;
     private float roundTimer;
     private bool roundIsRunning;
     private int losingStreak;
@@ -74,6 +76,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         roundIsRunning = true;
         roundTimer = 0;
+        round++;
         killGraphic.SetActive(false);
         cam.SetActive(false);
     }
@@ -125,10 +128,14 @@ public class GameManager : MonoBehaviourPunCallbacks
         {
             GameOver();
         }
-        else
+        else if (round % shopFrequency == 0)
         {
             ShopManager.Instance.OpenShop();
             cam.SetActive(true);
+        }
+        else
+        {
+            playerManager.CreateController();
         }
     }
 
