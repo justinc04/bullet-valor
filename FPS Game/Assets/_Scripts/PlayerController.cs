@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviourPunCallbacks, IDamageable
     void RPC_TakeDamage(float damage)
     {
         currentHealth -= damage;
-        healthText.text = currentHealth.ToString();
+        healthText.text = (Mathf.RoundToInt(currentHealth)).ToString();
 
         if (currentHealth <= 0)
         {

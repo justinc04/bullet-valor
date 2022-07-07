@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb57273d97bdf014e8a3bd092d5cbbbe, type: 3}
+  m_Name: Revolver
+  m_EditorClassIdentifier: 
+  itemName: Revolver
+  itemType: 0
+  price: 1000
+  graphic: {fileID: 21300000, guid: c422a6affc4990d4ea7571ee5f8564db, type: 3}
+  description: 'Damage: 125/45
+
+    Fire Rate: 4
+
+    Magazine: 6
+
+    Range: 50
+
+    Spread:
+    2
+
+    Recoil: Heavy'
+  headDamage: 125
+  bodyDamage: 45
+  fireRate: 4
+  range: 50
+  spread: 2
+  ammoCapacity: 6
+  bulletsPerShot: 1
+  fireMode: 2
+  gunClass: 1
+  reloadTime: 2.25
+  reloadPosition: {x: 0.233, y: -0.271, z: -0.823}
+  reloadAnimationSpeed: 7
+  hipFireRecoil: {x: -8, y: 6, z: 0.5}
+  aimingRecoil: {x: 0, y: 0, z: 0}
+  recoilType: 0
+  cameraKickback: {x: 0, y: 0, z: 0}
+  snappiness: 10
+  returnSpeed: 4
+  gunRotationRecoil: {x: -45, y: 0.3, z: 0.3}
+  gunPositionRecoil: {x: 0, y: -0.45, z: -0.15}
+  gunSnapSpeed: 20
+  gunReturnSpeed: 8
+  canADS: 0
+  hasScopeOverlay: 0
+  aimingPosition: {x: 0, y: 0, z: 0}
+  aimingZoom: 0
+  scopeInSpeed: 20
+  aimingFireRate: 0
+  aimingMoveSpeedAffector: 0
+  gunShotSound: Revolver Shot

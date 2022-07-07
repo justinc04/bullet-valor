@@ -5,7 +5,7 @@ using UnityEngine;
 public class ItemInfo : ScriptableObject
 {
     public string itemName;
-    public enum ItemType { Equipable, Armor, Ability }
+    public enum ItemType { Equipable, Armor, Ability, Skill }
     public ItemType itemType;
     public int price;
     public Sprite graphic;

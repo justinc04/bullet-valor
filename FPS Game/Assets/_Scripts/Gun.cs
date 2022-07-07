@@ -35,12 +35,14 @@ public class Gun : Item
     private Vector3 gunTargetPos;
 
     private PlayerMovement playerMovement;
+    private PlayerManager playerManager;
 
     private void Start()
     {
         ammo = ((GunInfo)itemInfo).ammoCapacity;
         cameraFOV = cam.fieldOfView;
         playerMovement = playerGameObject.GetComponent<PlayerMovement>();
+        playerManager = GameManager.Instance.playerManager;
     }
 
     private void Update()
@@ -169,11 +171,11 @@ public class Gun : Item
 
                 if (hit.collider == hitObject.GetComponent<PlayerController>().headCollider)
                 {
-                    hitObject.GetComponent<IDamageable>().TakeDamage(((GunInfo)itemInfo).headDamage);
+                    hitObject.GetComponent<IDamageable>().TakeDamage(((GunInfo)itemInfo).headDamage * playerManager.damageMultiplier);
                 }
                 else
                 {
-                    hitObject.GetComponent<IDamageable>().TakeDamage(((GunInfo)itemInfo).bodyDamage);
+                    hitObject.GetComponent<IDamageable>().TakeDamage(((GunInfo)itemInfo).bodyDamage * playerManager.damageMultiplier);
                 }
 
                 if (hitObject.GetComponent<PlayerController>().currentHealth <= 0)

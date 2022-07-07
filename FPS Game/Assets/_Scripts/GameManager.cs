@@ -46,6 +46,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     private int readyPlayers;
 
     private int round;
+    private bool roundEnded;
     private float roundTimer;
     private bool roundIsRunning;
     private int losingStreak;
@@ -70,6 +71,12 @@ public class GameManager : MonoBehaviourPunCallbacks
         {
             roundTimer += Time.deltaTime;
         }
+        
+        if(roundEnded)
+        {
+            roundEnded = false;
+            Invoke("StartNextRound", timeBetweenRounds);
+        }
     }
 
     public void OnSpawn()
@@ -84,17 +91,17 @@ public class GameManager : MonoBehaviourPunCallbacks
     public void OnDeath()
     {
         roundIsRunning = false;
+        roundEnded = true;
         losingStreak += (losingStreak < losingStreakMoney.Length - 1 ? 1 : 0);
         ChangeMoney(CalculateDeathMoney());
 
         cam.SetActive(true); 
-
-        Invoke("StartNextRound", timeBetweenRounds);
     }
 
     public void OnKill()
     {
         roundIsRunning = false;
+        roundEnded = true;
         losingStreak = 0;
         score++;
         playerProperties["score"] = score;
@@ -103,8 +110,6 @@ public class GameManager : MonoBehaviourPunCallbacks
 
         killGraphic.SetActive(true);
         AudioManager.Instance.Play("Kill");
-
-        Invoke("StartNextRound", timeBetweenRounds);
     }
 
     int CalculateDeathMoney()
