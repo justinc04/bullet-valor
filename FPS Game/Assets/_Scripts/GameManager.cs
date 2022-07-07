@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     [Header("UI")]
     [SerializeField] GameObject killGraphic;
+    [SerializeField] TMP_Text roundText;
     [SerializeField] TMP_Text moneyText;
     [SerializeField] GameObject gameOverMenu;
     [SerializeField] TMP_Text winLoseText;
@@ -86,6 +87,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         round++;
         killGraphic.SetActive(false);
         cam.SetActive(false);
+        roundText.text = "ROUND " + round;
     }
 
     public void OnDeath()
