@@ -2924,7 +2924,7 @@ MonoBehaviour:
   - name: Footsteps
     clip: {fileID: 8300000, guid: 408d4f1707198e049bc46a00c5baafbe, type: 3}
     volume: 1
-    maxDistance: 25
+    maxDistance: 20
     loop: 1
     source: {fileID: 0}
   - name: Sniper Rifle Shot
@@ -2948,13 +2948,13 @@ MonoBehaviour:
   - name: Jump Land
     clip: {fileID: 8300000, guid: 6ff49811c769ffb44aa7aae4fa63a072, type: 3}
     volume: 0.45
-    maxDistance: 30
+    maxDistance: 25
     loop: 0
     source: {fileID: 0}
   - name: Jump
     clip: {fileID: 8300000, guid: 37a6f60e842aaf74785dd29848d353d8, type: 3}
     volume: 1
-    maxDistance: 25
+    maxDistance: 20
     loop: 0
     source: {fileID: 0}
   - name: SMG Shot
