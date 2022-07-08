@@ -6,32 +6,38 @@ using Photon.Pun;
 public class PlayerMovement : MonoBehaviourPun
 {
     [Header("Mouse Look")]
-    [SerializeField] float mouseSensitivity = 1.5f;
+    [SerializeField] float mouseSensitivity;
     private float verticalLookRot;
 
     [Header("Movement")]
-    [SerializeField] float runSpeed = 5.5f;
-    [SerializeField] float walkSpeed = 2.5f;
-    [SerializeField] float smoothTime = .15f;
-    [HideInInspector] public float speedAffector = 1f;
+    public float runSpeed;
+    [SerializeField] float walkSpeed;
+    [SerializeField] float speedSmoothTime;
+    [SerializeField] float accelerationSmoothTime;
+    [SerializeField] float decelerationSmoothTime;
+    [SerializeField] float airSmoothTimeMultiplier;
+    [SerializeField] float landingSpeedDuration;
+    [HideInInspector] public float speedAffector = 1;
     [HideInInspector] public bool speedControlled;
     [HideInInspector] public bool directionControlled;
     [HideInInspector] public Vector3 direction;
     [HideInInspector] public float speed;
+    private Vector3 smoothMoveDirection;
     private float smoothMoveSpeed;
+    private float landingSpeedAffector = 1;
 
     [Header("Gravity")]
-    [SerializeField] float gravityScale = 4f;
-    [SerializeField] float fallGravityScale = 7f;
+    [SerializeField] float gravityScale;
+    [SerializeField] float fallGravityScale;
     [HideInInspector] public bool gravityControlled;
     private const float gravityConstant = -9.81f;
     private float gravity;
 
     [Header("Jumping")]
-    [SerializeField] float jumpHeight = .9f;
-    [SerializeField] float groundDistance = .5f;
-    [SerializeField] float hangTime = .05f;
-    [SerializeField] float jumpBuffer = .08f;
+    [SerializeField] float jumpHeight;
+    [SerializeField] float groundDistance;
+    [SerializeField] float hangTime;
+    [SerializeField] float jumpBuffer;
     [HideInInspector] public bool jumpControlled;
     [HideInInspector] public Vector3 velocity;
     [HideInInspector] public bool isGrounded;
@@ -93,17 +99,21 @@ public class PlayerMovement : MonoBehaviourPun
 
         if (!directionControlled)
         {
-            direction = (transform.right * horizontal + transform.forward * vertical).normalized;
+            Vector3 targetDirection = (transform.right * horizontal + transform.forward * vertical).normalized;
+            float smoothTime = direction.magnitude < targetDirection.magnitude ? accelerationSmoothTime : decelerationSmoothTime;
+            smoothTime *= (isGrounded ? 1 : airSmoothTimeMultiplier);
+            direction = Vector3.SmoothDamp(direction, targetDirection, ref smoothMoveDirection, smoothTime);
         }
 
         if (!speedControlled)
         {
-            speed = Mathf.SmoothDamp(speed, (Input.GetKey(KeyCode.LeftShift) ? walkSpeed : runSpeed) * speedAffector, ref smoothMoveSpeed, smoothTime);
+            float targetSpeed = (Input.GetKey(KeyCode.LeftShift) ? walkSpeed : runSpeed) * speedAffector * landingSpeedAffector;
+            speed = Mathf.SmoothDamp(speed, targetSpeed, ref smoothMoveSpeed, speedSmoothTime);
         }
 
         controller.Move(direction * speed * Time.deltaTime);
 
-        if (direction != Vector3.zero && controller.velocity != Vector3.zero && !Input.GetKey(KeyCode.LeftShift) && isGrounded)
+        if (direction != Vector3.zero && controller.velocity.magnitude > runSpeed * .2f && !Input.GetKey(KeyCode.LeftShift) && isGrounded)
         {
             if (!playerAudio.CheckSound("Footsteps"))
             {
@@ -122,6 +132,7 @@ public class PlayerMovement : MonoBehaviourPun
 
         if (isGrounded && velocity.y < -8f && Time.timeSinceLevelLoad > .5f)
         {
+            StartCoroutine(Landed());
             playerAudio.Play("Jump Land");
         }
 
@@ -129,6 +140,13 @@ public class PlayerMovement : MonoBehaviourPun
         {
             velocity.y = -5f;
         }
+    }
+
+    IEnumerator Landed()
+    {
+        landingSpeedAffector = 0;
+        yield return new WaitForSeconds(landingSpeedDuration);
+        landingSpeedAffector = 1;
     }
 
     void CheckJumpAllowed()

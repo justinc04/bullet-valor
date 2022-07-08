@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 using Photon.Pun;
 using TMPro;
 using Photon.Realtime;
@@ -17,7 +18,7 @@ public class Launcher : MonoBehaviourPunCallbacks
     [SerializeField] GameObject roomListItemPrefab;
     [SerializeField] Transform playerListContent;
     [SerializeField] GameObject playerListItemPrefab;
-    [SerializeField] GameObject startGameButton;
+    [SerializeField] Button startGameButton;
 
     private void Awake()
     {
@@ -68,12 +69,12 @@ public class Launcher : MonoBehaviourPunCallbacks
             Instantiate(playerListItemPrefab, playerListContent).GetComponent<PlayerListItem>().SetUp(players[i]);
         }
 
-        startGameButton.SetActive(PhotonNetwork.IsMasterClient);
+        startGameButton.gameObject.SetActive(PhotonNetwork.IsMasterClient);
     }
 
     public override void OnMasterClientSwitched(Player newMasterClient)
     {
-        startGameButton.SetActive(PhotonNetwork.IsMasterClient);
+        startGameButton.gameObject.SetActive(PhotonNetwork.IsMasterClient);
     }
 
     public override void OnCreateRoomFailed(short returnCode, string message)

@@ -25,14 +25,15 @@ MonoBehaviour:
     Range: 40
 
     Spread:
-    12
+    10
 
     Recoil: Moderate'
   headDamage: 60
   bodyDamage: 25
   fireRate: 16
   range: 40
-  spread: 12
+  spread: 10
+  movementInaccuracy: 12
   ammoCapacity: 20
   bulletsPerShot: 1
   fireMode: 0

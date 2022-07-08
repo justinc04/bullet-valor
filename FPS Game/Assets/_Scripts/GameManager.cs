@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     [SerializeField] GameObject killGraphic;
     [SerializeField] TMP_Text roundText;
     [SerializeField] TMP_Text moneyText;
+    [SerializeField] GameObject playerUI;
     [SerializeField] GameObject gameOverMenu;
     [SerializeField] TMP_Text winLoseText;
     [SerializeField] GameObject loadingMenu;
@@ -199,6 +200,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         gameOverMenu.SetActive(true);
         cam.SetActive(true);
+        playerUI.SetActive(false);
 
         int highestScore = 0;
         Player[] playerList = PhotonNetwork.PlayerList;

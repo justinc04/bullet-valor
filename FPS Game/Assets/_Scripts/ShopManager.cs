@@ -13,6 +13,7 @@ public class ShopManager : MonoBehaviour
     [SerializeField] Transform headerButtons;
     [SerializeField] Transform itemGroups;
     [SerializeField] Transform shopItems;
+    [SerializeField] GameObject waitingScreen;
     [SerializeField] Button readyButton;
 
     [SerializeField] GameObject itemPreview;
@@ -78,6 +79,7 @@ public class ShopManager : MonoBehaviour
     public void OnClickReady()
     {
         readyButton.interactable = false;
+        waitingScreen.SetActive(true);
         GameManager.Instance.ReadyToStart();
     }
 
@@ -85,6 +87,7 @@ public class ShopManager : MonoBehaviour
     {
         shop.SetActive(true);
         readyButton.interactable = true;
+        waitingScreen.SetActive(false);
         itemPreview.SetActive(false);
         UpdateShopItems();
     }
