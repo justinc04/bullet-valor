@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviourPunCallbacks, IDamageable
     private const float maxHealth = 100;
     [HideInInspector] public float currentHealth = maxHealth;
 
+    [SerializeField] PlayerAudio playerAudio;
     private PlayerManager playerManager;
     private PlayerItems playerItems;
     private PhotonView pv;
@@ -64,6 +65,7 @@ public class PlayerController : MonoBehaviourPunCallbacks, IDamageable
 
     public void TakeDamage(float damage)
     {
+        playerAudio.Play("Body Impact");
         pv.RPC("RPC_TakeDamage", RpcTarget.All, damage);
     }
 

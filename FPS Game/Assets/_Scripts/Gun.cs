@@ -8,7 +8,9 @@ public class Gun : Item
     [SerializeField] Camera cam;
     [SerializeField] ParticleSystem muzzleFlash;
     [SerializeField] ParticleSystem muzzleSmoke;
+    [SerializeField] TrailRenderer bulletTrailPrefab;
     [SerializeField] GameObject bulletImpactPrefab;
+    [SerializeField] GameObject bloodEffectPrefab;
     [SerializeField] GameObject scopeOverlay;
     [SerializeField] GameObject cameraRecoilObject;
     [SerializeField] GameObject reloadingObject;
@@ -160,10 +162,13 @@ public class Gun : Item
         spreadAmount += movementInaccuracy * Mathf.Sign(spreadAmount) * .001f;
         Vector3 spread = (spreadX + spreadY).normalized * spreadAmount;
 
-        if (Physics.Raycast(cam.transform.position, cam.transform.forward + spread, out RaycastHit hit))
+        Ray ray = new Ray(cam.transform.position, cam.transform.forward + spread);
+
+        if (Physics.Raycast(ray, out RaycastHit hit))
         {
             if (hit.distance > ((GunInfo)itemInfo).range)
             {
+                pv.RPC("RPC_ShootBullets", RpcTarget.All, ray.GetPoint(((GunInfo)itemInfo).range), Vector3.zero, false, false);
                 return;
             }
 
@@ -185,17 +190,50 @@ public class Gun : Item
                 {
                     playerGameObject.GetComponent<PlayerController>().Kill();
                 }
-            }
 
-            if (hitObject.layer == LayerMask.NameToLayer("Ground"))
+                pv.RPC("RPC_ShootBullets", RpcTarget.All, hit.point, hit.normal, true, false);
+            }
+            else if (hitObject.layer == LayerMask.NameToLayer("Ground"))
             {
-                pv.RPC("RPC_Hit", RpcTarget.All, hit.point, hit.normal);
+                pv.RPC("RPC_ShootBullets", RpcTarget.All, hit.point, hit.normal, false, true);
             }
         }
     }
 
+
     [PunRPC]
-    void RPC_Hit(Vector3 hitPosition, Vector3 hitNormal)
+    void RPC_ShootBullets(Vector3 hitPosition, Vector3 hitNormal, bool hitPlayer, bool hitGround)
+    {
+        StartCoroutine(SpawnTrail(hitPosition, hitNormal, hitPlayer, hitGround));
+    }
+
+    IEnumerator SpawnTrail(Vector3 hitPosition, Vector3 hitNormal, bool hitPlayer, bool hitGround)
+    {
+        float time = 0;
+        Vector3 startPos = muzzleFlash.transform.position;
+        TrailRenderer trail = Instantiate(bulletTrailPrefab, startPos, Quaternion.identity);
+
+        while (time < 1)
+        {
+            trail.transform.position = Vector3.Lerp(startPos, hitPosition, time);
+            time += Time.deltaTime / trail.time;
+            yield return null;
+        }
+
+        trail.transform.position = hitPosition;
+        Destroy(trail.gameObject, 1);
+
+        if (hitGround) 
+        {
+            SpawnImpact(hitPosition, hitNormal);
+        }
+        else if (hitPlayer && pv.IsMine)
+        {
+            SpawnBlood(hitPosition, hitNormal);
+        }
+    }
+
+    void SpawnImpact(Vector3 hitPosition, Vector3 hitNormal)
     {
         Collider[] colliders = Physics.OverlapSphere(hitPosition, .3f);
 
@@ -204,6 +242,17 @@ public class Gun : Item
             GameObject bulletImpactObj = Instantiate(bulletImpactPrefab, hitPosition + hitNormal * .001f, Quaternion.LookRotation(hitNormal, Vector3.up) * bulletImpactPrefab.transform.rotation);
             Destroy(bulletImpactObj, 10);
             bulletImpactObj.transform.SetParent(colliders[0].transform);
+        }
+    }
+
+    void SpawnBlood(Vector3 hitPosition, Vector3 hitNormal)
+    {
+        Collider[] colliders = Physics.OverlapSphere(hitPosition, .3f);
+
+        if (colliders.Length != 0)
+        {
+            GameObject bloodEffectObj = Instantiate(bloodEffectPrefab, hitPosition + hitNormal * .001f, Quaternion.LookRotation(hitNormal, Vector3.up) * bloodEffectPrefab.transform.rotation);
+            Destroy(bloodEffectObj, 1);
         }
     }
 
@@ -277,7 +326,7 @@ public class Gun : Item
         aiming = false;
         ADSObject.transform.localPosition = Vector3.Lerp(ADSObject.transform.localPosition, Vector3.zero, ((GunInfo)itemInfo).scopeInSpeed * Time.deltaTime); 
         cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, cameraFOV, ((GunInfo)itemInfo).scopeInSpeed * Time.deltaTime);
-        playerMovement.speedAffector = 1;
+        playerMovement.weaponSpeedAffector = 1;
 
         if (((GunInfo)itemInfo).hasScopeOverlay && scopeOverlay.activeSelf)
         {
@@ -291,7 +340,7 @@ public class Gun : Item
         aiming = true;
         ADSObject.transform.localPosition = Vector3.Lerp(ADSObject.transform.localPosition, ((GunInfo)itemInfo).aimingPosition, ((GunInfo)itemInfo).scopeInSpeed * Time.deltaTime);
         cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, cameraFOV / ((GunInfo)itemInfo).aimingZoom, ((GunInfo)itemInfo).scopeInSpeed * Time.deltaTime);
-        playerMovement.speedAffector = ((GunInfo)itemInfo).aimingMoveSpeedAffector;
+        playerMovement.weaponSpeedAffector = ((GunInfo)itemInfo).aimingMoveSpeedAffector;
 
         if (((GunInfo)itemInfo).hasScopeOverlay && !scopeOverlay.activeSelf && (Vector3.Distance(ADSObject.transform.localPosition, ((GunInfo)itemInfo).aimingPosition) < .01f))
         {

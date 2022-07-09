@@ -50,6 +50,8 @@ MonoBehaviour:
   - RPC_DashTrail
   - RPC_SpawnMarker
   - RPC_Teleport
+  - RPC_NoHit
+  - RPC_ShootBullets
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

@@ -518,6 +518,7 @@ MonoBehaviour:
   movementCollider: {fileID: 5541359971272562840}
   headCollider: {fileID: 6073287596180597910}
   currentHealth: 100
+  playerAudio: {fileID: 6758297476281144724}
 --- !u!114 &4800277251245794853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -530,28 +531,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19c7a2c56ea9f6e42b32f21ca9d873e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseSensitivity: 1.5
+  mouseSensitivity: 2
   runSpeed: 5.5
   walkSpeed: 3
-  speedSmoothTime: 0.15
-  accelerationSmoothTime: 0.08
-  decelerationSmoothTime: 0.03
-  airSmoothTimeMultiplier: 1.5
-  landingSpeedDuration: 0.1
-  speedAffector: 1
+  groundAcceleration: 25
+  airAcceleration: 10
+  landingSpeedMultiplier: 0.5
+  landingDuration: 0.15
+  speed: 0
+  direction: {x: 0, y: 0, z: 0}
   speedControlled: 0
   directionControlled: 0
-  direction: {x: 0, y: 0, z: 0}
-  speed: 0
+  weaponSpeedAffector: 1
   gravityScale: 4
   fallGravityScale: 7
   gravityControlled: 0
+  velocity: {x: 0, y: 0, z: 0}
   jumpHeight: 0.9
   groundDistance: 0.4
   hangTime: 0.05
   jumpBuffer: 0.08
   jumpControlled: 0
-  velocity: {x: 0, y: 0, z: 0}
   isGrounded: 0
   cameraHolder: {fileID: 187652192467290338}
   groundMask:
@@ -1047,7 +1047,9 @@ MonoBehaviour:
   cam: {fileID: 2538690898574121446}
   muzzleFlash: {fileID: 6842360698120429146}
   muzzleSmoke: {fileID: 0}
+  bulletTrailPrefab: {fileID: 5724387420730960005, guid: 5867887fabce2354dbd92a92734d8e05, type: 3}
   bulletImpactPrefab: {fileID: 3837519000684272582, guid: e3c495abcd97a004ebe6129c2970b6fe, type: 3}
+  bloodEffectPrefab: {fileID: 6859973638443903517, guid: 55300e9cce77e364bbffeeaf9e812d62, type: 3}
   scopeOverlay: {fileID: 0}
   cameraRecoilObject: {fileID: 3466887499656082205}
   reloadingObject: {fileID: 791460891495575731}
@@ -1611,7 +1613,9 @@ MonoBehaviour:
   cam: {fileID: 2538690898574121446}
   muzzleFlash: {fileID: 3512604744222093717}
   muzzleSmoke: {fileID: 2162571477408622827}
+  bulletTrailPrefab: {fileID: 5724387420730960005, guid: 5867887fabce2354dbd92a92734d8e05, type: 3}
   bulletImpactPrefab: {fileID: 3837519000684272582, guid: e3c495abcd97a004ebe6129c2970b6fe, type: 3}
+  bloodEffectPrefab: {fileID: 6859973638443903517, guid: 55300e9cce77e364bbffeeaf9e812d62, type: 3}
   scopeOverlay: {fileID: 6318239544955391066}
   cameraRecoilObject: {fileID: 3466887499656082205}
   reloadingObject: {fileID: 791460891495575731}
@@ -2450,7 +2454,9 @@ MonoBehaviour:
   cam: {fileID: 2538690898574121446}
   muzzleFlash: {fileID: 1335398925163457728}
   muzzleSmoke: {fileID: 0}
+  bulletTrailPrefab: {fileID: 5724387420730960005, guid: 5867887fabce2354dbd92a92734d8e05, type: 3}
   bulletImpactPrefab: {fileID: 3837519000684272582, guid: e3c495abcd97a004ebe6129c2970b6fe, type: 3}
+  bloodEffectPrefab: {fileID: 6859973638443903517, guid: 55300e9cce77e364bbffeeaf9e812d62, type: 3}
   scopeOverlay: {fileID: 0}
   cameraRecoilObject: {fileID: 3466887499656082205}
   reloadingObject: {fileID: 791460891495575731}
@@ -2554,10 +2560,10 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 0.4
+  m_Time: 0.5
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 1
+    widthMultiplier: 1.5
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -2572,7 +2578,7 @@ TrailRenderer:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 1
-        value: 0
+        value: 0.5471649
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -2585,7 +2591,7 @@ TrailRenderer:
     colorGradient:
       serializedVersion: 2
       key0: {r: 0.740566, g: 0.96041983, b: 1, a: 1}
-      key1: {r: 1, g: 1, b: 1, a: 1}
+      key1: {r: 1, g: 1, b: 1, a: 0}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -3025,7 +3031,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Jump Land
     clip: {fileID: 8300000, guid: 6ff49811c769ffb44aa7aae4fa63a072, type: 3}
-    volume: 0.45
+    volume: 0.3
     maxDistance: 25
     loop: 0
     source: {fileID: 0}
@@ -3069,6 +3075,12 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 9900ae1785acd054c83a318caa8d1abe, type: 3}
     volume: 0.15
     maxDistance: 50
+    loop: 0
+    source: {fileID: 0}
+  - name: Body Impact
+    clip: {fileID: 8300000, guid: 2806c8b247bdcac4080be22b5d2659cf, type: 3}
+    volume: 0.4
+    maxDistance: 5
     loop: 0
     source: {fileID: 0}
 --- !u!114 &4576082503718247845
@@ -8044,7 +8056,9 @@ MonoBehaviour:
   cam: {fileID: 2538690898574121446}
   muzzleFlash: {fileID: 8608153856654036344}
   muzzleSmoke: {fileID: 0}
+  bulletTrailPrefab: {fileID: 5724387420730960005, guid: 5867887fabce2354dbd92a92734d8e05, type: 3}
   bulletImpactPrefab: {fileID: 3837519000684272582, guid: e3c495abcd97a004ebe6129c2970b6fe, type: 3}
+  bloodEffectPrefab: {fileID: 6859973638443903517, guid: 55300e9cce77e364bbffeeaf9e812d62, type: 3}
   scopeOverlay: {fileID: 0}
   cameraRecoilObject: {fileID: 3466887499656082205}
   reloadingObject: {fileID: 791460891495575731}
@@ -8130,7 +8144,9 @@ MonoBehaviour:
   cam: {fileID: 2538690898574121446}
   muzzleFlash: {fileID: 8700000500924989729}
   muzzleSmoke: {fileID: 0}
+  bulletTrailPrefab: {fileID: 5724387420730960005, guid: 5867887fabce2354dbd92a92734d8e05, type: 3}
   bulletImpactPrefab: {fileID: 3837519000684272582, guid: e3c495abcd97a004ebe6129c2970b6fe, type: 3}
+  bloodEffectPrefab: {fileID: 6859973638443903517, guid: 55300e9cce77e364bbffeeaf9e812d62, type: 3}
   scopeOverlay: {fileID: 0}
   cameraRecoilObject: {fileID: 3466887499656082205}
   reloadingObject: {fileID: 791460891495575731}
@@ -8292,7 +8308,9 @@ MonoBehaviour:
   cam: {fileID: 2538690898574121446}
   muzzleFlash: {fileID: 601245621788932522}
   muzzleSmoke: {fileID: 0}
+  bulletTrailPrefab: {fileID: 5724387420730960005, guid: 5867887fabce2354dbd92a92734d8e05, type: 3}
   bulletImpactPrefab: {fileID: 3837519000684272582, guid: e3c495abcd97a004ebe6129c2970b6fe, type: 3}
+  bloodEffectPrefab: {fileID: 6859973638443903517, guid: 55300e9cce77e364bbffeeaf9e812d62, type: 3}
   scopeOverlay: {fileID: 0}
   cameraRecoilObject: {fileID: 3466887499656082205}
   reloadingObject: {fileID: 791460891495575731}

@@ -4,7 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 
 public class PlayerMovement : MonoBehaviourPun
-{
+{ 
     [Header("Mouse Look")]
     [SerializeField] float mouseSensitivity;
     private float verticalLookRot;
@@ -12,18 +12,15 @@ public class PlayerMovement : MonoBehaviourPun
     [Header("Movement")]
     public float runSpeed;
     [SerializeField] float walkSpeed;
-    [SerializeField] float speedSmoothTime;
-    [SerializeField] float accelerationSmoothTime;
-    [SerializeField] float decelerationSmoothTime;
-    [SerializeField] float airSmoothTimeMultiplier;
-    [SerializeField] float landingSpeedDuration;
-    [HideInInspector] public float speedAffector = 1;
+    [SerializeField] float groundAcceleration;
+    [SerializeField] float airAcceleration;
+    [SerializeField] float landingSpeedMultiplier;
+    [SerializeField] float landingDuration;
+    [HideInInspector] public float speed;
+    [HideInInspector] public Vector3 direction;
     [HideInInspector] public bool speedControlled;
     [HideInInspector] public bool directionControlled;
-    [HideInInspector] public Vector3 direction;
-    [HideInInspector] public float speed;
-    private Vector3 smoothMoveDirection;
-    private float smoothMoveSpeed;
+    [HideInInspector] public float weaponSpeedAffector = 1;
     private float landingSpeedAffector = 1;
 
     [Header("Gravity")]
@@ -34,16 +31,17 @@ public class PlayerMovement : MonoBehaviourPun
     private float gravity;
 
     [Header("Jumping")]
+    [HideInInspector] public Vector3 velocity;
     [SerializeField] float jumpHeight;
     [SerializeField] float groundDistance;
     [SerializeField] float hangTime;
     [SerializeField] float jumpBuffer;
     [HideInInspector] public bool jumpControlled;
-    [HideInInspector] public Vector3 velocity;
     [HideInInspector] public bool isGrounded;
     private float hangTimeCounter;
     private float jumpBufferCounter;
     private bool isJumping;
+    private bool hasLanded = true;
 
     [Header("Components")]
     [SerializeField] GameObject cameraHolder;
@@ -96,24 +94,23 @@ public class PlayerMovement : MonoBehaviourPun
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
+        float acceleration = hangTimeCounter > 0f ? groundAcceleration : airAcceleration;
 
         if (!directionControlled)
         {
             Vector3 targetDirection = (transform.right * horizontal + transform.forward * vertical).normalized;
-            float smoothTime = direction.magnitude < targetDirection.magnitude ? accelerationSmoothTime : decelerationSmoothTime;
-            smoothTime *= (isGrounded ? 1 : airSmoothTimeMultiplier);
-            direction = Vector3.SmoothDamp(direction, targetDirection, ref smoothMoveDirection, smoothTime);
+            direction = Vector3.Lerp(direction, targetDirection, acceleration * Time.deltaTime);
         }
 
         if (!speedControlled)
         {
-            float targetSpeed = (Input.GetKey(KeyCode.LeftShift) ? walkSpeed : runSpeed) * speedAffector * landingSpeedAffector;
-            speed = Mathf.SmoothDamp(speed, targetSpeed, ref smoothMoveSpeed, speedSmoothTime);
+            float targetSpeed = (Input.GetKey(KeyCode.LeftShift) ? walkSpeed : runSpeed) * weaponSpeedAffector * landingSpeedAffector;
+            speed = Mathf.Lerp(speed, targetSpeed, acceleration * Time.deltaTime);
         }
 
         controller.Move(direction * speed * Time.deltaTime);
 
-        if (direction != Vector3.zero && controller.velocity.magnitude > runSpeed * .2f && !Input.GetKey(KeyCode.LeftShift) && isGrounded)
+        if (direction != Vector3.zero && controller.velocity.magnitude > walkSpeed && !Input.GetKey(KeyCode.LeftShift) && isGrounded)
         {
             if (!playerAudio.CheckSound("Footsteps"))
             {
@@ -130,10 +127,20 @@ public class PlayerMovement : MonoBehaviourPun
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
-        if (isGrounded && velocity.y < -8f && Time.timeSinceLevelLoad > .5f)
+        if (!isGrounded)
         {
-            StartCoroutine(Landed());
-            playerAudio.Play("Jump Land");
+            hasLanded = false;
+        }
+
+        if (isGrounded && !hasLanded)
+        {
+            hasLanded = true;
+
+            if (velocity.y < -7f)
+            {
+                StartCoroutine(Landed());
+                playerAudio.Play("Jump Land");
+            }
         }
 
         if (isGrounded && velocity.y < 0f)
@@ -144,8 +151,8 @@ public class PlayerMovement : MonoBehaviourPun
 
     IEnumerator Landed()
     {
-        landingSpeedAffector = 0;
-        yield return new WaitForSeconds(landingSpeedDuration);
+        landingSpeedAffector = landingSpeedMultiplier;
+        yield return new WaitForSeconds(landingDuration);
         landingSpeedAffector = 1;
     }
 
