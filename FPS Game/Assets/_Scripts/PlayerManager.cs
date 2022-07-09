@@ -10,6 +10,9 @@ public class PlayerManager : MonoBehaviour
     public GameObject controller;
     private bool kill;
 
+    public float damageDealt;
+    public float headShots;
+    public float bodyShots;
     public float damageMultiplier = 1;
 
     private void Awake()
@@ -30,6 +33,7 @@ public class PlayerManager : MonoBehaviour
     {
         kill = false;
         damageMultiplier = 1;
+        damageDealt = headShots = bodyShots = 0;
         Transform spawnpoint = SpawnManager.Instance.GetSpawnpoint(PhotonNetwork.LocalPlayer.IsMasterClient);
         controller = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerController"), spawnpoint.position, spawnpoint.rotation, 0, new object[] { pv.ViewID });
         GameManager.Instance.OnSpawn();

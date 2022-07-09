@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviourPunCallbacks, IDamageable
 
     private void Start()
     {
+        
         if (pv.IsMine)
         {
             Cursor.lockState = CursorLockMode.Locked;

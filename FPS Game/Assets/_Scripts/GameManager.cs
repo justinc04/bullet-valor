@@ -28,6 +28,10 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     [Header("UI")]
     [SerializeField] GameObject killGraphic;
+    [SerializeField] GameObject damageDealtGraphic;
+    [SerializeField] TMP_Text totalDamageText;
+    [SerializeField] TMP_Text headShotsText;
+    [SerializeField] TMP_Text bodyShotsText;
     [SerializeField] TMP_Text roundText;
     [SerializeField] TMP_Text moneyText;
     [SerializeField] GameObject playerUI;
@@ -98,7 +102,8 @@ public class GameManager : MonoBehaviourPunCallbacks
         losingStreak += (losingStreak < losingStreakMoney.Length - 1 ? 1 : 0);
         ChangeMoney(CalculateDeathMoney());
 
-        cam.SetActive(true); 
+        cam.SetActive(true);
+        ShowDamageDealt();
     }
 
     public void OnKill()
@@ -112,6 +117,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         ChangeMoney(CalculateKillMoney());
 
         killGraphic.SetActive(true);
+        ShowDamageDealt();
         AudioManager.Instance.Play("Kill");
     }
 
@@ -127,9 +133,18 @@ public class GameManager : MonoBehaviourPunCallbacks
         return baseKillMoney + timeMoney;
     }
 
+    void ShowDamageDealt()
+    {
+        damageDealtGraphic.SetActive(true);
+        totalDamageText.text = playerManager.damageDealt.ToString();
+        headShotsText.text = playerManager.headShots.ToString();
+        bodyShotsText.text = playerManager.bodyShots.ToString();
+    }
+
     void StartNextRound()
     {
         killGraphic.SetActive(false);
+        damageDealtGraphic.SetActive(false);
         Cursor.lockState = CursorLockMode.None;
 
         if (gameOver)

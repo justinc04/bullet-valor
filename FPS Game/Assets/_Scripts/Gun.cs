@@ -180,10 +180,14 @@ public class Gun : Item
                 if (hit.collider == hitObject.GetComponent<PlayerController>().headCollider)
                 {
                     hitObject.GetComponent<IDamageable>().TakeDamage(((GunInfo)itemInfo).headDamage * playerManager.damageMultiplier);
+                    playerManager.damageDealt += ((GunInfo)itemInfo).headDamage * playerManager.damageMultiplier;
+                    playerManager.headShots++;
                 }
                 else
                 {
                     hitObject.GetComponent<IDamageable>().TakeDamage(((GunInfo)itemInfo).bodyDamage * playerManager.damageMultiplier);
+                    playerManager.damageDealt += ((GunInfo)itemInfo).bodyDamage * playerManager.damageMultiplier;
+                    playerManager.bodyShots++;
                 }
 
                 if (hitObject.GetComponent<PlayerController>().currentHealth <= 0)
