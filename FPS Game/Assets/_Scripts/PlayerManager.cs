@@ -10,8 +10,6 @@ public class PlayerManager : MonoBehaviour
     public GameObject controller;
     private bool kill;
 
-    public bool canShoot = true;
-
     public float damageDealt;
     public int headShots;
     public int bodyShots;

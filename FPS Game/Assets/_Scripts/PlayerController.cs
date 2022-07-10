@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviourPunCallbacks, IDamageable
     [HideInInspector] public float maxHealth = 100;
     [HideInInspector] public float currentHealth;
 
+    [HideInInspector] public bool canShoot = true;
     [HideInInspector] public float damageMultiplier = 1;
     [HideInInspector] public int damageMoney;
 
@@ -43,8 +44,7 @@ public class PlayerController : MonoBehaviourPunCallbacks, IDamageable
     }
 
     private void Start()
-    {
-       
+    {    
         if (pv.IsMine)
         {
             Cursor.lockState = CursorLockMode.Locked;

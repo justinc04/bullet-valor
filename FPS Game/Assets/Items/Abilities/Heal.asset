@@ -16,7 +16,7 @@ MonoBehaviour:
   itemType: 2
   price: 2000
   graphic: {fileID: 21300000, guid: 40f501cfbab25e041aee1101194ec589, type: 3}
-  description: 'USE to restore up to 40 health.
+  description: 'USE to restore up to 50 health.
 
 
     Cooldown: 20s'

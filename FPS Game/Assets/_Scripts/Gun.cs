@@ -133,7 +133,7 @@ public class Gun : Item
 
     void Shoot()
     {
-        if (!playerManager.canShoot)
+        if (!playerController.canShoot)
         {
             return;
         }

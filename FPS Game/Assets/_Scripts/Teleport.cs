@@ -53,9 +53,9 @@ public class Teleport : Ability
 
     IEnumerator DelayShooting()
     {
-        playerManager.canShoot = false;
+        playerController.canShoot = false;
         yield return new WaitForSeconds(timeBeforeShoot);
-        playerManager.canShoot = true;
+        playerController.canShoot = true;
     }
 
     private void OnDestroy()

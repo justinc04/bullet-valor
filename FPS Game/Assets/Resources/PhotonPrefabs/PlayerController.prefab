@@ -565,6 +565,7 @@ MonoBehaviour:
   headCollider: {fileID: 6073287596180597910}
   maxHealth: 100
   currentHealth: 100
+  canShoot: 1
   damageMultiplier: 1
   damageMoney: 0
   playerAudio: {fileID: 6758297476281144724}
@@ -3905,7 +3906,7 @@ MonoBehaviour:
   playerManager: {fileID: 0}
   playerController: {fileID: 0}
   playerMovement: {fileID: 0}
-  amount: 40
+  amount: 50
   timeToHeal: 2.5
 --- !u!114 &3095864274937751616
 MonoBehaviour:

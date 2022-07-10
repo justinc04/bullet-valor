@@ -21,11 +21,11 @@ public class Heal : Ability
     IEnumerator UseHeal()
     {
         playerAudio.Play("Heal");
-        playerManager.canShoot = false;
+        playerController.canShoot = false;
         Disable();
         yield return new WaitForSeconds(timeToHeal);
         pv.RPC("RPC_Heal", RpcTarget.Others);
-        playerManager.canShoot = true;
+        playerController.canShoot = true;
         StartCoroutine(StartCooldown());
     }
 

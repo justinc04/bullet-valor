@@ -31,12 +31,12 @@ public class Dash : Ability
         pv.RPC("RPC_DashTrail", RpcTarget.Others, true);
         playerAudio.Play("Dash");
         Disable();
-        playerManager.canShoot = false;
+        playerController.canShoot = false;
         yield return new WaitForSeconds(duration);
         ControlMovement(false);
         dashLines.Stop();
         pv.RPC("RPC_DashTrail", RpcTarget.Others, false);
-        playerManager.canShoot = true;
+        playerController.canShoot = true;
         StartCoroutine(StartCooldown());
     }
 
