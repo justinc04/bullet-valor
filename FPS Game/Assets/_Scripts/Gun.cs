@@ -36,15 +36,10 @@ public class Gun : Item
     private Vector3 gunCurrentPos;
     private Vector3 gunTargetPos;
 
-    private PlayerMovement playerMovement;
-    private PlayerManager playerManager;
-
     private void Start()
     {
         ammo = ((GunInfo)itemInfo).ammoCapacity;
         cameraFOV = cam.fieldOfView;
-        playerMovement = playerGameObject.GetComponent<PlayerMovement>();
-        playerManager = GameManager.Instance.playerManager;
     }
 
     private void Update()
@@ -138,6 +133,11 @@ public class Gun : Item
 
     void Shoot()
     {
+        if (!playerManager.canShoot)
+        {
+            return;
+        }
+
         nextTimeToFire = Time.time + 1 / (aiming ? ((GunInfo)itemInfo).aimingFireRate : ((GunInfo)itemInfo).fireRate);
         CameraRecoilFire();
         GunRecoilFire();
@@ -176,18 +176,25 @@ public class Gun : Item
 
             if (hitObject.CompareTag("Player") && hitObject != playerGameObject)
             {
+                float damage = 0;
 
                 if (hit.collider == hitObject.GetComponent<PlayerController>().headCollider)
                 {
-                    hitObject.GetComponent<IDamageable>().TakeDamage(((GunInfo)itemInfo).headDamage * playerManager.damageMultiplier);
-                    playerManager.damageDealt += ((GunInfo)itemInfo).headDamage * playerManager.damageMultiplier;
+                    damage = ((GunInfo)itemInfo).headDamage * playerController.damageMultiplier;
                     playerManager.headShots++;
                 }
                 else
                 {
-                    hitObject.GetComponent<IDamageable>().TakeDamage(((GunInfo)itemInfo).bodyDamage * playerManager.damageMultiplier);
-                    playerManager.damageDealt += ((GunInfo)itemInfo).bodyDamage * playerManager.damageMultiplier;
+                    damage = ((GunInfo)itemInfo).bodyDamage * playerController.damageMultiplier;
                     playerManager.bodyShots++;
+                }
+
+                hitObject.GetComponent<IDamageable>().TakeDamage(damage);
+                playerManager.damageDealt += damage;
+
+                if (playerController.damageMoney != 0)
+                {
+                    GameManager.Instance.ChangeMoney(playerController.damageMoney * Mathf.RoundToInt(damage));
                 }
 
                 if (hitObject.GetComponent<PlayerController>().currentHealth <= 0)

@@ -136,7 +136,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     void ShowDamageDealt()
     {
         damageDealtGraphic.SetActive(true);
-        totalDamageText.text = playerManager.damageDealt.ToString();
+        totalDamageText.text = Mathf.RoundToInt(playerManager.damageDealt).ToString();
         headShotsText.text = playerManager.headShots.ToString();
         bodyShotsText.text = playerManager.bodyShots.ToString();
     }

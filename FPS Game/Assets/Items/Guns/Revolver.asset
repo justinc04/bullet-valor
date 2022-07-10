@@ -16,7 +16,7 @@ MonoBehaviour:
   itemType: 0
   price: 1000
   graphic: {fileID: 21300000, guid: c422a6affc4990d4ea7571ee5f8564db, type: 3}
-  description: 'Damage: 110/40
+  description: 'Damage: 80/35
 
     Fire Rate: 4
 
@@ -28,8 +28,8 @@ MonoBehaviour:
     2
 
     Recoil: Heavy'
-  headDamage: 110
-  bodyDamage: 40
+  headDamage: 80
+  bodyDamage: 35
   fireRate: 4
   range: 50
   spread: 2

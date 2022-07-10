@@ -16,7 +16,7 @@ MonoBehaviour:
   itemType: 0
   price: 2400
   graphic: {fileID: 21300000, guid: 2d73c7363b3087c4dbdb9807f1927823, type: 3}
-  description: 'Damage: 16/10 (x12)
+  description: 'Damage: 14/9 (x12)
 
     Fire Rate: 3.5
 
@@ -28,8 +28,8 @@ MonoBehaviour:
     Spread: 60
 
     Recoil: None'
-  headDamage: 16
-  bodyDamage: 10
+  headDamage: 14
+  bodyDamage: 9
   fireRate: 3.5
   range: 15
   spread: 60

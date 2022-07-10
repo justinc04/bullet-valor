@@ -5,14 +5,6 @@ using Photon.Pun;
 
 public class Armor : Item
 {
-    private PlayerController playerController;
-
-    private void Awake()
-    {
-        playerController = playerGameObject.GetComponent<PlayerController>();
-        pv = GetComponent<PhotonView>();
-    }
-
     public override void Enable() 
     {
         if (!pv.IsMine)
@@ -20,7 +12,7 @@ public class Armor : Item
             itemGameObject.SetActive(true);
         }
 
-        playerController.currentHealth += ((ArmorInfo)itemInfo).armorHealth;
+        playerController.maxHealth = playerController.currentHealth += ((ArmorInfo)itemInfo).armorHealth;
         playerController.UpdateHealth();
     }
 

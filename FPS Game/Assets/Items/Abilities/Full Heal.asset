@@ -10,17 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac96a78aab7e8754faa559ee77effbab, type: 3}
-  m_Name: Teleport
+  m_Name: Full Heal
   m_EditorClassIdentifier: 
-  itemName: Teleport
+  itemName: Full Heal
   itemType: 2
-  price: 2000
-  graphic: {fileID: 21300000, guid: e37b7acbf24901f40b9927ec6f793a40, type: 3}
-  description: 'USE to mark a location.
-
-    RE-USE to instantly teleport to that
-    location.
+  price: 3500
+  graphic: {fileID: 21300000, guid: cfebbb81e3122cd43ae99828061c7208, type: 3}
+  description: 'USE to restore up to full health.
 
 
-    Cooldown: 20s'
-  cooldown: 20
+    Cooldown: 30s'
+  cooldown: 30

@@ -5,20 +5,11 @@ using Photon.Pun;
 
 public class Teleport : Ability
 {
-    [SerializeField] float teleportSpeed;
+    [SerializeField] float timeBeforeShoot;
     [SerializeField] GameObject teleportMarkerPrefab;
     [SerializeField] GameObject teleportEffectPrefab;
     private GameObject teleportMarker;
-    private PlayerController playerController;
-    private PlayerMovement playerMovement;
     private bool savedLocation;
-
-    private void Awake()
-    {
-        pv = GetComponent<PhotonView>();
-        playerController = playerGameObject.GetComponent<PlayerController>();
-        playerMovement = playerGameObject.GetComponent<PlayerMovement>();
-    }
 
     public override void UseAbility()
     {
@@ -35,9 +26,12 @@ public class Teleport : Ability
         }
         else
         {
+            StartCoroutine(DelayShooting());
             pv.RPC("RPC_Teleport", RpcTarget.All);
             Disable();
+            savedLocation = false;
             playerAudio.Play("Teleport");
+            StartCoroutine(StartCooldown());
         }
     }
 
@@ -55,6 +49,13 @@ public class Teleport : Ability
         Physics.SyncTransforms();
         Destroy(teleportMarker);
         Destroy(effect, 2);
+    }
+
+    IEnumerator DelayShooting()
+    {
+        playerManager.canShoot = false;
+        yield return new WaitForSeconds(timeBeforeShoot);
+        playerManager.canShoot = true;
     }
 
     private void OnDestroy()

@@ -11,10 +11,16 @@ public abstract class Item : MonoBehaviour
     public PlayerAudio playerAudio;
     [HideInInspector] public bool active;
     [HideInInspector] public PhotonView pv;
+    [HideInInspector] public PlayerManager playerManager;
+    [HideInInspector] public PlayerController playerController;
+    [HideInInspector] public PlayerMovement playerMovement;
 
     private void Awake()
     {
         pv = GetComponent<PhotonView>();
+        playerManager = GameManager.Instance.playerManager;
+        playerController = playerGameObject.GetComponent<PlayerController>();
+        playerMovement = playerGameObject.GetComponent<PlayerMovement>();
     }
 
     public abstract void Enable();

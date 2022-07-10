@@ -9,13 +9,6 @@ public class Dash : Ability
     [SerializeField] float duration;
     [SerializeField] ParticleSystem dashLines;
     [SerializeField] TrailRenderer dashTrail;
-    private PlayerMovement playerMovement;
-
-    private void Awake()
-    {
-        pv = GetComponent<PhotonView>();
-        playerMovement = playerGameObject.GetComponent<PlayerMovement>();
-    }
 
     public override void UseAbility()
     {
@@ -32,15 +25,19 @@ public class Dash : Ability
             playerMovement.direction = transform.forward;
         }
 
+        playerMovement.direction.Normalize();
         playerMovement.velocity = Vector3.zero;
         dashLines.Play();
         pv.RPC("RPC_DashTrail", RpcTarget.Others, true);
         playerAudio.Play("Dash");
         Disable();
+        playerManager.canShoot = false;
         yield return new WaitForSeconds(duration);
         ControlMovement(false);
         dashLines.Stop();
         pv.RPC("RPC_DashTrail", RpcTarget.Others, false);
+        playerManager.canShoot = true;
+        StartCoroutine(StartCooldown());
     }
 
     void ControlMovement(bool control)

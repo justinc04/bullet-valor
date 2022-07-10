@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 87886514a586e0146bc5887a1dbae29f, type: 3}
-  m_Name: Strong Shots
+  m_Name: Golden Bullets
   m_EditorClassIdentifier: 
-  itemName: Strong Shots
+  itemName: Golden Bullets
   itemType: 3
-  price: 2500
-  graphic: {fileID: 21300000, guid: 82aea46530c475f41a824bd3acc35728, type: 3}
-  description: All weapons deal 20% more damage.
+  price: 1200
+  graphic: {fileID: 21300000, guid: 2c71c45f3b8cd7142a66ccbaf941b006, type: 3}
+  description: Earn one coin per damage dealt.

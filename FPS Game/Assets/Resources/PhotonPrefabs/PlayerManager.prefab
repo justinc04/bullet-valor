@@ -68,7 +68,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 0}
+  canShoot: 1
   damageDealt: 0
   headShots: 0
   bodyShots: 0
-  damageMultiplier: 0

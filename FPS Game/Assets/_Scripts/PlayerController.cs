@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Photon.Pun;
 using TMPro;
 
@@ -13,12 +14,20 @@ public class PlayerController : MonoBehaviourPunCallbacks, IDamageable
     [SerializeField] Vector3 itemsThirdPersonPos;
     [SerializeField] TMP_Text healthText;
     [SerializeField] TMP_Text ammoText;
+    [HideInInspector] public ItemInfo currentAbility;
+    public GameObject abilityGraphic;
+    public Image abilityImage;
+    public Color abilityCooldownColor;
+    [SerializeField] Slider cooldownSlider;
     [SerializeField] Collider[] hitColliders;
     public Collider movementCollider;
     public Collider headCollider;
 
-    private const float maxHealth = 100;
-    [HideInInspector] public float currentHealth = maxHealth;
+    [HideInInspector] public float maxHealth = 100;
+    [HideInInspector] public float currentHealth;
+
+    [HideInInspector] public float damageMultiplier = 1;
+    [HideInInspector] public int damageMoney;
 
     [SerializeField] PlayerAudio playerAudio;
     private PlayerManager playerManager;
@@ -30,11 +39,12 @@ public class PlayerController : MonoBehaviourPunCallbacks, IDamageable
         pv = GetComponent<PhotonView>();
         playerManager = PhotonView.Find((int)pv.InstantiationData[0]).GetComponent<PlayerManager>();
         playerItems = GetComponent<PlayerItems>();
+        currentHealth = maxHealth;
     }
 
     private void Start()
     {
-        
+       
         if (pv.IsMine)
         {
             Cursor.lockState = CursorLockMode.Locked;
@@ -74,7 +84,7 @@ public class PlayerController : MonoBehaviourPunCallbacks, IDamageable
     void RPC_TakeDamage(float damage)
     {
         currentHealth -= damage;
-        healthText.text = (Mathf.RoundToInt(currentHealth)).ToString();
+        UpdateHealth();
 
         if (currentHealth <= 0)
         {
@@ -100,11 +110,16 @@ public class PlayerController : MonoBehaviourPunCallbacks, IDamageable
 
     public void UpdateHealth()
     {
-        healthText.text = currentHealth.ToString();
+        healthText.text = Mathf.RoundToInt(currentHealth).ToString();
     }
 
     public void UpdateAmmo(int ammo)
     {
         ammoText.text = ammo.ToString();
+    }
+
+    public void UpdateAbilityCooldown(float value)
+    {
+        cooldownSlider.value = value;
     }
 }

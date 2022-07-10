@@ -38,6 +38,13 @@ public class PlayerItems : MonoBehaviourPunCallbacks
                 else
                 {
                     itemToAdd.Enable();
+
+                    if (item.itemType == ItemInfo.ItemType.Ability)
+                    {
+                        playerController.currentAbility = item;
+                        playerController.abilityGraphic.SetActive(true);
+                        playerController.abilityImage.sprite = item.graphic;
+                    }
                 }
             }
         }

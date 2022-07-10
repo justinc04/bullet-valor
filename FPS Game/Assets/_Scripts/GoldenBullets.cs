@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StrongShots : Skill
+public class GoldenBullets : Skill
 {
-    [SerializeField] float damageMultiplier;
+    [SerializeField] int moneyPerDamage;
 
     private void Start()
     {
         if (active)
         {
-            playerController.damageMultiplier = damageMultiplier;
+            playerController.damageMoney = moneyPerDamage;
         }
     }
 }

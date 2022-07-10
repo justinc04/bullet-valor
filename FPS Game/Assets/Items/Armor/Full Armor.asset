@@ -9,11 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87886514a586e0146bc5887a1dbae29f, type: 3}
-  m_Name: Strong Shots
+  m_Script: {fileID: 11500000, guid: 4499f4ef05545f741912716c71d3ab75, type: 3}
+  m_Name: Full Armor
   m_EditorClassIdentifier: 
-  itemName: Strong Shots
-  itemType: 3
-  price: 2500
-  graphic: {fileID: 21300000, guid: 82aea46530c475f41a824bd3acc35728, type: 3}
-  description: All weapons deal 20% more damage.
+  itemName: Full Armor
+  itemType: 1
+  price: 4000
+  graphic: {fileID: 21300000, guid: 931211468dde35548b94608e5f1341e5, type: 3}
+  description: Increases max health to 180.
+  armorHealth: 80
