@@ -19,8 +19,8 @@ public class Gun : Item
     [SerializeField] GameObject gunRecoilObject;
 
     [Header("Weapon Sway")]
-    [SerializeField] float smoothing;
-    [SerializeField] float intensity;
+    [SerializeField] float swaySpeed;
+    [SerializeField] float swayAmount;
 
     [HideInInspector] public int ammo;
     private float nextTimeToFire;
@@ -389,13 +389,13 @@ public class Gun : Item
 
     void WeaponSway()
     {
-        float mouseX = Input.GetAxisRaw("Mouse X") * intensity * playerMovement.mouseSensitivity;
-        float mouseY = Input.GetAxisRaw("Mouse Y") * intensity * playerMovement.mouseSensitivity;
+        float mouseX = Input.GetAxisRaw("Mouse X") * swayAmount * (aiming ? .5f : 1) * playerMovement.mouseSensitivity;
+        float mouseY = Input.GetAxisRaw("Mouse Y") * swayAmount * (aiming ? .5f : 1) * playerMovement.mouseSensitivity;
 
         Quaternion rotationX = Quaternion.AngleAxis(-mouseY, Vector3.right);
         Quaternion rotationY = Quaternion.AngleAxis(mouseX, Vector3.up);
         Quaternion targetRotation = rotationX * rotationY;
 
-        transform.localRotation = Quaternion.Slerp(transform.localRotation, targetRotation, smoothing * Time.deltaTime);
+        transform.localRotation = Quaternion.Slerp(transform.localRotation, targetRotation, swaySpeed * Time.deltaTime);
     }
 }

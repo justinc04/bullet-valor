@@ -1075,8 +1075,8 @@ MonoBehaviour:
   reloadingObject: {fileID: 791460891495575731}
   ADSObject: {fileID: 6310943797965627136}
   gunRecoilObject: {fileID: 2575472498148894677}
-  smoothing: 8
-  intensity: 1
+  swaySpeed: 15
+  swayAmount: 0.5
   ammo: 0
   aiming: 0
 --- !u!114 &5693719477071232680
@@ -1663,8 +1663,8 @@ MonoBehaviour:
   reloadingObject: {fileID: 791460891495575731}
   ADSObject: {fileID: 6310943797965627136}
   gunRecoilObject: {fileID: 2575472498148894677}
-  smoothing: 8
-  intensity: 1
+  swaySpeed: 15
+  swayAmount: 0.5
   ammo: 0
   aiming: 0
 --- !u!114 &5190154107587073483
@@ -2735,8 +2735,8 @@ MonoBehaviour:
   reloadingObject: {fileID: 791460891495575731}
   ADSObject: {fileID: 6310943797965627136}
   gunRecoilObject: {fileID: 2575472498148894677}
-  smoothing: 8
-  intensity: 1
+  swaySpeed: 15
+  swayAmount: 0.5
   ammo: 0
   aiming: 0
 --- !u!114 &311086304376002722
@@ -8789,8 +8789,8 @@ MonoBehaviour:
   reloadingObject: {fileID: 791460891495575731}
   ADSObject: {fileID: 6310943797965627136}
   gunRecoilObject: {fileID: 2575472498148894677}
-  smoothing: 8
-  intensity: 1
+  swaySpeed: 15
+  swayAmount: 0.5
   ammo: 0
   aiming: 0
 --- !u!114 &1894764177037487345
@@ -8882,8 +8882,8 @@ MonoBehaviour:
   reloadingObject: {fileID: 791460891495575731}
   ADSObject: {fileID: 6310943797965627136}
   gunRecoilObject: {fileID: 2575472498148894677}
-  smoothing: 8
-  intensity: 1
+  swaySpeed: 15
+  swayAmount: 0.5
   ammo: 0
   aiming: 0
 --- !u!114 &3868097002761398238
@@ -9258,8 +9258,8 @@ MonoBehaviour:
   reloadingObject: {fileID: 791460891495575731}
   ADSObject: {fileID: 6310943797965627136}
   gunRecoilObject: {fileID: 2575472498148894677}
-  smoothing: 8
-  intensity: 1
+  swaySpeed: 15
+  swayAmount: 0.5
   ammo: 0
   aiming: 0
 --- !u!114 &8129837057669074311
