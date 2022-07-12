@@ -11,11 +11,11 @@ public class PlayerMovement : MonoBehaviourPun
 
     [Header("Movement")]
     public float runSpeed;
-    [SerializeField] float walkSpeed;
-    [SerializeField] float groundAcceleration;
-    [SerializeField] float airAcceleration;
+    public float walkSpeed;
+    public float groundAcceleration;
+    public float airAcceleration;
     [SerializeField] float landingSpeedMultiplier;
-    [SerializeField] float landingDuration;
+    public float landingDuration;
     [HideInInspector] public float speed;
     [HideInInspector] public Vector3 direction;
     [HideInInspector] public bool speedControlled;
@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviourPun
 
     [Header("Jumping")]
     [HideInInspector] public Vector3 velocity;
-    [SerializeField] float jumpHeight;
+    public float jumpHeight;
     [SerializeField] float groundDistance;
     [SerializeField] float hangTime;
     [SerializeField] float jumpBuffer;

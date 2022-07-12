@@ -55,7 +55,7 @@ public class PlayerAudio : MonoBehaviour
         return GetSound(name).source.isPlaying;
     }
 
-    Sound GetSound(string name)
+    public Sound GetSound(string name)
     {
         Sound sound = Array.Find(sounds, s => s.name == name);
 

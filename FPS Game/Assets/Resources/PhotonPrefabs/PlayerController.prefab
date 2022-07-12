@@ -308,6 +308,7 @@ Transform:
   m_Children:
   - {fileID: 6445120578902185240}
   - {fileID: 3066214507806506185}
+  - {fileID: 1670654440898912646}
   m_Father: {fileID: 980638815264329100}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -638,6 +639,7 @@ MonoBehaviour:
   - {fileID: 6521870280777028732}
   - {fileID: 4613078911575970071}
   - {fileID: 7384879932298680505}
+  - {fileID: 6267347630437060473}
   items: []
 --- !u!1 &791460891495575731
 GameObject:
@@ -1113,7 +1115,7 @@ GameObject:
   - component: {fileID: 8392916996757811185}
   - component: {fileID: 8759140601319108367}
   m_Layer: 0
-  m_Name: Full Armor
+  m_Name: Max Armor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2130,6 +2132,68 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &4187934647121101019
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1670654440898912646}
+  - component: {fileID: 6267347630437060473}
+  m_Layer: 0
+  m_Name: Stealth
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1670654440898912646
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4187934647121101019}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 233497072277286478}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6267347630437060473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4187934647121101019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6919eed0d98728743a737df4910f94bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemInfo: {fileID: 11400000, guid: b11e846fcd54d3f45a7bf02d722f516e, type: 2}
+  itemGameObject: {fileID: 0}
+  playerGameObject: {fileID: 569362147472692483}
+  playerAudio: {fileID: 6758297476281144724}
+  active: 0
+  pv: {fileID: 0}
+  playerManager: {fileID: 0}
+  playerController: {fileID: 0}
+  playerMovement: {fileID: 0}
+  speedMultiplier: 1.3
+  accelerationMultiplier: 1.6
+  jumpMultiplier: 1.3
+  soundMultiplier: 0.5
+  landingMultiplier: 0.3
+  sounds:
+  - Footsteps
+  - Jump
+  - Jump Land
 --- !u!1 &4220864260160492610
 GameObject:
   m_ObjectHideFlags: 0
@@ -2363,7 +2427,7 @@ MonoBehaviour:
   playerController: {fileID: 0}
   playerMovement: {fileID: 0}
   speed: 22
-  duration: 0.35
+  duration: 0.4
   dashLines: {fileID: 8296287917978068623}
   dashTrail: {fileID: 3607359064095702529}
 --- !u!114 &342756595983152290
@@ -3444,7 +3508,7 @@ MonoBehaviour:
   playerManager: {fileID: 0}
   playerController: {fileID: 0}
   playerMovement: {fileID: 0}
-  moneyPerDamage: 1
+  moneyPerDamage: 2
 --- !u!1 &7614294561623702913
 GameObject:
   m_ObjectHideFlags: 0
@@ -9072,7 +9136,7 @@ GameObject:
   - component: {fileID: 2393407511790940956}
   - component: {fileID: 3861455970577859622}
   m_Layer: 0
-  m_Name: Full Armor
+  m_Name: Max Armor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

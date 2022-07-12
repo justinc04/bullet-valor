@@ -392,8 +392,8 @@ public class Gun : Item
         float mouseX = Input.GetAxisRaw("Mouse X") * swayAmount * (aiming ? .5f : 1) * playerMovement.mouseSensitivity;
         float mouseY = Input.GetAxisRaw("Mouse Y") * swayAmount * (aiming ? .5f : 1) * playerMovement.mouseSensitivity;
 
-        Quaternion rotationX = Quaternion.AngleAxis(-mouseY, Vector3.right);
-        Quaternion rotationY = Quaternion.AngleAxis(mouseX, Vector3.up);
+        Quaternion rotationX = Quaternion.AngleAxis(mouseY, Vector3.right);
+        Quaternion rotationY = Quaternion.AngleAxis(-mouseX, Vector3.up);
         Quaternion targetRotation = rotationX * rotationY;
 
         transform.localRotation = Quaternion.Slerp(transform.localRotation, targetRotation, swaySpeed * Time.deltaTime);
