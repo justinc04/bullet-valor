@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac96a78aab7e8754faa559ee77effbab, type: 3}
+  m_Name: Conceal
+  m_EditorClassIdentifier: 
+  itemName: Conceal
+  itemType: 2
+  price: 3200
+  graphic: {fileID: 21300000, guid: 7307f6efdd046624990ec97faa2738a5, type: 3}
+  description: 'USE to become invisible for a short duration.
+
+
+    Cooldown: 25s'
+  cooldown: 25

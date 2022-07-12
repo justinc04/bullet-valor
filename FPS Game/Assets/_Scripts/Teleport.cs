@@ -5,7 +5,7 @@ using Photon.Pun;
 
 public class Teleport : Ability
 {
-    [SerializeField] float timeBeforeShoot;
+    [SerializeField] float shootDelay;
     [SerializeField] GameObject teleportMarkerPrefab;
     [SerializeField] GameObject teleportEffectPrefab;
     private GameObject teleportMarker;
@@ -26,11 +26,11 @@ public class Teleport : Ability
         }
         else
         {
-            StartCoroutine(DelayShooting());
             pv.RPC("RPC_Teleport", RpcTarget.All);
             Disable();
             savedLocation = false;
             playerAudio.Play("Teleport");
+            StartCoroutine(DelayShooting());
             StartCoroutine(StartCooldown());
         }
     }
@@ -54,7 +54,7 @@ public class Teleport : Ability
     IEnumerator DelayShooting()
     {
         playerController.canShoot = false;
-        yield return new WaitForSeconds(timeBeforeShoot);
+        yield return new WaitForSeconds(shootDelay);
         playerController.canShoot = true;
     }
 

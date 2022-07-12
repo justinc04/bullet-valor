@@ -6,7 +6,7 @@ using Photon.Pun;
 public class PlayerMovement : MonoBehaviourPun
 { 
     [Header("Mouse Look")]
-    [SerializeField] float mouseSensitivity;
+    public float mouseSensitivity;
     private float verticalLookRot;
 
     [Header("Movement")]

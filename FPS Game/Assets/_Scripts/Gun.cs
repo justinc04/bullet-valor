@@ -5,6 +5,7 @@ using Photon.Pun;
 
 public class Gun : Item
 {
+    [Header("Components")]
     [SerializeField] Camera cam;
     [SerializeField] ParticleSystem muzzleFlash;
     [SerializeField] ParticleSystem muzzleSmoke;
@@ -17,7 +18,11 @@ public class Gun : Item
     [SerializeField] GameObject ADSObject;
     [SerializeField] GameObject gunRecoilObject;
 
-    public int ammo;
+    [Header("Weapon Sway")]
+    [SerializeField] float smoothing;
+    [SerializeField] float intensity;
+
+    [HideInInspector] public int ammo;
     private float nextTimeToFire;
     private bool reloading;
     private bool earlyShootInput;
@@ -28,7 +33,7 @@ public class Gun : Item
     private Vector3 camCurrentPos;
     private Vector3 camTargetPos;
 
-    public bool aiming;
+    [HideInInspector] public bool aiming;
     private float cameraFOV;
 
     private Vector3 gunCurrentRot;
@@ -51,6 +56,7 @@ public class Gun : Item
 
         CameraRecoil();
         GunRecoil();
+        WeaponSway();
 
         if (reloading)
         {
@@ -156,9 +162,9 @@ public class Gun : Item
         Vector3 spreadX = cam.transform.up * Random.Range(-1f, 1f);
         Vector3 spreadY = cam.transform.right * Random.Range(-1f, 1f);
         float aimReduction = aiming ? .75f : 1;
-        float jumpingInaccuracy = playerMovement.isGrounded ? 0 : Mathf.Abs(playerMovement.velocity.y);
-        float movementInaccuracy = ((GunInfo)itemInfo).movementInaccuracy * (playerMovement.speed * playerMovement.direction.magnitude + jumpingInaccuracy) / playerMovement.runSpeed;
         float spreadAmount = Random.Range(-((GunInfo)itemInfo).spread, ((GunInfo)itemInfo).spread) * .001f * aimReduction;
+        float jumpingInaccuracy = playerMovement.isGrounded ? 0 : Mathf.Abs(playerMovement.velocity.y) + playerMovement.runSpeed;
+        float movementInaccuracy = ((GunInfo)itemInfo).movementInaccuracy * (playerMovement.speed * playerMovement.direction.magnitude + jumpingInaccuracy) / playerMovement.runSpeed;
         spreadAmount += movementInaccuracy * Mathf.Sign(spreadAmount) * .001f;
         Vector3 spread = (spreadX + spreadY).normalized * spreadAmount;
 
@@ -379,5 +385,17 @@ public class Gun : Item
         gunTargetRot += new Vector3(recoilX, recoilY, recoilZ);
 
         gunTargetPos += new Vector3(((GunInfo)itemInfo).gunPositionRecoil.x, ((GunInfo)itemInfo).gunPositionRecoil.y, ((GunInfo)itemInfo).gunPositionRecoil.z);
+    }
+
+    void WeaponSway()
+    {
+        float mouseX = Input.GetAxisRaw("Mouse X") * intensity * playerMovement.mouseSensitivity;
+        float mouseY = Input.GetAxisRaw("Mouse Y") * intensity * playerMovement.mouseSensitivity;
+
+        Quaternion rotationX = Quaternion.AngleAxis(-mouseY, Vector3.right);
+        Quaternion rotationY = Quaternion.AngleAxis(mouseX, Vector3.up);
+        Quaternion targetRotation = rotationX * rotationY;
+
+        transform.localRotation = Quaternion.Slerp(transform.localRotation, targetRotation, smoothing * Time.deltaTime);
     }
 }

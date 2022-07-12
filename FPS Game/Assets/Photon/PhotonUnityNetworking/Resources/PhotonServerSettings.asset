@@ -54,6 +54,7 @@ MonoBehaviour:
   - RPC_ShootBullets
   - RPC_AddHealth
   - RPC_Heal
+  - RPC_Conceal
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

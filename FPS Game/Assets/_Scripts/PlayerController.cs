@@ -9,7 +9,8 @@ public class PlayerController : MonoBehaviourPunCallbacks, IDamageable
 {
     [SerializeField] GameObject cams;
     [SerializeField] GameObject UI;
-    [SerializeField] GameObject playerModel;
+    public GameObject playerModel;
+    public GameObject weaponModels;
     [SerializeField] GameObject equipableItems;
     [SerializeField] Vector3 itemsThirdPersonPos;
     [SerializeField] TMP_Text healthText;
