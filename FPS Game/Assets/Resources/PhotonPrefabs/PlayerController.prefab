@@ -593,6 +593,7 @@ MonoBehaviour:
   direction: {x: 0, y: 0, z: 0}
   speedControlled: 0
   directionControlled: 0
+  abilitySpeedAffector: 1
   weaponSpeedAffector: 1
   gravityScale: 4
   fallGravityScale: 7
@@ -2506,8 +2507,9 @@ MonoBehaviour:
   playerManager: {fileID: 0}
   playerController: {fileID: 0}
   playerMovement: {fileID: 0}
-  duration: 4
+  duration: 3.5
   shootDelay: 1.5
+  speedAffector: 0.8
 --- !u!114 &8403413736059918364
 MonoBehaviour:
   m_ObjectHideFlags: 0

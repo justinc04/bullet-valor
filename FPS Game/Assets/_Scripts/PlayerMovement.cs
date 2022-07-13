@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviourPun
     [HideInInspector] public Vector3 direction;
     [HideInInspector] public bool speedControlled;
     [HideInInspector] public bool directionControlled;
+    [HideInInspector] public float abilitySpeedAffector = 1;
     [HideInInspector] public float weaponSpeedAffector = 1;
     private float landingSpeedAffector = 1;
 
@@ -104,7 +105,7 @@ public class PlayerMovement : MonoBehaviourPun
 
         if (!speedControlled)
         {
-            float targetSpeed = (Input.GetKey(KeyCode.LeftShift) ? walkSpeed : runSpeed) * weaponSpeedAffector * landingSpeedAffector;
+            float targetSpeed = (Input.GetKey(KeyCode.LeftShift) ? walkSpeed : runSpeed) * weaponSpeedAffector * landingSpeedAffector * abilitySpeedAffector;
             speed = Mathf.Lerp(speed, targetSpeed, acceleration * Time.deltaTime);
         }
 

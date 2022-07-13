@@ -7,6 +7,7 @@ public class Conceal : Ability
 {
     [SerializeField] float duration;
     [SerializeField] float shootDelay;
+    [SerializeField] float speedAffector;
 
     public override void UseAbility()
     {
@@ -19,10 +20,12 @@ public class Conceal : Ability
         playerController.weaponModels.transform.localScale = Vector3.zero;
         playerController.canShoot = false;
         playerAudio.Play("Conceal");
+        playerMovement.abilitySpeedAffector = speedAffector;
         Disable();
         yield return new WaitForSeconds(duration);
         pv.RPC("RPC_Conceal", RpcTarget.Others, true);
         playerController.weaponModels.transform.localScale = Vector3.one;
+        playerMovement.abilitySpeedAffector = 1;
         StartCoroutine(DelayShooting());
         StartCoroutine(StartCooldown());
     }
