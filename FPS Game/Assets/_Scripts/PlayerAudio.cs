@@ -8,7 +8,6 @@ using Photon.Pun;
 public class PlayerAudio : MonoBehaviour
 {
     [SerializeField] Sound[] sounds;
-
     private PhotonView pv;
 
     private void Awake()

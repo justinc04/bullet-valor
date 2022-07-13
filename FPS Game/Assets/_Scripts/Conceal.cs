@@ -21,11 +21,14 @@ public class Conceal : Ability
         playerController.canShoot = false;
         playerAudio.Play("Conceal");
         playerMovement.abilitySpeedAffector = speedAffector;
+        playerAudio.Stop("Footsteps");
+        playerMovement.silentSteps = true;
         Disable();
         yield return new WaitForSeconds(duration);
         pv.RPC("RPC_Conceal", RpcTarget.Others, true);
         playerController.weaponModels.transform.localScale = Vector3.one;
         playerMovement.abilitySpeedAffector = 1;
+        playerMovement.silentSteps = false;
         StartCoroutine(DelayShooting());
         StartCoroutine(StartCooldown());
     }

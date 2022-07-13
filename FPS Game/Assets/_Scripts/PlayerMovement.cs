@@ -23,6 +23,7 @@ public class PlayerMovement : MonoBehaviourPun
     [HideInInspector] public float abilitySpeedAffector = 1;
     [HideInInspector] public float weaponSpeedAffector = 1;
     private float landingSpeedAffector = 1;
+    [HideInInspector] public bool silentSteps;
 
     [Header("Gravity")]
     [SerializeField] float gravityScale;
@@ -111,7 +112,7 @@ public class PlayerMovement : MonoBehaviourPun
 
         controller.Move(direction * speed * Time.deltaTime);
 
-        if (direction != Vector3.zero && controller.velocity.magnitude > walkSpeed && !Input.GetKey(KeyCode.LeftShift) && isGrounded)
+        if (!silentSteps && direction != Vector3.zero && controller.velocity.magnitude > walkSpeed && !Input.GetKey(KeyCode.LeftShift) && isGrounded)
         {
             if (!playerAudio.CheckSound("Footsteps"))
             {

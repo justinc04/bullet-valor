@@ -595,6 +595,7 @@ MonoBehaviour:
   directionControlled: 0
   abilitySpeedAffector: 1
   weaponSpeedAffector: 1
+  silentSteps: 0
   gravityScale: 4
   fallGravityScale: 7
   gravityControlled: 0
