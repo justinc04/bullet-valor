@@ -16,7 +16,7 @@ MonoBehaviour:
   itemType: 0
   price: 1600
   graphic: {fileID: 21300000, guid: f79c45f6dcec7a24b8240f8155a9fd7a, type: 3}
-  description: 'Damage: 45/20
+  description: 'Damage: 35/15
 
     Fire Rate: 16
 
@@ -25,15 +25,15 @@ MonoBehaviour:
     Range: 40
 
     Spread:
-    10
+    15
 
     Recoil: Moderate'
-  headDamage: 45
-  bodyDamage: 20
+  headDamage: 35
+  bodyDamage: 15
   fireRate: 16
   range: 40
-  spread: 10
-  movementInaccuracy: 12
+  spread: 15
+  movementInaccuracy: 30
   ammoCapacity: 20
   bulletsPerShot: 1
   fireMode: 0
