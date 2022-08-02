@@ -19,5 +19,5 @@ MonoBehaviour:
   description: 'USE to gain a sudden burst of speed.
 
 
-    Cooldown: 15s'
-  cooldown: 15
+    Cooldown: 12s'
+  cooldown: 12

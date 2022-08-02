@@ -19,5 +19,5 @@ MonoBehaviour:
   description: 'USE to become invisible for a short duration.
 
 
-    Cooldown: 25s'
-  cooldown: 25
+    Cooldown: 20s'
+  cooldown: 20

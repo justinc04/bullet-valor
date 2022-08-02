@@ -22,5 +22,5 @@ MonoBehaviour:
     location.
 
 
-    Cooldown: 30s'
-  cooldown: 30
+    Cooldown: 25s'
+  cooldown: 25

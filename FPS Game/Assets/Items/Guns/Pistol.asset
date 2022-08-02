@@ -16,7 +16,7 @@ MonoBehaviour:
   itemType: 0
   price: 0
   graphic: {fileID: 21300000, guid: 956cc4d2cb961b44384cfe0a5afc0c46, type: 3}
-  description: 'Damage: 25/10
+  description: 'Damage: 30/15
 
     Fire Rate: 7
 
@@ -28,12 +28,12 @@ MonoBehaviour:
     6
 
     Recoil: Light'
-  headDamage: 25
-  bodyDamage: 10
+  headDamage: 30
+  bodyDamage: 15
   fireRate: 7
   range: 35
   spread: 6
-  movementInaccuracy: 35
+  movementInaccuracy: 40
   ammoCapacity: 12
   bulletsPerShot: 1
   fireMode: 1

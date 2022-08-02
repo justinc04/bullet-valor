@@ -3756,7 +3756,6 @@ MonoBehaviour:
   playerManager: {fileID: 0}
   playerController: {fileID: 0}
   playerMovement: {fileID: 0}
-  timeToHeal: 5
 --- !u!114 &7220918465776567692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3834,7 +3833,6 @@ MonoBehaviour:
   playerController: {fileID: 0}
   playerMovement: {fileID: 0}
   amount: 50
-  timeToHeal: 2.5
 --- !u!114 &3095864274937751616
 MonoBehaviour:
   m_ObjectHideFlags: 0

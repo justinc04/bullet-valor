@@ -153,6 +153,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         }
         else if (round % shopFrequency == 0)
         {
+            ChangeMoney(round * 100);
             ShopManager.Instance.OpenShop();
             cam.SetActive(true);
         }

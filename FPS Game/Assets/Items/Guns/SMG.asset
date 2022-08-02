@@ -33,7 +33,7 @@ MonoBehaviour:
   fireRate: 16
   range: 40
   spread: 15
-  movementInaccuracy: 30
+  movementInaccuracy: 35
   ammoCapacity: 20
   bulletsPerShot: 1
   fireMode: 0

@@ -5,8 +5,6 @@ using Photon.Pun;
 
 public class FullHeal : Ability
 {
-    [SerializeField] float timeToHeal;
-
     public override void UseAbility()
     {
         if (playerController.currentHealth == playerController.maxHealth)
@@ -14,17 +12,14 @@ public class FullHeal : Ability
             return;
         }
 
-        StartCoroutine(UseFullHeal());
+        UseFullHeal();
     }
 
-    IEnumerator UseFullHeal()
+    void UseFullHeal()
     {
         playerAudio.Play("Heal");
-        playerController.canShoot = false;
         Disable();
-        yield return new WaitForSeconds(timeToHeal);
         pv.RPC("RPC_Heal", RpcTarget.Others);
-        playerController.canShoot = true;
         StartCoroutine(StartCooldown());
     }
 

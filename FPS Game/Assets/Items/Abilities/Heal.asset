@@ -19,5 +19,5 @@ MonoBehaviour:
   description: 'USE to restore up to 50 health.
 
 
-    Cooldown: 20s'
-  cooldown: 20
+    Cooldown: 15s'
+  cooldown: 15
