@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     [SerializeField] float fastKillTime;
     [SerializeField] int fastKillMoney;
     [SerializeField] int[] losingStreakMoney;
+    [SerializeField] int shopMoney;
 
     [Header("UI")]
     [SerializeField] GameObject killGraphic;
@@ -153,7 +154,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         }
         else if (round % shopFrequency == 0)
         {
-            ChangeMoney(round * 100);
+            ChangeMoney(round * shopMoney);
             ShopManager.Instance.OpenShop();
             cam.SetActive(true);
         }

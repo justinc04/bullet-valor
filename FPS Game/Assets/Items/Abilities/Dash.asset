@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Dash
   itemType: 2
-  price: 1500
+  price: 1600
   graphic: {fileID: 21300000, guid: c01254ed1ff3875499f6c43268f8ac44, type: 3}
   description: 'USE to gain a sudden burst of speed.
 
 
-    Cooldown: 12s'
-  cooldown: 12
+    Cooldown: 15s'
+  cooldown: 15

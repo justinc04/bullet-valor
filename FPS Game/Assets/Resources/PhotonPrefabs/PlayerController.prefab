@@ -636,7 +636,7 @@ MonoBehaviour:
   - {fileID: 7550558294288728844}
   - {fileID: 1741289434281290289}
   - {fileID: 1687570340022690438}
-  - {fileID: 9021231495522423213}
+  - {fileID: 9113668755034895168}
   - {fileID: 6521870280777028732}
   - {fileID: 4613078911575970071}
   - {fileID: 7384879932298680505}
@@ -2186,9 +2186,9 @@ MonoBehaviour:
   playerManager: {fileID: 0}
   playerController: {fileID: 0}
   playerMovement: {fileID: 0}
-  speedMultiplier: 1.3
-  accelerationMultiplier: 1.6
-  jumpMultiplier: 1.3
+  speedMultiplier: 1.2
+  accelerationMultiplier: 1.5
+  jumpMultiplier: 1.2
   soundMultiplier: 0.5
   landingMultiplier: 0.3
   sounds:
@@ -3710,7 +3710,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8525009894658810076}
-  - component: {fileID: 9021231495522423213}
+  - component: {fileID: 9113668755034895168}
   - component: {fileID: 7220918465776567692}
   m_Layer: 0
   m_Name: Full Heal
@@ -3734,7 +3734,7 @@ Transform:
   m_Father: {fileID: 5404078866527888607}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9021231495522423213
+--- !u!114 &9113668755034895168
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3743,7 +3743,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7724116556762827589}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e44fdafacf63b74a95b5e2495c4d0dd, type: 3}
+  m_Script: {fileID: 11500000, guid: fcccc0a771acb5b428588d4ff9512e4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   itemInfo: {fileID: 11400000, guid: 6edcb293844c89b489744227afba7912, type: 2}
@@ -3755,6 +3755,8 @@ MonoBehaviour:
   playerManager: {fileID: 0}
   playerController: {fileID: 0}
   playerMovement: {fileID: 0}
+  amount: 80
+  shootDelay: 1
 --- !u!114 &7220918465776567692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3831,7 +3833,8 @@ MonoBehaviour:
   playerManager: {fileID: 0}
   playerController: {fileID: 0}
   playerMovement: {fileID: 0}
-  amount: 50
+  amount: 40
+  shootDelay: 1
 --- !u!114 &3095864274937751616
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -45486,8 +45486,9 @@ MonoBehaviour:
   baseKillMoney: 500
   baseDeathMoney: 350
   fastKillTime: 15
-  fastKillMoney: 50
+  fastKillMoney: 100
   losingStreakMoney: 000000000000000064000000c80000002c010000f4010000
+  shopMoney: 50
   killGraphic: {fileID: 1610266799}
   damageDealtGraphic: {fileID: 260174076}
   totalDamageText: {fileID: 260014250}

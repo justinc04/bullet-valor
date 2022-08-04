@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Golden Bullets
   itemType: 3
-  price: 1500
+  price: 1200
   graphic: {fileID: 21300000, guid: 2c71c45f3b8cd7142a66ccbaf941b006, type: 3}
   description: Earn two coins per damage dealt.

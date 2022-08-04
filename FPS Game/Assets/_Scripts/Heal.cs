@@ -6,6 +6,7 @@ using Photon.Pun;
 public class Heal : Ability
 {
     [SerializeField] float amount;
+    [SerializeField] float shootDelay;
 
     public override void UseAbility()
     {
@@ -22,6 +23,7 @@ public class Heal : Ability
         playerAudio.Play("Heal");
         Disable();
         pv.RPC("RPC_Heal", RpcTarget.Others);
+        StartCoroutine(DelayShooting());
         StartCoroutine(StartCooldown());
     }
 
@@ -40,5 +42,12 @@ public class Heal : Ability
         {
             playerController.UpdateHealth();
         }
+    }
+
+    IEnumerator DelayShooting()
+    {
+        playerController.canShoot = false;
+        yield return new WaitForSeconds(shootDelay);
+        playerController.canShoot = true;
     }
 }
