@@ -28,7 +28,7 @@ MonoBehaviour:
     4
 
     Recoil: Heavy'
-  headDamage: 50
+  headDamage: 60
   bodyDamage: 25
   fireRate: 4
   range: 50

@@ -139,7 +139,7 @@ public class Gun : Item
 
     void Shoot()
     {
-        if (!playerController.canShoot)
+        if (!playerController.canShoot || Settings.Instance.settingsMenu.activeSelf)
         {
             return;
         }
@@ -389,8 +389,8 @@ public class Gun : Item
 
     void WeaponSway()
     {
-        float mouseX = Input.GetAxisRaw("Mouse X") * swayAmount * (aiming ? .5f : 1) * playerMovement.mouseSensitivity;
-        float mouseY = Input.GetAxisRaw("Mouse Y") * swayAmount * (aiming ? .5f : 1) * playerMovement.mouseSensitivity;
+        float mouseX = Input.GetAxisRaw("Mouse X") * swayAmount * (aiming ? .5f : 1) * Settings.Instance.mouseSensitivity;
+        float mouseY = Input.GetAxisRaw("Mouse Y") * swayAmount * (aiming ? .5f : 1) * Settings.Instance.mouseSensitivity;
 
         Quaternion rotationX = Quaternion.AngleAxis(mouseY, Vector3.right);
         Quaternion rotationY = Quaternion.AngleAxis(-mouseX, Vector3.up);

@@ -582,7 +582,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19c7a2c56ea9f6e42b32f21ca9d873e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseSensitivity: 2
   runSpeed: 5.5
   walkSpeed: 3
   groundAcceleration: 22

@@ -241,7 +241,6 @@ public class GameManager : MonoBehaviourPunCallbacks
         {
             winLoseText.text = "DRAW";
         }
-
     }
 
     public void OnClickExit()

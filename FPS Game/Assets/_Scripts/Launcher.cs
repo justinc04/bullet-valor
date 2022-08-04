@@ -28,6 +28,20 @@ public class Launcher : MonoBehaviourPunCallbacks
     private void Start()
     {
         PhotonNetwork.ConnectUsingSettings();
+        InitializeSettings();
+    }
+
+    void InitializeSettings()
+    {
+        if (!PlayerPrefs.HasKey("Sensitivity"))
+        {
+            PlayerPrefs.SetFloat("Sensitivity", 1.5f);
+        }
+
+        if (!PlayerPrefs.HasKey("Volume"))
+        {
+            PlayerPrefs.SetInt("Volume", 100);
+        }
     }
 
     public override void OnConnectedToMaster()

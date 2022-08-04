@@ -5,10 +5,6 @@ using Photon.Pun;
 
 public class PlayerMovement : MonoBehaviourPun
 { 
-    [Header("Mouse Look")]
-    public float mouseSensitivity;
-    private float verticalLookRot;
-
     [Header("Movement")]
     public float runSpeed;
     public float walkSpeed;
@@ -53,6 +49,8 @@ public class PlayerMovement : MonoBehaviourPun
     private PhotonView pv;
     private CharacterController controller;
 
+    private float verticalLookRot;
+
     private void Awake()
     {
         pv = GetComponent<PhotonView>();
@@ -81,8 +79,8 @@ public class PlayerMovement : MonoBehaviourPun
 
     void Look()
     {
-        float mouseX = Input.GetAxisRaw("Mouse X") * mouseSensitivity;
-        float mouseY = Input.GetAxisRaw("Mouse Y") * mouseSensitivity;
+        float mouseX = Input.GetAxisRaw("Mouse X") * Settings.Instance.mouseSensitivity;
+        float mouseY = Input.GetAxisRaw("Mouse Y") * Settings.Instance.mouseSensitivity;
 
         transform.Rotate(Vector3.up * mouseX);
 
