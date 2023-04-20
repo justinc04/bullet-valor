@@ -2128,7 +2128,7 @@ MonoBehaviour:
   sounds:
   - name: Menu Music
     clip: {fileID: 8300000, guid: 8eaae74f67b302a4fba7d29ad8b0609d, type: 3}
-    volume: 0.4
+    volume: 0.37
     maxDistance: 0
     loop: 1
     source: {fileID: 0}

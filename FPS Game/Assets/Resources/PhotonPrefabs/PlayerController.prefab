@@ -553,6 +553,7 @@ MonoBehaviour:
   itemsThirdPersonPos: {x: 0, y: -0.4, z: 0}
   healthText: {fileID: 7102840616750415230}
   ammoText: {fileID: 1332757910392452136}
+  crosshair: {fileID: 8192492923475930638}
   currentAbility: {fileID: 0}
   abilityGraphic: {fileID: 9114906520955088534}
   abilityImage: {fileID: 392856127691353480}

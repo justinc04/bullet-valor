@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviourPunCallbacks, IDamageable
     [SerializeField] Vector3 itemsThirdPersonPos;
     [SerializeField] TMP_Text healthText;
     [SerializeField] TMP_Text ammoText;
+    [SerializeField] Image crosshair;
     [HideInInspector] public ItemInfo currentAbility;
     public GameObject abilityGraphic;
     public Image abilityImage;
@@ -106,6 +107,7 @@ public class PlayerController : MonoBehaviourPunCallbacks, IDamageable
 
     public void Kill()
     {
+        crosshair.enabled = false;
         playerManager.Kill();
     }
 
