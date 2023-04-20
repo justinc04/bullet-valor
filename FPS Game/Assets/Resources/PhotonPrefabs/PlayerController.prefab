@@ -595,11 +595,11 @@ MonoBehaviour:
   abilitySpeedAffector: 1
   weaponSpeedAffector: 1
   silentSteps: 0
-  gravityScale: 4
-  fallGravityScale: 7
+  gravityScale: 3
+  fallGravityScale: 5
   gravityControlled: 0
   velocity: {x: 0, y: 0, z: 0}
-  jumpHeight: 0.9
+  jumpHeight: 1.1
   groundDistance: 0.4
   hangTime: 0.05
   jumpBuffer: 0.08

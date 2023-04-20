@@ -13,6 +13,11 @@ public class MenuManager : MonoBehaviour
         Instance = this;
     }
 
+    private void Start()
+    {
+        AudioManager.Instance.Play("Menu Music");
+    }
+
     public void OpenMenu(string menuName)
     {
         for (int i = 0; i < menus.Length; i++)

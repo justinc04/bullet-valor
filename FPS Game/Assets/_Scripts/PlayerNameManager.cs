@@ -16,9 +16,14 @@ public class PlayerNameManager : MonoBehaviour
         }
         else
         {
-            usernameInput.text = "Player " + Random.Range(0, 10000).ToString("0000");
-            OnUsernameInputValueChanged();
+            SetRandomName();
         }
+    }
+
+    public void SetRandomName()
+    {
+        usernameInput.text = "Player " + Random.Range(0, 10000).ToString("0000");
+        OnUsernameInputValueChanged();
     }
 
     public void OnUsernameInputValueChanged()
