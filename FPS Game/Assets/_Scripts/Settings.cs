@@ -35,16 +35,21 @@ public class Settings : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            settingsMenu.SetActive(!settingsMenu.activeSelf);
+            OpenCloseSettings();
+        }
+    }
 
-            if (settingsMenu.activeSelf || ShopManager.Instance.shop.activeSelf)
-            {
-                Cursor.lockState = CursorLockMode.None;
-            }
-            else
-            {
-                Cursor.lockState = CursorLockMode.Locked;
-            }
+    public void OpenCloseSettings()
+    {
+        settingsMenu.SetActive(!settingsMenu.activeSelf);
+
+        if (settingsMenu.activeSelf || ShopManager.Instance.shop.activeSelf)
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
         }
     }
 

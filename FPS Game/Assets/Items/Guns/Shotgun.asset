@@ -23,7 +23,7 @@ MonoBehaviour:
     Magazine: 7
 
     Range:
-    18
+    20
 
     Spread: 60
 
@@ -31,7 +31,7 @@ MonoBehaviour:
   headDamage: 13
   bodyDamage: 8
   fireRate: 3.5
-  range: 18
+  range: 20
   spread: 60
   movementInaccuracy: 40
   ammoCapacity: 7

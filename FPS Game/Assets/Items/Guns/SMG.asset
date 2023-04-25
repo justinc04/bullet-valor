@@ -16,9 +16,9 @@ MonoBehaviour:
   itemType: 0
   price: 1600
   graphic: {fileID: 21300000, guid: f79c45f6dcec7a24b8240f8155a9fd7a, type: 3}
-  description: 'Damage: 35/15
+  description: 'Damage: 35/12
 
-    Fire Rate: 16
+    Fire Rate: 15
 
     Magazine: 20
 
@@ -29,8 +29,8 @@ MonoBehaviour:
 
     Recoil: Moderate'
   headDamage: 35
-  bodyDamage: 15
-  fireRate: 16
+  bodyDamage: 12
+  fireRate: 15
   range: 40
   spread: 15
   movementInaccuracy: 35

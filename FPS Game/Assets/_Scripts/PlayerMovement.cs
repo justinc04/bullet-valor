@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviourPun
     [HideInInspector] public float weaponSpeedAffector = 1;
     private float landingSpeedAffector = 1;
     [HideInInspector] public bool silentSteps;
+    public float mouseSensitivityMultiplier = 1;
 
     [Header("Gravity")]
     [SerializeField] float gravityScale;
@@ -79,8 +80,8 @@ public class PlayerMovement : MonoBehaviourPun
 
     void Look()
     {
-        float mouseX = Input.GetAxisRaw("Mouse X") * Settings.Instance.mouseSensitivity;
-        float mouseY = Input.GetAxisRaw("Mouse Y") * Settings.Instance.mouseSensitivity;
+        float mouseX = Input.GetAxisRaw("Mouse X") * Settings.Instance.mouseSensitivity * mouseSensitivityMultiplier;
+        float mouseY = Input.GetAxisRaw("Mouse Y") * Settings.Instance.mouseSensitivity * mouseSensitivityMultiplier;
 
         transform.Rotate(Vector3.up * mouseX);
 

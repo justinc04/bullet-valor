@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     [SerializeField] TMP_Text bodyShotsText;
     [SerializeField] TMP_Text roundText;
     [SerializeField] TMP_Text moneyText;
+    [SerializeField] TMP_Text pingText;
     [SerializeField] GameObject playerUI;
     [SerializeField] GameObject gameOverMenu;
     [SerializeField] TMP_Text winLoseText;
@@ -84,6 +85,8 @@ public class GameManager : MonoBehaviourPunCallbacks
             roundEnded = false;
             Invoke("StartNextRound", timeBetweenRounds);
         }
+
+        pingText.text = "RTT: " + PhotonNetwork.GetPing() + " ms";
     }
 
     public void OnSpawn()

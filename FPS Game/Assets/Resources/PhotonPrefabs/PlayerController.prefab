@@ -596,6 +596,7 @@ MonoBehaviour:
   abilitySpeedAffector: 1
   weaponSpeedAffector: 1
   silentSteps: 0
+  mouseSensitivityMultiplier: 0
   gravityScale: 3
   fallGravityScale: 5
   gravityControlled: 0
@@ -2190,7 +2191,7 @@ MonoBehaviour:
   speedMultiplier: 1.2
   accelerationMultiplier: 1.5
   jumpMultiplier: 1.2
-  soundMultiplier: 0.5
+  soundMultiplier: 0.4
   landingMultiplier: 0.3
   sounds:
   - Footsteps
@@ -3757,7 +3758,7 @@ MonoBehaviour:
   playerController: {fileID: 0}
   playerMovement: {fileID: 0}
   amount: 80
-  shootDelay: 1
+  shootDelay: 1.25
 --- !u!114 &7220918465776567692
 MonoBehaviour:
   m_ObjectHideFlags: 0

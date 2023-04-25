@@ -344,6 +344,7 @@ public class Gun : Item
         ADSObject.transform.localPosition = Vector3.Lerp(ADSObject.transform.localPosition, Vector3.zero, ((GunInfo)itemInfo).scopeInSpeed * Time.deltaTime); 
         cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, cameraFOV, ((GunInfo)itemInfo).scopeInSpeed * Time.deltaTime);
         playerMovement.weaponSpeedAffector = 1;
+        playerMovement.mouseSensitivityMultiplier = 1;
 
         if (((GunInfo)itemInfo).hasScopeOverlay && scopeOverlay.activeSelf)
         {
@@ -358,6 +359,7 @@ public class Gun : Item
         ADSObject.transform.localPosition = Vector3.Lerp(ADSObject.transform.localPosition, ((GunInfo)itemInfo).aimingPosition, ((GunInfo)itemInfo).scopeInSpeed * Time.deltaTime);
         cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, cameraFOV / ((GunInfo)itemInfo).aimingZoom, ((GunInfo)itemInfo).scopeInSpeed * Time.deltaTime);
         playerMovement.weaponSpeedAffector = ((GunInfo)itemInfo).aimingMoveSpeedAffector;
+        playerMovement.mouseSensitivityMultiplier = 1 / ((GunInfo)itemInfo).aimingZoom;
 
         if (((GunInfo)itemInfo).hasScopeOverlay && !scopeOverlay.activeSelf && (Vector3.Distance(ADSObject.transform.localPosition, ((GunInfo)itemInfo).aimingPosition) < .01f))
         {
