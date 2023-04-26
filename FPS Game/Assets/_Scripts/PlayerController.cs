@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
 using TMPro;
+using DG.Tweening;
 
 public class PlayerController : MonoBehaviourPunCallbacks, IDamageable
 {
@@ -16,6 +17,7 @@ public class PlayerController : MonoBehaviourPunCallbacks, IDamageable
     [SerializeField] TMP_Text healthText;
     [SerializeField] TMP_Text ammoText;
     [SerializeField] Image crosshair;
+    [SerializeField] Image damageOverlay;
     [HideInInspector] public ItemInfo currentAbility;
     public GameObject abilityGraphic;
     public Image abilityImage;
@@ -87,6 +89,15 @@ public class PlayerController : MonoBehaviourPunCallbacks, IDamageable
     {
         currentHealth -= damage;
         UpdateHealth();
+
+        if (pv.IsMine)
+        {
+            damageOverlay.DOPause();
+            Color overlayColor = damageOverlay.color;
+            overlayColor.a = 1;
+            damageOverlay.color = overlayColor;
+            damageOverlay.DOFade(0, .5f).SetEase(Ease.Linear);
+        }
 
         if (currentHealth <= 0)
         {

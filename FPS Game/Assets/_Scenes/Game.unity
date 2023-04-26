@@ -46392,6 +46392,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f0f7e230863eb2489ba64c772cb64ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameState: 0
   playerManager: {fileID: 0}
   winScore: 25
   timeBetweenRounds: 5

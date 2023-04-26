@@ -161,8 +161,8 @@ public class Gun : Item
     {
         Vector3 spreadX = cam.transform.up * Random.Range(-1f, 1f);
         Vector3 spreadY = cam.transform.right * Random.Range(-1f, 1f);
-        float aimReduction = aiming ? .75f : 1;
-        float spreadAmount = Random.Range(-((GunInfo)itemInfo).spread, ((GunInfo)itemInfo).spread) * .001f * aimReduction;
+        float spreadValue = aiming ? ((GunInfo)itemInfo).aimingSpread : ((GunInfo)itemInfo).spread;
+        float spreadAmount = Random.Range(-spreadValue, spreadValue) * .001f;
         float jumpingInaccuracy = playerMovement.isGrounded ? 0 : Mathf.Abs(playerMovement.velocity.y) + playerMovement.runSpeed;
         float movementInaccuracy = ((GunInfo)itemInfo).movementInaccuracy * (playerMovement.speed * playerMovement.direction.magnitude + jumpingInaccuracy) / playerMovement.runSpeed;
         spreadAmount += movementInaccuracy * Mathf.Sign(spreadAmount) * .001f;

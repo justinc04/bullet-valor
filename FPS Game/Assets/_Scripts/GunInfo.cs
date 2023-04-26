@@ -45,6 +45,7 @@ public class GunInfo : ItemInfo
     public bool hasScopeOverlay;
     public Vector3 aimingPosition;
     public float aimingZoom;
+    public float aimingSpread;
     public float scopeInSpeed;
     public float aimingFireRate;
     public float aimingMoveSpeedAffector;

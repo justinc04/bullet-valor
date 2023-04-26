@@ -25,7 +25,7 @@ MonoBehaviour:
     Range: 40
 
     Spread:
-    15
+    15/12
 
     Recoil: Moderate'
   headDamage: 35
@@ -55,6 +55,7 @@ MonoBehaviour:
   hasScopeOverlay: 0
   aimingPosition: {x: -0.307, y: 0, z: -0.1}
   aimingZoom: 1.15
+  aimingSpread: 12
   scopeInSpeed: 20
   aimingFireRate: 14
   aimingMoveSpeedAffector: 0.75
