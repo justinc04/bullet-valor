@@ -250,6 +250,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     public void OnClickExit()
     {
         PhotonNetwork.Disconnect();
+        ChatManager.Instance.DisconnectChat();
         loadingMenu.SetActive(true);
         RoomManager.Instance.photonView.ViewID = 0;
     }
