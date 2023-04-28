@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Chat;
 using ExitGames.Client.Photon;
@@ -11,6 +13,8 @@ public class ChatManager : MonoBehaviour, IChatClientListener
     public static ChatManager Instance;
 
     [SerializeField] private string chatAppID;
+    [SerializeField] private Transform messageBox;
+    [SerializeField] private TMP_Text messagePrefab;
     [SerializeField] private TMP_InputField messageInputField;
 
     private ChatClient chatClient;
@@ -39,9 +43,19 @@ public class ChatManager : MonoBehaviour, IChatClientListener
 
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            if (!messageInputField.isFocused)
+            if (!EventSystem.current.currentSelectedGameObject == messageInputField)
             {
                 messageInputField.Select();
+            }
+            else
+            {
+                EventSystem.current.SetSelectedGameObject(null);
+
+                if (!string.IsNullOrEmpty(messageInputField.text))
+                {
+                    SendChatMessage(messageInputField.text);
+                    messageInputField.text = "";
+                }
             }
         }
     }
@@ -53,14 +67,15 @@ public class ChatManager : MonoBehaviour, IChatClientListener
 
     public void OnGetMessages(string channelName, string[] senders, object[] messages)
     {
-        int msgCount = messages.Length;
-
-        for (int i = 0; i < msgCount; i++)
+        for (int i = 0; i < messages.Length; i++)
         { 
-            string sender = senders[i];
-            string msg = messages[i].ToString();
-            Debug.Log(sender +msg);
+            CreateMessage(senders[i], messages[i].ToString());
         }
+    }
+
+    private void CreateMessage(string sender, string message)
+    {
+        Instantiate(messagePrefab, messageBox).text = sender + ": " + message;
     }
 
     public void OnConnected()
