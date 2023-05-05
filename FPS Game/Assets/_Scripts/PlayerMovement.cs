@@ -93,8 +93,8 @@ public class PlayerMovement : MonoBehaviourPun
 
     void Move()
     {
-        float horizontal = Input.GetAxisRaw("Horizontal");
-        float vertical = Input.GetAxisRaw("Vertical");
+        float horizontal = PlayerInput.Instance.GetAxis().x;
+        float vertical = PlayerInput.Instance.GetAxis().y;
         float acceleration = hangTimeCounter > 0f ? groundAcceleration : airAcceleration;
 
         if (!directionControlled)
@@ -105,13 +105,13 @@ public class PlayerMovement : MonoBehaviourPun
 
         if (!speedControlled)
         {
-            float targetSpeed = (Input.GetKey(KeyCode.LeftShift) ? walkSpeed : runSpeed) * weaponSpeedAffector * landingSpeedAffector * abilitySpeedAffector;
+            float targetSpeed = (PlayerInput.Instance.GetWalkButton() ? walkSpeed : runSpeed) * weaponSpeedAffector * landingSpeedAffector * abilitySpeedAffector;
             speed = Mathf.Lerp(speed, targetSpeed, acceleration * Time.deltaTime);
         }
 
         controller.Move(direction * speed * Time.deltaTime);
 
-        if (!silentSteps && direction != Vector3.zero && controller.velocity.magnitude > walkSpeed && !Input.GetKey(KeyCode.LeftShift) && isGrounded)
+        if (!silentSteps && direction != Vector3.zero && controller.velocity.magnitude > walkSpeed && !PlayerInput.Instance.GetWalkButton() && isGrounded)
         {
             if (!playerAudio.CheckSound("Footsteps"))
             {
@@ -168,7 +168,7 @@ public class PlayerMovement : MonoBehaviourPun
             hangTimeCounter -= Time.deltaTime;
         }
 
-        if (Input.GetButtonDown("Jump"))
+        if (PlayerInput.Instance.GetJumpButtonDown())
         {
             jumpBufferCounter = jumpBuffer;
         }
@@ -203,7 +203,7 @@ public class PlayerMovement : MonoBehaviourPun
             gravity = gravityConstant * gravityScale;
         }
 
-        if (Input.GetButtonUp("Jump") && velocity.y > 0f)
+        if (PlayerInput.Instance.GetJumpButtonUp() && velocity.y > 0f)
         {
             velocity.y *= .8f;
             hangTimeCounter = 0f;

@@ -7,6 +7,7 @@ using Photon.Pun;
 using Photon.Chat;
 using ExitGames.Client.Photon;
 using TMPro;
+using DG.Tweening;
 
 public class ChatManager : MonoBehaviour, IChatClientListener
 {
@@ -16,6 +17,14 @@ public class ChatManager : MonoBehaviour, IChatClientListener
     [SerializeField] private Transform messageBox;
     [SerializeField] private TMP_Text messagePrefab;
     [SerializeField] private TMP_InputField messageInputField;
+    [SerializeField] private RectTransform chatScrollView;
+    [SerializeField] private ScrollRect chatScrollRect;
+    [SerializeField] private Scrollbar chatScrollbar;
+    [SerializeField] private Image chatScrollbarImage;
+    [SerializeField] private float chatHiddenHeight;
+    [SerializeField] private float chatExpandedHeight;
+    [SerializeField] private float chatHiddenAlpha;
+    [SerializeField] private float chatExpandedAlpha;
 
     private ChatClient chatClient;
     private AuthenticationValues authValues;
@@ -46,10 +55,12 @@ public class ChatManager : MonoBehaviour, IChatClientListener
             if (!EventSystem.current.currentSelectedGameObject == messageInputField)
             {
                 messageInputField.Select();
+                HideChat(false);
             }
             else
             {
                 EventSystem.current.SetSelectedGameObject(null);
+                HideChat(true);
 
                 if (!string.IsNullOrEmpty(messageInputField.text))
                 {
@@ -58,6 +69,37 @@ public class ChatManager : MonoBehaviour, IChatClientListener
                 }
             }
         }
+    }
+
+    public void HideChat(bool hide)
+    {
+        if (hide)
+        {
+            chatScrollView.sizeDelta = new Vector2(chatScrollView.sizeDelta.x, chatHiddenHeight);
+            chatScrollbarImage.enabled = false;
+            chatScrollbar.value = 0;
+            chatScrollView.GetComponent<Image>().DOFade(chatHiddenAlpha, .05f).SetEase(Ease.Linear);
+            messageInputField.image.DOFade(chatHiddenAlpha, .05f).SetEase(Ease.Linear);
+        }
+        else
+        {
+            chatScrollView.sizeDelta = new Vector2(chatScrollView.sizeDelta.x, chatExpandedHeight);
+            chatScrollbarImage.enabled = true;
+            chatScrollView.GetComponent<Image>().DOFade(chatExpandedAlpha, .05f).SetEase(Ease.Linear);
+            messageInputField.image.DOFade(chatExpandedAlpha, .05f).SetEase(Ease.Linear);
+        }
+    }
+
+    public void OnGUI()
+    {
+        if (chatScrollbarImage.enabled && Event.current.type == EventType.ScrollWheel)
+        {
+            float scrollDelta = Event.current.delta.y * chatScrollRect.scrollSensitivity;
+            Vector2 normalizedPosition = chatScrollRect.normalizedPosition;
+            normalizedPosition.y -= scrollDelta / chatScrollRect.content.rect.height;
+            normalizedPosition.y = Mathf.Clamp(normalizedPosition.y, 0f, 1f);
+            chatScrollRect.normalizedPosition = normalizedPosition;
+        }      
     }
 
     public void SendChatMessage(string message)

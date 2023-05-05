@@ -11,7 +11,7 @@ public abstract class Ability : Item
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (PlayerInput.Instance.GetAbilityButton())
         {
             UseAbility();
         }

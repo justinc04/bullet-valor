@@ -25,15 +25,15 @@ MonoBehaviour:
     Range:
     20
 
-    Spread: 60
+    Spread: 55
 
     Recoil: None'
   headDamage: 13
   bodyDamage: 8
   fireRate: 3.5
   range: 20
-  spread: 60
-  movementInaccuracy: 40
+  spread: 55
+  movementInaccuracy: 25
   ammoCapacity: 7
   bulletsPerShot: 12
   fireMode: 0
@@ -55,6 +55,7 @@ MonoBehaviour:
   hasScopeOverlay: 0
   aimingPosition: {x: 0, y: 0, z: 0}
   aimingZoom: 0
+  aimingSpread: 0
   scopeInSpeed: 20
   aimingFireRate: 0
   aimingMoveSpeedAffector: 0

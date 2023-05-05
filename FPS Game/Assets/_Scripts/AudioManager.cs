@@ -24,6 +24,11 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        AudioListener.volume = PlayerPrefs.GetInt("Volume") / 100f;
+    }
+
     public void Play(string name)
     {
         GetSound(name).source.Play();

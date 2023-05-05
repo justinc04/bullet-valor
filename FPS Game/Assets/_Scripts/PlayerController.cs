@@ -124,7 +124,8 @@ public class PlayerController : MonoBehaviourPunCallbacks, IDamageable
 
     public void UpdateHealth()
     {
-        healthText.text = ((int)(currentHealth + 1)).ToString();
+        int healthToDisplay = Mathf.RoundToInt(currentHealth);
+        healthText.text = (healthToDisplay == 0 ? 1 : healthToDisplay).ToString();
     }
 
     public void UpdateAmmo(int ammo)

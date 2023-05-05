@@ -78,7 +78,7 @@ public class Gun : Item
             HipFire();
         }
 
-        if (Input.GetKeyDown(KeyCode.R) && ammo < ((GunInfo)itemInfo).ammoCapacity)
+        if (PlayerInput.Instance.GetReloadButton() && ammo < ((GunInfo)itemInfo).ammoCapacity)
         {
             StartCoroutine(Reload());
         }
@@ -212,7 +212,14 @@ public class Gun : Item
             }
             else if (hitObject.layer == LayerMask.NameToLayer("Ground"))
             {
-                pv.RPC("RPC_ShootBullets", RpcTarget.All, hit.point, hit.normal, false, true);
+                if (hitObject.CompareTag("Boundary"))
+                {
+                    pv.RPC("RPC_ShootBullets", RpcTarget.All, hit.point, hit.normal, false, false);
+                }
+                else
+                {
+                    pv.RPC("RPC_ShootBullets", RpcTarget.All, hit.point, hit.normal, false, true);
+                }
             }
         }
     }

@@ -406,7 +406,7 @@ GameObject:
   - component: {fileID: 2731360373451992618}
   - component: {fileID: 4800277251245794853}
   - component: {fileID: 8943080097059350472}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlayerController
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1440,7 +1440,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.3820755, b: 0.3820755, a: 0}
+  m_Color: {r: 1, g: 0.23113209, b: 0.23113209, a: 0}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1605,7 +1605,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 30}
+  m_AnchoredPosition: {x: 0, y: 20}
   m_SizeDelta: {x: 300, y: 140}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &5999159330938036425
@@ -2360,11 +2360,11 @@ MonoBehaviour:
   playerManager: {fileID: 0}
   playerController: {fileID: 0}
   playerMovement: {fileID: 0}
-  speedMultiplier: 1.2
+  speedMultiplier: 1.25
   accelerationMultiplier: 1.5
   jumpMultiplier: 1.2
-  soundMultiplier: 0.4
-  landingMultiplier: 0.3
+  soundMultiplier: 0.25
+  landingMultiplier: 0.25
   sounds:
   - Footsteps
   - Jump
@@ -3853,7 +3853,7 @@ MonoBehaviour:
   playerManager: {fileID: 0}
   playerController: {fileID: 0}
   playerMovement: {fileID: 0}
-  amount: 80
+  amount: 100
   shootDelay: 1.25
 --- !u!114 &7220918465776567692
 MonoBehaviour:
@@ -3931,8 +3931,8 @@ MonoBehaviour:
   playerManager: {fileID: 0}
   playerController: {fileID: 0}
   playerMovement: {fileID: 0}
-  amount: 40
-  shootDelay: 1
+  amount: 50
+  shootDelay: 0.75
 --- !u!114 &3095864274937751616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9475,6 +9475,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: e94119f0a12f7ca4e8d8bd28cac89337, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: e94119f0a12f7ca4e8d8bd28cac89337, type: 3}
       propertyPath: m_Name
       value: Revolver
@@ -9557,6 +9561,10 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: d0ec9b83a0d9489469f7311e08a5cc7c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: d0ec9b83a0d9489469f7311e08a5cc7c, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d0ec9b83a0d9489469f7311e08a5cc7c, type: 3}
       propertyPath: m_Name
@@ -9878,6 +9886,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 5146a2e7cd300fe4cb3b4fa6f673f180, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 5146a2e7cd300fe4cb3b4fa6f673f180, type: 3}
       propertyPath: m_Name
       value: Sniper Rifle Object
@@ -10052,6 +10064,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 25e2961dc0d51ec45a0bcbe6f38bfcc3, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 25e2961dc0d51ec45a0bcbe6f38bfcc3, type: 3}
       propertyPath: m_Name
       value: Pistol Object
@@ -10222,6 +10238,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: b856153d5a0135e41ab4057a7bb1569e, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b856153d5a0135e41ab4057a7bb1569e, type: 3}
       propertyPath: m_Name
       value: Assault Rifle Object
@@ -10390,6 +10410,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: beb6019842bd6a64f8ce64b2631793bd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: beb6019842bd6a64f8ce64b2631793bd, type: 3}
+      propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: beb6019842bd6a64f8ce64b2631793bd, type: 3}
