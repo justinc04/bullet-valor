@@ -20,6 +20,7 @@ public class ChatManager : MonoBehaviour, IChatClientListener
     [SerializeField] private RectTransform chatScrollView;
     [SerializeField] private ScrollRect chatScrollRect;
     [SerializeField] private Scrollbar chatScrollbar;
+    [SerializeField] private VerticalLayoutGroup chatLayoutGroup;
     [SerializeField] private Image chatScrollbarImage;
     [SerializeField] private float chatHiddenHeight;
     [SerializeField] private float chatExpandedHeight;
@@ -117,7 +118,16 @@ public class ChatManager : MonoBehaviour, IChatClientListener
 
     private void CreateMessage(string sender, string message)
     {
-        Instantiate(messagePrefab, messageBox).text = sender + ": " + message;
+        TMP_Text messageText = Instantiate(messagePrefab, messageBox);
+        messageText.text = sender + ": " + message;
+        messageText.ForceMeshUpdate();
+        messageText.rectTransform.sizeDelta = new Vector2(messageText.rectTransform.sizeDelta.x, messageText.rectTransform.sizeDelta.y * messageText.textInfo.lineCount);
+        chatHiddenHeight = messageText.rectTransform.sizeDelta.y + 2 * chatLayoutGroup.spacing;
+
+        if (!EventSystem.current.currentSelectedGameObject == messageInputField)
+        {
+            HideChat(true);
+        }
     }
 
     public void OnConnected()
